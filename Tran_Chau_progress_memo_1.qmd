@@ -44,45 +44,51 @@ A memo is a short, polished report. Meaning, it should be well written and thoug
 
 :::
 
-::: {.callout-warning collapse=true}
-GitHub (free account) cannot store large files. If you try to commit and push a large dataset you will have an ERROR! Any file over 100 MB (100,000 KB) needs to be added to the `.gitignore` file BEFORE committing.
-
-**We may need to do that for files in your final project!**
-:::
-
 
 ::: {.callout-tip icon=false}
 
 ## Github Repo Link
 
-[Tran Chau's Github Repo](https://github.com/stat301-1-2024-fall/final-project-1-bunmam-ctrl.git)
+[Tran Chau's Final Project Github Repo](https://github.com/stat301-1-2024-fall/final-project-1-bunmam-ctrl.git)
 
 :::
 
 ```{r}
 #| label: load pck
-library(jsonlite)
 library(tidyverse)
 ```
 
 ```{r}
 #| label: convert data 
-#| output: false
-
+pregnancy <- read_csv("data/global_abortion_raw.csv")
+violence <-  read_csv("data/violence_raw.csv")
 ```
 
 
 ## Data source
+The first data source for this project is the [Global Abortion Incidence Dataset](https://osf.io/6t4eh),available on **OSF** (accessed on November 3, 2024). This dataset provides comprehensive global data on abortion incidence, encompassing multiple regions and age group. It is designed to faciliate an understanding of abortion trends worldwide and can be utilized for examining factors such as regional abortion rates and demographic patterns over time. This source will be instrumental in studying abortion incidence on a broader scale, with a particular focus on identifying socio-economic and geographical patterns in abortion access and frequency.
 
-Blah blah blah^[where blah blah came from, an example of footnote]
+The second dataset is available is [Domestic Violence Against Women in a Specific Rural Area of a Developing Country](https://www.kaggle.com/datasets/fahmidachowdhury/domestic-violence-against-women), available on **Kaggle** (accessed on November 3, 2024). This dataset include socio-economic and demographic information on women, such as age, country, education, employment, income, marital status, and whether they have experienced domestic violence The dataset provides an opportunity to analyze correlation between these variables and domestic violence prevalence, which could contribute to identifying risk factors within specific socio-economic contexts. 
+
+Given that both datasets are global, there is a potential for integration on a broader scale if future analyses require it. Although they focus on different issues—global abortion rates and domestic violence—they both offer socio-economic and geographic context that could allow for meaningful comparisons across countries. If merging becomes necessary, we could utilize the country variable as a primary key, alongside additional demographic or socio-economic indicators, to facilitate robust cross-dataset analyses.
 
 ## Why this data
+The choice of these datasets is motivated by an interest in understanding the systemic challenges that women face, particularly in light of high-profile cases like *United States v. Lisa Montgomery* and *Texas v. Andrea Yates*. These tragic cases underscore the complex intersections between mental health, reproductive rights, and the impact of socio-economic stressors on women’s lives. Both cases highlight the consequences of untreated trauma, lack of social support, and inadequate mental health care, especially for women in vulnerable circumstances. They serve as a powerful reminder of the importance of data-driven research to inform policies that could prevent such tragedies.
 
-Blah blah blah^[another footnote]
+The **Global Abortion Incidence** dataset provides detailed information on abortion rates worldwide, segmented by age and socio-economic factors, enabling an exploration of how access to reproductive healthcare varies globally. By examining patterns in this data, we can identify the socio-economic barriers that may limit access to safe abortion services in different regions, illuminating how these barriers impact women’s autonomy over their own health and bodies. 
+
+The **Domestic Violence Against Women** dataset, similarly global in scope, offers insights into the prevalence and correlates of domestic violence across diverse demographics. It includes critical variables like age, education level, employment status, income, and marital status, helping to contextualize the factors that increase vulnerability to abuse. With this dataset, we can explore questions such as how educational attainment or employment correlates with the risk of domestic violence, or how marital status may affect vulnerability.
+
+Together, these datasets allow for an examination of the broader socio-economic factors that impact women’s lives, linking reproductive health and domestic violence in meaningful ways. This analysis seeks not only to uncover patterns but also to contribute to the development of policies that could offer protection and support to women facing socio-economic and health-related adversities.
+
 
 ## Data quality & complexity check
 
-Blah blah blah
+```{r}
+skimr::skim(pregnancy)
+skimr::skim(violence)
+```
+
 
 ## Potential data issues
 
