@@ -1,3 +1,0 @@
-An interactive online codebook for this data set is available at this link:
-
-https://guttinst.github.io/National-State-Pregnancy-Codebook-1973-2020/
