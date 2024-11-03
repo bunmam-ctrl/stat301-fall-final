@@ -39,3 +39,11 @@
 # the following code in the Terminal:
 # find . -size +100M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
 
+.git/objects/pack/pack-57c649a783fb38889e03eaeea0ebad1002d36ca7.pack
+data/yelp_academic_dataset_business.json
+.git/objects/pack/pack-57c649a783fb38889e03eaeea0ebad1002d36ca7.pack
+data/yelp_academic_dataset_checkin.json
+data/yelp_academic_dataset_tip.json
+data/yelp_academic_dataset_review.json
+data/yelp_academic_dataset_business.json
+data/yelp_academic_dataset_user.json
