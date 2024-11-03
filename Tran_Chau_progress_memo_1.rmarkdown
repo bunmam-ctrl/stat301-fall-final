@@ -24,6 +24,8 @@ reference-location: margin
 citation-location: margin
 ---
 
+
+
 ::: {.callout-important collapse=true}
 ## Memo format
 
@@ -59,6 +61,8 @@ GitHub (free account) cannot store large files. If you try to commit and push a 
 
 :::
 
+
+
 ```{r}
 #| label: load pck
 library(jsonlite)
@@ -69,7 +73,13 @@ library(tidyverse)
 #| label: convert data 
 #| output: false
 
+business <- stream_in(
+  file("data/yelp_academic_dataset_review.json"))
+
+write_rds(review, file = "data/review.rds")
 ```
+
+
 
 
 ## Data source
@@ -91,3 +101,4 @@ Blah blah blah
 ## Misc
 
 Blah Blah
+
