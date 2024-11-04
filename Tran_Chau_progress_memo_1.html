@@ -3053,8 +3053,17 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#data-source" id="toc-data-source" class="nav-link active" data-scroll-target="#data-source">Data source</a></li>
-  <li><a href="#why-this-data" id="toc-why-this-data" class="nav-link" data-scroll-target="#why-this-data">Why this data</a></li>
-  <li><a href="#data-quality-complexity-check" id="toc-data-quality-complexity-check" class="nav-link" data-scroll-target="#data-quality-complexity-check">Data quality &amp; complexity check</a></li>
+  <li><a href="#why-this-data" id="toc-why-this-data" class="nav-link" data-scroll-target="#why-this-data">Why this data</a>
+  <ul>
+  <li><a href="#the-global-abortion-incidence-dataset" id="toc-the-global-abortion-incidence-dataset" class="nav-link" data-scroll-target="#the-global-abortion-incidence-dataset">The Global Abortion Incidence dataset</a></li>
+  <li><a href="#the-domestic-violence-against-women-dataset" id="toc-the-domestic-violence-against-women-dataset" class="nav-link" data-scroll-target="#the-domestic-violence-against-women-dataset">The Domestic Violence Against Women dataset</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  <li><a href="#data-quality-complexity-check" id="toc-data-quality-complexity-check" class="nav-link" data-scroll-target="#data-quality-complexity-check">Data quality &amp; complexity check</a>
+  <ul>
+  <li><a href="#the-global-abortion-incidence-dataset-1" id="toc-the-global-abortion-incidence-dataset-1" class="nav-link" data-scroll-target="#the-global-abortion-incidence-dataset-1">The Global Abortion Incidence dataset</a></li>
+  <li><a href="#the-domestic-violence-against-women-dataset-1" id="toc-the-domestic-violence-against-women-dataset-1" class="nav-link" data-scroll-target="#the-domestic-violence-against-women-dataset-1">The Domestic Violence Against Women dataset</a></li>
+  </ul></li>
   <li><a href="#potential-data-issues" id="toc-potential-data-issues" class="nav-link" data-scroll-target="#potential-data-issues">Potential data issues</a></li>
   <li><a href="#misc" id="toc-misc" class="nav-link" data-scroll-target="#misc">Misc</a></li>
   </ul>
@@ -3112,19 +3121,30 @@ Github Repo Link
 </div>
 <section id="data-source" class="level2">
 <h2 class="anchored" data-anchor-id="data-source">Data source</h2>
-<p>The first data source for this project is the <a href="https://osf.io/6t4eh">Global Abortion Incidence Dataset</a>,available on <strong>OSF</strong> (accessed on November 3, 2024). This dataset provides comprehensive global data on abortion incidence, encompassing multiple regions and age group. It is designed to faciliate an understanding of abortion trends worldwide and can be utilized for examining factors such as regional abortion rates and demographic patterns over time. This source will be instrumental in studying abortion incidence on a broader scale, with a particular focus on identifying socio-economic and geographical patterns in abortion access and frequency.</p>
+<p>The first data source for thisproject is the <a href="https://osf.io/6t4eh">Global Abortion Incidence Dataset</a>, available on <strong>OSF</strong> (accessed on November 3, 2024). This dataset provides comprehensive global data on abortion incidence, encompassing multiple regions and age group. It is designed to faciliate an understanding of abortion trends worldwide and can be utilized for examining factors such as regional abortion rates and demographic patterns over time. This source will be instrumental in studying abortion incidence on a broader scale, with a particular focus on identifying socio-economic and geographical patterns in abortion access and frequency.</p>
 <p>The second dataset is available is <a href="https://www.kaggle.com/datasets/fahmidachowdhury/domestic-violence-against-women">Domestic Violence Against Women in a Specific Rural Area of a Developing Country</a>, available on <strong>Kaggle</strong> (accessed on November 3, 2024). This dataset include socio-economic and demographic information on women, such as age, country, education, employment, income, marital status, and whether they have experienced domestic violence The dataset provides an opportunity to analyze correlation between these variables and domestic violence prevalence, which could contribute to identifying risk factors within specific socio-economic contexts.</p>
 <p>Given that both datasets are global, there is a potential for integration on a broader scale if future analyses require it. Although they focus on different issues—global abortion rates and domestic violence—they both offer socio-economic and geographic context that could allow for meaningful comparisons across countries. If merging becomes necessary, we could utilize the country variable as a primary key, alongside additional demographic or socio-economic indicators, to facilitate robust cross-dataset analyses.</p>
 </section>
 <section id="why-this-data" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-data">Why this data</h2>
 <p>The choice of these datasets is motivated by an interest in understanding the systemic challenges that women face, particularly in light of high-profile cases like <em>United States v. Lisa Montgomery</em> and <em>Texas v. Andrea Yates</em>. These tragic cases underscore the complex intersections between mental health, reproductive rights, and the impact of socio-economic stressors on women’s lives. Both cases highlight the consequences of untreated trauma, lack of social support, and inadequate mental health care, especially for women in vulnerable circumstances. They serve as a powerful reminder of the importance of data-driven research to inform policies that could prevent such tragedies.</p>
-<p>The <strong>Global Abortion Incidence</strong> dataset provides detailed information on abortion rates worldwide, segmented by age and socio-economic factors, enabling an exploration of how access to reproductive healthcare varies globally. By examining patterns in this data, we can identify the socio-economic barriers that may limit access to safe abortion services in different regions, illuminating how these barriers impact women’s autonomy over their own health and bodies.</p>
-<p>The <strong>Domestic Violence Against Women</strong> dataset, similarly global in scope, offers insights into the prevalence and correlates of domestic violence across diverse demographics. It includes critical variables like age, education level, employment status, income, and marital status, helping to contextualize the factors that increase vulnerability to abuse. With this dataset, we can explore questions such as how educational attainment or employment correlates with the risk of domestic violence, or how marital status may affect vulnerability.</p>
+<section id="the-global-abortion-incidence-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="the-global-abortion-incidence-dataset">The Global Abortion Incidence dataset</h3>
+<p>This dataset provides detailed information on abortion rates worldwide, segmented by age and socio-economic factors, enabling an exploration of how access to reproductive healthcare varies globally. By examining patterns in this data, we can identify the socio-economic barriers that may limit access to safe abortion services in different regions, illuminating how these barriers impact women’s autonomy over their own health and bodies.</p>
+</section>
+<section id="the-domestic-violence-against-women-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="the-domestic-violence-against-women-dataset">The Domestic Violence Against Women dataset</h3>
+<p>This dataset, similarly global in scope, offers insights into the prevalence and correlates of domestic violence across diverse demographics. It includes critical variables like age, education level, employment status, income, and marital status, helping to contextualize the factors that increase vulnerability to abuse. With this dataset, we can explore questions such as how educational attainment or employment correlates with the risk of domestic violence, or how marital status may affect vulnerability.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
 <p>Together, these datasets allow for an examination of the broader socio-economic factors that impact women’s lives, linking reproductive health and domestic violence in meaningful ways. This analysis seeks not only to uncover patterns but also to contribute to the development of policies that could offer protection and support to women facing socio-economic and health-related adversities.</p>
+</section>
 </section>
 <section id="data-quality-complexity-check" class="level2">
 <h2 class="anchored" data-anchor-id="data-quality-complexity-check">Data quality &amp; complexity check</h2>
+<section id="the-global-abortion-incidence-dataset-1" class="level3">
+<h3 class="anchored" data-anchor-id="the-global-abortion-incidence-dataset-1">The Global Abortion Incidence dataset</h3>
 <div class="cell">
 <div id="tbl-abortion-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -3188,6 +3208,9 @@ Figure 1: Missing Values in Global Abortion Incidence Dataset
 </div>
 <p>The <em>Global Abortion Incidence Dataset</em> contains <strong>3,340</strong> observations and <strong>17</strong> variables. This dataset includes both numerical variables, such as <code>numberofabortions</code> and <code>abortionrate</code>, and categorical variables, like <code>country</code>, <code>region</code>, and <code>subregion</code>. However, a significant portion of the dataset consists of missing values, particularly in the <code>abortionrate</code> and <code>perc_p_ending_in_a</code> columns. For instance, <code>abortionrate</code> has only <strong>223</strong> non-null entries, while <code>perc_p_ending_in_a</code> has only 5, resulting in substantial data gaps that may affect the robustness of any analysis focusing on these metrics. Overall, approximately <strong>28.5%</strong> of the dataset’s entries are missing, with notable sparsity in fields such as <code>marriedonly</code> and <code>notes</code> (Table <a href="#tbl-abortion-summary" class="quarto-xref">Table 1</a> and Figure <a href="#fig-abortion-missingness" class="quarto-xref">Figure 1</a>).</p>
 <p>In terms of tidiness, the abortion dataset is fairly well-organized, with each row representing a unique country and year observation, and each variable neatly occupying a column. However, given the high rate of missingness in certain columns, data cleaning is necessary. We can handle the missing values by either imputing where possible or excluding variables with consistently high rates of missingness if they’re not central to the analysis. Furthermore, the <code>yearstart</code> and <code>yearend</code> columns could potentially be combined if a single <code>year</code> value is sufficient for analysis. After addressing these issues, the dataset will be in a better state for meaningful analysis.</p>
+</section>
+<section id="the-domestic-violence-against-women-dataset-1" class="level3">
+<h3 class="anchored" data-anchor-id="the-domestic-violence-against-women-dataset-1">The Domestic Violence Against Women dataset</h3>
 <div class="cell">
 <div id="tbl-violence-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -3251,6 +3274,7 @@ Figure 2: Missing Values in Domestic Violence Against Women Dataset
 </div>
 <p>The <em>Domestic Violence Against Women Dataset</em> is more complete, with <strong>12,600</strong> observations and <strong>8</strong> variables. It includes <strong>2</strong> numerical variables, such as <code>Value</code> (representing survey responses), and <strong>6</strong> categorical variables, including <code>Country</code>, <code>Demographics Question</code>, and <code>Demographics Response</code>. Missing values are minimal, with only the <code>Value</code> column containing missing entries (<strong>1,413</strong> in total), resulting in just <strong>0.66%</strong> of the dataset being incomplete. This low rate of missingness suggests that the dataset is well-suited for immediate analysis without extensive preprocessing (Table <a href="#tbl-violence-summary" class="quarto-xref">Table 2</a> and Figure <a href="#fig-violence-missingness" class="quarto-xref">Figure 2</a>).</p>
 <p>This dataset is mostly tidy, with each row representing a unique survey response corresponding to a particular demographic factor in a given country. However, the <code>Demographics Question</code> and <code>Demographics Response</code> columns could benefit from transformation if we want to analyze demographic factors independently. For example, we could separate responses by demographic categories like<code>Marital</code> or <code>Education</code> to allow more granular analysis of factors influencing domestic violence experiences. Cleaning up the few missing values in the Value column and possibly transforming demographic data into separate columns for easier access would enhance the dataset’s usability.</p>
+</section>
 </section>
 <section id="potential-data-issues" class="level2">
 <h2 class="anchored" data-anchor-id="potential-data-issues">Potential data issues</h2>
