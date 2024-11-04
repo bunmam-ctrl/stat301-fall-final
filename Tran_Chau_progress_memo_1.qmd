@@ -24,27 +24,6 @@ reference-location: margin
 citation-location: margin
 ---
 
-::: {.callout-important collapse=true}
-## Memo format
-
-Like all other submissions for this course, we expect the memo to be **neat and well organized**.
-
-A memo is a short, polished report. Meaning, it should be well written and thoughtfully laid out. Some neatness and organizational hints/tips (not an exhaustive list):
-
-- There should be absolutely no code in your report --- don’t hide it; code should not be visible/accessible.
-- Include a date indicating when report was created.
-- There should be no tibbles/data frames or raw R output --- should use tables (avoid unnecessarily long output)!
-- Any plots or graphics should be polished (appropriate labels and/or captions).
-- All figures and tables should be properly labeled and referenced --- must make use of quarto cross-referencing.
-- Should use heading and sub-headings appropriately.
-- Remove prompts and instructions meant to assist students.
-- Should include a link to project’s GitHub repo.
-- GitHub repo should be well organized and have a few commits (no templates, commit of most recent work)
-
-
-:::
-
-
 ::: {.callout-tip icon=false}
 
 ## Github Repo Link
@@ -202,15 +181,14 @@ This dataset is mostly tidy, with each row representing a unique survey response
 
 
 ## Potential data issues
-When preparing and analyzing the *Global Abortion Incidence* and *Domestic Violence Against Women* datasets, several potential issues may arise that could require additional time and effort.
+When preparing and analyzing the **Global Abortion Incidence** and **Domestic Violence Against Women** datasets, several potential issues may arise that could require additional time and effort.
 
-One of the most significant challenges in the *Global Abortion Incidence* dataset is the high level of missing data, particularly in key variables like `abortionrate`, `perc_p_ending_in_a`, and `marriedonly`. This missing data may limit the completeness and reliability of analyses involving these fields. Dealing with this issue will require careful consideration, as decisions will need to be made about whether to exclude certain variables entirely, impute missing values where possible, or limit analyses to parts of the dataset with more complete records. While the *Domestic Violence Against Women* dataset has a much lower percentage of missing values, the `Value` column still contains some gaps. 
+One of the most significant challenges in the **Global Abortion Incidence** dataset is the high level of missing data, particularly in key variables like `abortionrate`, `perc_p_ending_in_a`, and `marriedonly`. This missing data may limit the completeness and reliability of analyses involving these fields. Dealing with this issue will require careful consideration, as decisions will need to be made about whether to exclude certain variables entirely, impute missing values where possible, or limit analyses to parts of the dataset with more complete records. While the **Domestic Violence Against Women** dataset has a much lower percentage of missing values, the `Value` column still contains some gaps. 
 
-Another issue lies in the tidiness and structure of these datasets. In the *Domestic Violence Against Women* dataset, demographic information is embedded within a single column (`Demographics Question`). To enable easy analysis of demographic factors, this column needed to be pivoted into distinct variables like `Age`, `Education`, and `Marital status`. While this restructuring makes the dataset tidier, it adds preprocessing time and requires careful handling to ensure consistency. In the *Global Abortion Incidence* dataset, having both `yearstart` and `yearend` columns also required transformation into a single `year` variable. Although straightforward, it is essential to maintain consistency in how time is represented across all records, especially if analyzing trends over time. This step may seem minor, but overlooking such details could lead to inaccuracies in temporal analyses.
+Another issue lies in the tidiness and structure of these datasets. In the **Domestic Violence Against Women** dataset, demographic information is embedded within a single column (`Demographics Question`). To enable easy analysis of demographic factors, this column needed to be pivoted into distinct variables like `Age`, `Education`, and `Marital status`. While this restructuring makes the dataset tidier, it adds preprocessing time and requires careful handling to ensure consistency. In the **Global Abortion Incidence** dataset, having both `yearstart` and `yearend` columns also required transformation into a single `year` variable. Although straightforward, it is essential to maintain consistency in how time is represented across all records, especially if analyzing trends over time. This step may seem minor, but overlooking such details could lead to inaccuracies in temporal analyses.
 
 
-Inconsistent data formatting is another potential issue, especially with categorical variables. Ensuring consistency in categories like `region`, `subregion`, and various demographic factors (such as `education levels` in the *Domestic Violence Against Women* dataset) is essential for accurate analysis. If these categories are not standardized, it could create inconsistencies in grouping or comparing data, particularly for cross-tabulation or segmentation analyses. Additionally, some numerical fields, like `abortionrate` in the  *Global Abortion Incidence* dataset , have very sparse data. Analyzing such fields without further enrichment or interpolation may not yield meaningful results and could skew interpretations if not handled carefully.
+Inconsistent data formatting is another potential issue, especially with categorical variables. Ensuring consistency in categories like `region`, `subregion`, and various demographic factors (such as `education levels` in the **Domestic Violence Against Women** dataset) is essential for accurate analysis. If these categories are not standardized, it could create inconsistencies in grouping or comparing data, particularly for cross-tabulation or segmentation analyses. Additionally, some numerical fields, like `abortionrate` in the  **Global Abortion Incidence** dataset , have very sparse data. Analyzing such fields without further enrichment or interpolation may not yield meaningful results and could skew interpretations if not handled carefully.
 
 ## Misc
-
-In addition to the *Global Abortion Incidence* and *Domestic Violence Against Women* datasets, I intend to incorporate data related to female incarceration to explore potential relationships between crime rates and women’s rights. This additional dataset could provide valuable insights into how socio-economic and political factors influence the incarceration of women, particularly in relation to issues like domestic violence and reproductive rights. However, I am cautious about adding this dataset, as it might introduce too much complexity and additional processing requirements, potentially detracting from the depth of analysis on the original datasets. Balancing the scope will be important to ensure a focused and coherent project.
+In addition to the **Global Abortion Incidence** and **Domestic Violence Against Women** datasets, I intend to incorporate data related to female incarceration to explore potential relationships between crime rates and women’s rights. This additional dataset could provide valuable insights into how socio-economic and political factors influence the incarceration of women, particularly in relation to issues like domestic violence and reproductive rights. However, I am cautious about adding this dataset, as it might introduce too much complexity and additional processing requirements, potentially detracting from the depth of analysis on the original datasets. Balancing the scope will be important to ensure a focused and coherent project.
