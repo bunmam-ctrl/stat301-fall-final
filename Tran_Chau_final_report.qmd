@@ -38,8 +38,40 @@ library(naniar)
 
 ```{r}
 #| label: convert data 
-abortion <- read_csv("data/global_abortion_raw.csv")
-violence <-  read_csv("data/violence_raw.csv")
+abortion <- read_csv("data/global_abortion_raw.csv")|>
+  janitor::clean_names()
+
+violence <-  read_csv("data/violence_raw.csv")|>
+  janitor::clean_names()
+
 ```
 
+```{r}
+#| label: tidy_violence
+
+violence_distinct <- violence|>
+  distinct(country)
+
+violence_distinct
+
+#add iso to violence
+violence_iso <- violence|>
+  mutate( iso = case_when(
+    country %in% "Afghanistan" ~ "4",
+    country %in% "Albania" ~ "8",
+    country %in% "Angola" ~ "24",
+    country %in% "Armenia" ~ "51",
+    country %in% "Azerbaijan" ~ "31",
+    country %in% "Bangladesh" ~ "50",
+    country %in% "Benin" ~ "204",
+    country %in% "Bolivia" ~ "68",
+    country %in% "Burkina Faso" ~ "854",
+    country %in% "Burundi" ~ "108",
+    
+  
+    
+  )
+    
+  )
+```
 
