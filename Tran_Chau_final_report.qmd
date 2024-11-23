@@ -33,6 +33,10 @@ citation-location: margin
 ```{r}
 #| label: load pck
 library(tidyverse)
+library(maps)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(viridis)
 ```
 
 ```{r}
@@ -42,6 +46,10 @@ abortion <- read_csv("data/global_abortion_raw.csv")|>
 
 violence <-  read_csv("data/violence_raw.csv")|>
   janitor::clean_names()
+
+# Load world map with ISO codes
+world_map <- ne_countries(scale = "medium", returnclass = "sf")
+
 
 ```
 
@@ -99,7 +107,7 @@ violence_tidy <- violence|>
   )
 
 #Modify justify violence and percent agree
-violence_tidy|>
+violence_tidy <- violence_tidy|>
   mutate(
     justify_violence = as.factor(question),
     justify_violence = fct_recode(justify_violence, 
@@ -114,6 +122,35 @@ violence_tidy|>
   )|>
   rename("percent_agree" = value)|>
   select(!question)
+```
 
+
+```{r}
+#| label: calc prop of abortion
+
+abortion_prop <- abortion|>
+  count(iso, wt = numberofabortions)|>
+  mutate( prop = n/sum(n),
+          iso = as.character(iso))|>
+  mutate(iso = str_pad(iso, width = 3, pad = "0"))
+
+
+# Join the map with abortion data by ISO codes
+map_data <- world_map|>
+  left_join(abortion_prop, join_by("iso_n3" == "iso"))
+
+```
+
+
+
+```{r}
+ggplot(map_data) +
+  geom_sf(aes(fill = prop), color = "black", size = 10.0) +
+  scale_fill_viridis_c(option = "plasma", na.value = "grey80", name = "Proportion") +
+  theme_minimal() +
+  labs(
+    title = "Global Proportion of Abortions by Country",
+    fill = "Proportion"
+  )
 ```
 
