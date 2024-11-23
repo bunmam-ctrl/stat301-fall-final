@@ -57,16 +57,48 @@ violence_distinct
 #add iso to violence
 violence_iso <- violence|>
   mutate( iso = case_when(
-    country %in% "Afghanistan" ~ "4",
-    country %in% "Albania" ~ "8",
-    country %in% "Angola" ~ "24",
-    country %in% "Armenia" ~ "51",
-    country %in% "Azerbaijan" ~ "31",
-    country %in% "Bangladesh" ~ "50",
-    country %in% "Benin" ~ "204",
-    country %in% "Bolivia" ~ "68",
-    country %in% "Burkina Faso" ~ "854",
-    country %in% "Burundi" ~ "108",
+    country %in% "Afghanistan" ~ "4", country %in% "Albania" ~ "8",
+    country %in% "Angola" ~ "24", country %in% "Armenia" ~ "51",
+    country %in% "Azerbaijan" ~ "31", country %in% "Bangladesh" ~ "50",
+    country %in% "Benin" ~ "204", country %in% "Bolivia" ~ "68",
+    country %in% "Burkina Faso" ~ "854", country %in% "Burundi" ~ "108",
+    
+    country %in% "Cambodia" ~ "116", country %in% "Cameroon" ~ "120",
+    country %in% "Chad" ~ "148", country %in% "Colombia" ~ "170",
+    country %in% "Comoros" ~ "174", country %in% "Congo" ~ "178",
+    country %in% "Congo Democratic Republic" ~ "180", country %in% "Cote d'Ivoire" ~ "384",
+    country %in% "Dominican Republic" ~ "214", country %in% "Egypt" ~ "818",
+    
+    country %in% "Eritrea" ~ "232", country %in% "Eswatini" ~ "748",
+    country %in% "Ethiopia" ~ "231", country %in% "Gabon" ~ "266",
+    country %in% "Gambia" ~ "270", country %in% "Ghana" ~ "288",
+    country %in% "Guatemala" ~ "320", country %in% "Guinea" ~ "324",
+    country %in% "Guyana" ~ "328", country %in% "Guyana" ~ "332",
+    
+    country %in% "Honduras" ~ "340", country %in% "India" ~ "356",
+    country %in% "Indonesia" ~ "360", country %in% "Jordan" ~ "400",
+    country %in% "Kenya" ~ "404", country %in% "Kyrgyz Republic" ~ "417",
+    country %in% "Lesotho" ~ "426", country %in% "Liberia" ~ "430",
+    country %in% "Madagascar" ~ "450", country %in% "Malawi" ~ "454",
+    
+    country %in% "Maldives" ~ "462", country %in% "Mali" ~ "466",
+    country %in% "Moldova" ~ "498", country %in% "Morocco" ~ "504",
+    country %in% "Mozambique" ~ "508", country %in% "Myanmar" ~ "104",
+    country %in% "Namibia" ~ "516", country %in% "Nepal" ~ "524",
+    country %in% "Nicaragua" ~ "558", country %in% "Niger" ~ "562",
+    
+    country %in% "Nigeria" ~ "566", country %in% "Pakistan" ~ "586",
+    country %in% "Peru" ~ "604", country %in% "Philippines" ~ "608",
+    country %in% "Rwanda" ~ "646", country %in% "Sao Tome and Principe" ~ "678",
+    country %in% "Senegal" ~ "686", country %in% "Sierra Leone" ~ "694",
+    country %in% "South Africa" ~ "710", country %in% "Tajikistan" ~ "762",
+    
+    country %in% "Tanzania" ~ "834", country %in% "Timor-Leste" ~ "626",
+    country %in% "Togo" ~ "768", country %in% "Turkey" ~ "792",
+    country %in% "Turkmenistan" ~ "795", country %in% "Uganda" ~ "800",
+    country %in% "Ukraine" ~ "804", country %in% "Yemen" ~ "887",
+    country %in% "Zambia" ~ "894", country %in% "Zimbabwe" ~ "716"
+    
     
   
     
