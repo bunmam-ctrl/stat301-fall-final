@@ -1,0 +1,45 @@
+---
+title: "Final Report"
+subtitle: |
+  | Final Project 
+  | Data Science 1 with R (STAT 301-1)
+author: "Chau Tran"
+pagetitle: "PM1 Chau Tran"
+date: today
+
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    toc-location: left
+    embed-resources: true
+    link-external-newwindow: true
+
+execute:
+  warning: false
+  echo: false
+
+from: markdown+emoji
+reference-location: margin
+citation-location: margin
+---
+::: {.callout-tip icon=false}
+## Github Repo Link
+
+[Tran Chau's Final Project Github Repo](https://github.com/stat301-1-2024-fall/final-project-1-bunmam-ctrl.git)
+
+:::
+
+```{r}
+#| label: load pck
+library(tidyverse)
+library(naniar)
+```
+
+```{r}
+#| label: convert data 
+abortion <- read_csv("data/global_abortion_raw.csv")
+violence <-  read_csv("data/violence_raw.csv")
+```
+
+

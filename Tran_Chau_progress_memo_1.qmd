@@ -46,7 +46,7 @@ violence <-  read_csv("data/violence_raw.csv")
 
 
 ## Data source
-The first data source for thisproject is the [Global Abortion Incidence Dataset](https://osf.io/6t4eh), available on **OSF** (accessed on November 3, 2024). This dataset provides comprehensive global data on abortion incidence, encompassing multiple regions and age group. It is designed to faciliate an understanding of abortion trends worldwide and can be utilized for examining factors such as regional abortion rates and demographic patterns over time. This source will be instrumental in studying abortion incidence on a broader scale, with a particular focus on identifying socio-economic and geographical patterns in abortion access and frequency.
+The first data source for this project is the [Global Abortion Incidence Dataset](https://osf.io/6t4eh), available on **OSF** (accessed on November 3, 2024). This dataset provides comprehensive global data on abortion incidence, encompassing multiple regions and age group. It is designed to faciliate an understanding of abortion trends worldwide and can be utilized for examining factors such as regional abortion rates and demographic patterns over time. This source will be instrumental in studying abortion incidence on a broader scale, with a particular focus on identifying socio-economic and geographical patterns in abortion access and frequency.
 
 The second dataset is available is [Domestic Violence Against Women in a Specific Rural Area of a Developing Country](https://www.kaggle.com/datasets/fahmidachowdhury/domestic-violence-against-women), available on **Kaggle** (accessed on November 3, 2024). This dataset include socio-economic and demographic information on women, such as age, country, education, employment, income, marital status, and whether they have experienced domestic violence The dataset provides an opportunity to analyze correlation between these variables and domestic violence prevalence, which could contribute to identifying risk factors within specific socio-economic contexts. 
 
@@ -197,3 +197,7 @@ Inconsistent data formatting is another potential issue, especially with categor
 
 ## Misc
 In addition to the **Global Abortion Incidence** and **Domestic Violence Against Women** datasets, I intend to incorporate data related to female incarceration to explore potential relationships between crime rates and women’s rights. This additional dataset could provide valuable insights into how socio-economic and political factors influence the incarceration of women, particularly in relation to issues like domestic violence and reproductive rights. However, I am cautious about adding this dataset, as it might introduce too much complexity and additional processing requirements, potentially detracting from the depth of analysis on the original datasets. Balancing the scope will be important to ensure a focused and coherent project.
+
+```{r}
+tricky <-"double_quote <- \"\\\"\" # or '\"' single_quote <- '\\'' # or \"'\""
+
