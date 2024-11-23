@@ -33,7 +33,6 @@ citation-location: margin
 ```{r}
 #| label: load pck
 library(tidyverse)
-library(naniar)
 ```
 
 ```{r}
@@ -48,14 +47,10 @@ violence <-  read_csv("data/violence_raw.csv")|>
 
 ```{r}
 #| label: tidy_violence
-
-violence_distinct <- violence|>
-  distinct(country)
-
-violence_distinct
+#| results: false
 
 #add iso to violence
-violence_iso <- violence|>
+violence_tidy <- violence|>
   mutate( iso = case_when(
     country %in% "Afghanistan" ~ "4", country %in% "Albania" ~ "8",
     country %in% "Angola" ~ "24", country %in% "Armenia" ~ "51",
@@ -98,12 +93,27 @@ violence_iso <- violence|>
     country %in% "Turkmenistan" ~ "795", country %in% "Uganda" ~ "800",
     country %in% "Ukraine" ~ "804", country %in% "Yemen" ~ "887",
     country %in% "Zambia" ~ "894", country %in% "Zimbabwe" ~ "716"
-    
-    
-  
-    
+  ),
+  .after = country,
+  iso = as.numeric(iso),
   )
-    
-  )
+
+#Modify justify violence and percent agree
+violence_tidy|>
+  mutate(
+    justify_violence = as.factor(question),
+    justify_violence = fct_recode(justify_violence, 
+      "Household Mistake" = "... if she burns the food",
+      "Marital Conflict" = "... if she argues with him",
+      "Autonomy Violation" = "... if she goes out without telling him",
+      "Intimacy Denial" = "... if she refuses to have sex with him",
+      "Parental Neglect" = "... if she neglects the children",
+      "Reason" = "... for at least one specific reason",
+    ),
+    .before = value
+  )|>
+  rename("percent_agree" = value)|>
+  select(!question)
+
 ```
 
