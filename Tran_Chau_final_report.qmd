@@ -117,11 +117,11 @@ violence_tidy <- violence_tidy|>
       "Autonomy Violation" = "... if she goes out without telling him",
       "Intimacy Denial" = "... if she refuses to have sex with him",
       "Parental Neglect" = "... if she neglects the children",
-      "Reason" = "... for at least one specific reason",
+      "With Reason" = "... for at least one specific reason",
     ),
     .before = value
   )|>
-  rename("percent_agree" = value)|>
+  rename("value_agree" = value)|>
   select(!question)
 ```
 
@@ -144,8 +144,7 @@ abortion_tidy <- abortion|>
 
 abortion_prop <- abortion_tidy|>
   count(iso, wt = number_of_abortion)|>
-  mutate( prop = n/sum(n),
-          iso = as.character(iso))
+  mutate(iso = as.character(iso))
 
 
 # Join the map with abortion data by ISO codes
@@ -156,14 +155,24 @@ map_data <- world_map|>
 
 
 ```{r}
-#| label: global propotion of abortion map
+#| label: global number of abortion map
 ggplot(map_data) +
   geom_sf(aes(fill = n), color = "black", size = 10.0) +
-  scale_fill_viridis_c(option = "plasma", na.value = "grey80", name = "Proportion") +
+  scale_fill_viridis_c(option = "plasma", na.value = "grey80", name = "Number of Cases") +
   theme_minimal() +
   labs(
-    title = "Global Proportion of Abortions by Country",
+    title = "Global Number of Abortions by Country",
     fill = "Proportion"
   )
+```
+```{r}
+violence_count <- violence_tidy|>
+  group_by(justify_violence)|>
+  count(justify_violence, wt = value_agree)|>
+  ggplot(aes(x = justify_violence, y = n))+
+  geom_col()+
+  coord_flip()
+
+violence_count
 ```
 
