@@ -123,6 +123,73 @@ violence_tidy <- violence_tidy|>
   )|>
   rename("value_agree" = value)|>
   select(!question)
+
+# add subregion
+
+sub_1 <- c("Afghanistan", "India", "Kyrgyz Republic", "Maldives",
+                                 "Nepal", "Pakistan", "Tajikistan", "Turkmenistan")
+sub_2 <-  c("Angola", "Benin", "Burkina Faso", "Burundi" , "Cameroon",
+                           "Chad", "Comoros", "Congo", "Congo Democratic Republic",
+                           "Cote d'Ivoire", "Eswatini", "Ethiopia", "Gabon", "Gambia",
+                           "Ghana", "Guinea", "Kenya", "Lesotho", "Liberia", "Madagascar",
+                           "Malawi", "Mali", "Mozambique", "Namibia", "Niger", "Nigeria",
+                           "Rwanda", "Sao Tome and Principe", "Senegal", "Sierra Leone",
+                           "South Africa", "Tanzania", "Togo", "Uganda", "Zambia",
+                           "Zimbabwe")
+sub_3 <- c("Armenia", "Azerbaijan", "Egypt", "Jordan",
+                                         "Yemen")
+
+sub_4 <- c("Bangladesh", "Cambodia", "Indonesia", "Myanmar",
+                                     "Philippines", "Timor-Leste", "Vietnam")
+sub_5 <- c("Bolivia", "Colombia","Dominican Republic", "Guatemala", "Guyana",
+                     "Honduras", "Nicaragua", "Peru")
+sub_6 <- c("Albania", "Moldova", "Ukraine")
+
+
+violence_tidy <- violence_tidy|>
+  mutate( subregion = case_when(
+    country %in% sub_1  ~ "Central and Southern Asia",
+    country %in% sub_2 ~ "Sub-Saharan Africa",
+    country %in% sub_3 ~ "Western Asia and Northern Africa",
+    country %in% sub_4 ~ "Eastern and Southeastern Asia",
+    country %in% sub_5  ~ "Latin America",
+    country %in% sub_6  ~ "Europe and Northern America"
+  ),
+  .after = iso,
+  subregion = as.factor(subregion)
+  )
+
+#add abortion (legal relax, legal strict, illegal)
+legal_request <-  c("Albania", "Moldova",
+                         "Ukraine", "Bolivia", 
+                         "Colombia", "Guyana",
+                         "Vietnam"," Cambodia",
+                         "Nepal", "Kyrgyz Republic",
+                         "South Africa","Mozambique")
+legal_reason<- c("Ethiopia", "Ghana", "Zambia",
+                                  "Rwanda" , "Gabon", "India",
+                                  "Indonesia", "Philippines", "Timor-Leste",
+                                  "Peru", "Guatemala", "Honduras", "Nicaragua")
+
+illegal <-  c("Angola", "Burkina Faso", "Benin",
+                                        "Burundi", "Chad", "Comoros", "Congo",
+                                        "Congo Democratic Republic", "Niger",
+                                        "Nigeria", "Sao Tome and Principe",
+                                        "Senegal", "Sierra Leone", "Togo",
+                                        "Uganda", "Zimbabwe",
+                                        "Afghanistan", "Pakistan", "Yemen"
+                                        )
+
+violence_tidy <- violence_tidy|>
+  mutate( abortion_access = case_when(
+    country %in% legal_request  ~ "Legal on Request",
+    country %in% legal_reason ~"Legal for Specific Reasons",
+    country %in% illegal ~ "Legal for Specific Reasons"
+  ),
+  abortion_access = as.factor(abortion_access)
+  )
+
+
 ```
 
 ```{r}
@@ -140,38 +207,72 @@ abortion_tidy <- abortion|>
 
 
 ```{r}
-#| label: calc prop of abortion
+#| label:  Global Number of Abortion Map (Graph 1)
 
+  # Abortion prop calculation
 abortion_prop <- abortion_tidy|>
   count(iso, wt = number_of_abortion)|>
   mutate(iso = as.character(iso))
-
 
 # Join the map with abortion data by ISO codes
 map_data <- world_map|>
   left_join(abortion_prop, join_by("iso_n3" == "iso"))
 
-```
+#Graph
 
-
-```{r}
-#| label: global number of abortion map
 ggplot(map_data) +
   geom_sf(aes(fill = n), color = "black", size = 10.0) +
-  scale_fill_viridis_c(option = "plasma", na.value = "grey80", name = "Number of Cases") +
+  scale_fill_viridis_c( option = "City\nCenter", na.value = "grey80", name = "Number of Cases") +
   theme_minimal() +
   labs(
     title = "Global Number of Abortions by Country",
     fill = "Proportion"
+  )+
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 12)
   )
+  
+
 ```
 ```{r}
+#| label: Justification for Violence across regions (Graph 2)
+
+#reorder the factor in denscending order 
+subregion_totals <- violence_tidy|>
+  group_by(subregion)|>
+  summarise(total_value = sum(value_agree, na.rm = TRUE))|>
+  arrange(desc(total_value))
+
+violence_tidy$subregion <- factor(
+  violence_tidy$subregion,
+  levels = subregion_totals$subregion
+)
+
+#Making graphs
 violence_count <- violence_tidy|>
   group_by(justify_violence)|>
-  count(justify_violence, wt = value_agree)|>
-  ggplot(aes(x = justify_violence, y = n))+
-  geom_col()+
-  coord_flip()
+  drop_na()|>
+  ggplot(aes(x = justify_violence, y = value_agree))+
+  geom_col(aes(fill = subregion), position="fill")+
+  theme_minimal() +
+  scale_fill_brewer(palette = "Dark2")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+ labs(
+    title = "Justifications for Violence by Region",
+    x = NULL,
+    y = "Proportion Agreeing",
+    fill = "Subregion"
+  ) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 12)
+  )
+  
+
 
 violence_count
 ```
