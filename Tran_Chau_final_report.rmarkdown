@@ -23,12 +23,16 @@ from: markdown+emoji
 reference-location: margin
 citation-location: margin
 ---
+
+
 ::: {.callout-tip icon=false}
 ## Github Repo Link
 
 [Tran Chau's Final Project Github Repo](https://github.com/stat301-1-2024-fall/final-project-1-bunmam-ctrl.git)
 
 :::
+
+
 
 ```{r}
 #| label: load pck
@@ -132,7 +136,6 @@ violence_tidy <- violence_tidy|>
 
 ```
 
-
 ```{r}
 #| label: tidy_violence - add subregion
 #| results: false
@@ -172,7 +175,6 @@ violence_tidy <- violence_tidy|>
   )
 
 ```
-
 
 ```{r}
 #| label: tidy_violence - add abortion
@@ -227,7 +229,6 @@ abortion_tidy <- abortion|>
   )
 
 ```
-
 
 ```{r}
 #| label:  Global Number of Abortion Map (Graph 1)
@@ -314,7 +315,6 @@ graph_asia <- map_data_2|>
 
 ```
 
-
 ```{r}
 #| label: Graph 3c The accessibility of abortion in developing countries (Latin America)
 # Graph Latin America
@@ -337,7 +337,6 @@ graph_latin_america <-  map_data_2|>
 
 
 ```
-
 
 ```{r}
 #| label: Graph 3d The accessibility of abortion in Europe 
@@ -406,9 +405,6 @@ final_plot <- (graph_africa | graph_asia) / (graph_latin_america | graph_europe)
   
 final_plot
 ```
-
-
-
 
 ```{r}
 #| label: Justification for Violence across regions (Graph 2)
