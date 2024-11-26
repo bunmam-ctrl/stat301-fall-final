@@ -38,6 +38,7 @@ library(rnaturalearth)
 library(rnaturalearthdata)
 library(viridis)
 library(sf)
+library(patchwork)
 
 ```
 
@@ -206,7 +207,7 @@ violence_tidy <- violence_tidy|>
   mutate( abortion_access = case_when(
     country %in% legal_request  ~ "Legal on Request",
     country %in% legal_reason ~"Legal for Specific Reasons",
-    country %in% illegal ~ "Illegal or Extremely Restricted "
+    country %in% illegal ~ "Illegal or Extremely Restricted"
   ),
   abortion_access = as.factor(abortion_access)
   )
@@ -260,99 +261,53 @@ ggplot(map_data) +
   
 
 ```
-```{r}
-#| label: Graph 3a The accessibility of abortion in developing countries (Africa)
-#Join the map with violence_tidy data by ISO codes
-map_data_2 <- world_map|>
-  left_join(violence_tidy, join_by("iso_n3" == "iso"))
 
-# Graph Africa
-map_data_2|>
-  filter(subregion.x %in%  c("Eastern Africa", "Western Africa", 
+```{r}
+#| label: Graph 3a The accessibility of abortion in (Western Asia and Africa)
+
+# Join the map with violence_tidy data by ISO codes
+map_data_2 <- world_map|>
+  
+  left_join(violence_tidy, join_by("iso_n3" == "iso"))
+# Graph Western Asia and Africa
+graph_africa <- map_data_2|>
+  filter(subregion.x %in%  c("Western Asia", "Northern Africa","Eastern Africa", "Western Africa", 
                              "Southern Africa", "Middle Africa"))|>
   ggplot()+
   geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
-  scale_fill_viridis_d(option = "plasma", na.value = "grey80") +
   theme_minimal() +
   labs(
-    title = "Abortion Access in developing countries",
-    subtitle = "Region: Sub-Saharan Africa",
-    fill = "Access Level"
+    subtitle = "Western Asia and Africa",
   ) +
   theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
-    axis.text.y = element_text(size = 12)
+    plot.subtitle = element_text(size = 10, hjust = 0.5),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    legend.position = "none"
   )
+
 
 ```
 
 ```{r}
-#| label: Graph 3b The accessibility of abortion in developing countries (Western Asia and Northern Africa)
-# Graph "Western Asia and Northern Africa"
-map_data_2|>
-  filter(subregion.x %in%  c("Western Asia", "Northern Africa"))|>
+#| label: Graph 3b The accessibility of abortion in developing countries (Eastern and Southeastern Asia)
+# Graph Central, South, and Southeastern Asia
+
+graph_asia <- map_data_2|>
+  filter(subregion.x %in%  c("South-Eastern Asia", "Southern Asia",
+                             "Central Asia", "Southern Asia"))|>
   ggplot()+
   geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
-  scale_fill_viridis_d(option = "plasma", na.value = "grey80") +
   theme_minimal() +
+  coord_sf(xlim = c(40, 160), ylim = c(-10, 45)) +
   labs(
-    title = "Abortion Access in developing countries",
-    subtitle = "Region: Western Asia and Northern Africa",
-    fill = "Access Level"
+    subtitle = "Central, South, and Southeastern Asia"
   ) +
   theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
-    axis.text.y = element_text(size = 12)
-  )
-
-```
-```{r}
-#| label: Graph 3c The accessibility of abortion in developing countries (Eastern and Southeastern Asia)
-# Graph Eastern and Southeastern Asia
-map_data_2|>
-  filter(subregion.x %in%  c("South-Eastern Asia", "Southern Asia"))|>
-  ggplot()+
-  geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
-    scale_fill_viridis_d(option = "plasma", na.value = "grey80") +
-  theme_minimal() +
-  labs(
-    title = "Abortion Access in developing countries",
-    subtitle = "Region: (Eastern and Southeastern Asia",
-    fill = "Access Level"
-  ) +
-  theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
-    axis.text.y = element_text(size = 12)
-  )
-
-```
-
-
-```{r}
-#| label: Graph 3d The accessibility of abortion in developing countries (Western Asia and Northern Africa)
-# Graph "Western Asia and Northern Africa"
-map_data_2|>
-  filter(subregion.x %in% c("Western Asia", "Northern Africa"))|>
-  ggplot()+
-  geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
-  scale_fill_viridis_d(option = "plasma", na.value = "grey80") +
-  theme_minimal() +
-  labs(
-    title = "Abortion Access in developing countries",
-    subtitle = "Region: Western Asia and Northern Africa",
-    fill = "Access Level"
-  ) +
-  theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
-    axis.text.y = element_text(size = 12)
+    plot.subtitle = element_text(size = 10, hjust = 0.5),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    legend.position = "right"
   )
 
 
@@ -360,53 +315,97 @@ map_data_2|>
 
 
 ```{r}
-#| label: Graph 3e The accessibility of abortion in developing countries (Latin America)
+#| label: Graph 3c The accessibility of abortion in developing countries (Latin America)
 # Graph Latin America
-map_data_2|>
+graph_latin_america <-  map_data_2|>
   filter(subregion.x %in%  c("South America", "Central America", "Caribbean"))|>
   ggplot()+
   geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
-  scale_fill_viridis_d(option = "plasma", na.value = "grey80") +
   theme_minimal() +
   labs(
-    title = "Abortion Access in developing countries",
-    subtitle = "Region: Latin America",
-    fill = "Access Level"
+    subtitle = "Latin America"
+  ) +
+  coord_sf(xlim = c(-100, -30), ylim = c(-30, 20)) +
+  theme(
+    plot.subtitle = element_text(size = 10, hjust = 0.5),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    legend.position = "none"
+  )
+
+
+```
+
+
+```{r}
+#| label: Graph 3d The accessibility of abortion in Europe 
+
+# Graph Europe 
+graph_europe <-  map_data_2|>
+  filter(subregion.x %in%  c("Eastern Europe", "Southern Europe" ))|>
+  ggplot()+
+  geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
+  coord_sf(xlim = c(10, 40), ylim = c(40, 60))  +
+  theme_minimal() +
+  labs(
+    subtitle = "Europe"
   ) +
   theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
-    axis.text.y = element_text(size = 12)
+    plot.subtitle = element_text(size = 10, hjust = 0.5),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    legend.position = "none"
   )
 
 ```
 
 ```{r}
-#| label: Graph 3e The accessibility of abortion in Europe and Northern America
-# Graph Europe and Northern America
-map_data_2|>
-  filter(subregion.x %in%  c("Eastern Europe", "Southern Europe" ))|>
-  ggplot()+
-  geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
-  scale_fill_viridis_d(option = "plasma", na.value = "grey80") +
-  coord_sf(xlim = c(0, 40), ylim = c(30, 60))  +
-  theme_minimal() +
-  labs(
-    title = "Abortion Access in developing countries",
-    subtitle = "Region: Europe and Northern America",
-    fill = "Access Level"
-  ) +
+
+
+# Define a consistent color scale
+abortion_color_scale <- scale_fill_manual(
+  values = c(
+    "Illegal or Extremely Restricted" = "darkblue",
+    "Legal for Specific Reasons" = "deeppink3",
+    "Legal on Request" = "yellow",
+    "NA" = "grey80"
+  ),
+  name = "Abortion Access"
+)
+
+# Update all graphs to use the same color scale
+graph_africa <- graph_africa +
+  abortion_color_scale 
+  
+graph_asia <- graph_asia +
+  abortion_color_scale 
+ 
+
+graph_latin_america <- graph_latin_america +
+  abortion_color_scale 
+
+graph_europe <- graph_europe +
+  abortion_color_scale 
+
+# Combine the regional maps into a single layout
+final_plot <- (graph_africa | graph_asia) / (graph_latin_america | graph_europe) +
+  plot_annotation(
+    title = "Abortion Accessibility in Developing Countries",
+    theme = theme(
+      plot.title = element_text(size = 22, face = "bold", hjust = 0.5)
+    )
+  ) &
   theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
-    axis.text.y = element_text(size = 12)
+    legend.justification = "center",
+    legend.title = element_text(size = 12, face = "bold"),
+    legend.text = element_text(size = 10),
+    legend.spacing.x = unit(0.5, "cm") # Add horizontal spacing between legend items
   )
+  
 
-
+# Display the final plot
+print(final_plot)
 ```
-
 
 
 
