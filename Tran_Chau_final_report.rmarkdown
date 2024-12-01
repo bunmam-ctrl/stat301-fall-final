@@ -261,7 +261,6 @@ ggplot(map_data) +
     legend.title = element_text(face = "bold")
   )
   
-
 ```
 
 ```{r}
@@ -399,7 +398,7 @@ final_plot <- (graph_africa | graph_asia) / (graph_latin_america | graph_europe)
   plot_annotation(
     title = "Abortion Accessibility in Developing Countries",
     theme = theme(
-     plot.title = element_text(size = 22, face = "bold", hjust = 0.5),
+     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
 
   ))
   
