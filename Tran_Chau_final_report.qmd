@@ -314,7 +314,8 @@ ggplot(map_gender) +
 
 ```
 ```{r}
-#| label: Top 5 global gender equality index
+#| label: Top 5 global gender equality index (table 1)
+#| tbl-cap: "Top 5 Countries with the Highest Gender Inequality in 2021"
 
 top_5_gender_inequality <- gender_inequality_tidy|>
   slice_max(n =5, order_by = gender_inequality_index_2021, with_ties = TRUE)|> 
