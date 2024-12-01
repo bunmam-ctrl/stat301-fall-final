@@ -9,7 +9,7 @@ library(viridis)
 # Load world map with ISO codes
 world_map <- ne_countries(scale = "medium", returnclass = "sf")
 
-#calc prop of abortion
+#calc count of abortion
 abortion_prop <- abortion_tidy|>
   count(iso, wt = number_of_abortion)|>
   mutate(iso = as.character(iso))
