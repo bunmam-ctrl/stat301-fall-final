@@ -43,7 +43,7 @@ library(patchwork)
 ```
 
 ```{r}
-#| label: load data 
+#| label: load data (overview)
 
 #abortion
 abortion <- read_csv("data/global_abortion_raw.csv")|>
@@ -182,7 +182,6 @@ violence_tidy <- violence_tidy|>
 
 ```{r}
 #| label: tidy_violence - add abortion
-#| results: false
 
 #add abortion (legal relax, legal strict, illegal)
 legal_request <-  c("Albania", "Moldova", "Armenia",
@@ -245,6 +244,7 @@ violence_tidy$subregion <- factor(
   violence_tidy$subregion,
   levels = subregion_totals$subregion
 )
+
 ```
 
 ```{r}
@@ -259,7 +259,6 @@ abortion_tidy <- abortion|>
   )
 
 ```
-
 
 
 ```{r}
@@ -277,6 +276,14 @@ gender_inequality_tidy <-  gender_inequality|>
       undp_developing_regions %in% "SA" ~ "South Asia"
     )
   )
+```
+
+```{r}
+#| label: write dataset (overview)
+
+write_rds(abortion_tidy, "data/abortion_tidy.rds")
+write_rds(gender_inequality_tidy, "data/gender_inequality_tidy.rds")
+write_rds(violence_tidy, "data/violence_tidy.rds")
 ```
 
 
@@ -381,7 +388,7 @@ change_gender_dataset <- gender_inequality_tidy|>
 #graph
 change_gender_dataset|>
   ggplot(aes(x = year, y = gender_inquality_index))+
-  geom_line(aes(color = country), size = 1.2)+
+  geom_line(aes(color = country), linewidth = 1.2)+
   scale_color_brewer(palette = "Set1") +
   theme_minimal() +
   labs(
@@ -402,7 +409,7 @@ change_gender_dataset|>
 ```
 
 ```{r}
-#| label: The accessibility of abortion in (Western Asia and Africa) (Graph 4a)
+#| label:  (Graph 4a) The accessibility of abortion in Western Asia and Africa
 
 # Join the map with violence_tidy data by ISO codes
 map_data_2 <- world_map|>
@@ -429,7 +436,7 @@ graph_africa <- map_data_2|>
 ```
 
 ```{r}
-#| label: The accessibility of abortion in developing countries (Eastern and Southeastern Asia, Graph 4b)
+#| label: (Graph 4b) The accessibility of abortion in Eastern and Southeastern Asia
 # Graph Central, South, and Southeastern Asia
 
 graph_asia <- map_data_2|>
@@ -454,7 +461,7 @@ graph_asia <- map_data_2|>
 
 
 ```{r}
-#| label: The accessibility of abortion in developing countries (Latin America, Graph 4c)
+#| label: (Graph 4c) the accessibility of abortion in Latin America
 # Graph Latin America
 graph_latin_america <-  map_data_2|>
   filter(subregion.x %in%  c("South America", "Central America", "Caribbean"))|>
@@ -478,7 +485,7 @@ graph_latin_america <-  map_data_2|>
 
 
 ```{r}
-#| label: The accessibility of abortion (Europe, Graph 4d)
+#| label:  (Graph 4d) The accessibility of abortion in Europe
 
 # Graph Europe 
 graph_europe <-  map_data_2|>
@@ -590,8 +597,8 @@ violence_tidy|>
   scale_x_discrete(labels = c("With\nReason", "Parental\nNeglect", "Autonomy\nViolation", 
                               "Marital\nConflict", "Intimacy\nDenial", "Household\nMistake"))+
   labs(
-    title = "Regional Views on Violence Tolerance",
-    subtitle = "Analysis of public opinion on different causes of violence \n across developing countries in 2020",
+    title = "Regional Views on Domestic Violence Tolerance",
+    subtitle = "Analysis of public opinion on different causes of domestic violence \n across developing countries in 2020",
     x = NULL,
     y = "Number of People Supporting",
     fill = "Subregion"
@@ -627,4 +634,62 @@ violence_subregion_category <-violence_tidy|>
 knitr::kable(violence_subregion_category)
 
 ```
+```{r}
+#| label: load data (china)
+china_population <- read_csv("data/china_population_raw.csv")|>
+  janitor::clean_names()
+
+china_population_tidy <- china_population|>
+  rename(
+      "urban_population" = urban_population_ten_thousand_people,
+      "rural_population" = rural_population_ten_thousand_people,
+      "female_population" = female_population_ten_thousand_people,
+      "male_population" = the_male_population_ten_thousand_people,
+      "total_population" = at_the_end_of_the_total_population_ten_thousand_people,
+      "year" = x1
+  )
+```
+```{r}
+#| label: (Graph 6) linegraph male vs female 
+
+#data prep
+china_population_gender <- china_population_tidy|> 
+    mutate(
+    prop_female = female_population/ total_population,
+    prop_male = male_population/ total_population,
+    .by = year
+  )|>
+  select(year, prop_female, prop_male)|>
+  pivot_longer(
+    cols = c(prop_female, prop_male),
+    names_to = c(".value", "gender"),
+    names_sep = "_",
+    values_to = "prop"
+  )
+
+
+#graph
+china_population_gender|>
+  ggplot(aes(x = year, y = prop))+
+  geom_line(aes(color = gender), linewidth = 1.2)+
+  scale_color_brewer(palette = "Set1") +
+  theme_minimal() +
+  labs(
+    title = "Gender Proportion Trends in China",
+    subtitle  = "Analysis of Male and Female Population Ratios Over 1960-2020",
+    x = "Year",
+    y = "Proportion",
+    color = "Gender"
+  )+
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(face = "italic", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(size = 12, hjust = 1),
+    axis.text.y = element_text(size = 12),
+    legend.title = element_text(face = "bold")
+  )
+
+```
+
 
