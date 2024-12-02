@@ -1,12 +1,20 @@
-#load pcks
+#load pckgs
 library(tidyverse)
 
-#load dataset 
+#abortion
 abortion <- read_csv("data/global_abortion_raw.csv")|>
   janitor::clean_names()
 
+#violence
 violence <-  read_csv("data/violence_raw.csv")|>
   janitor::clean_names()
+#gender_inequality
+gender_inequality <-  read_csv("data/gender_inequality_index_raw.csv")|>
+  janitor::clean_names()
+
+# Load world map with ISO codes
+world_map <- ne_countries(scale = "medium", returnclass = "sf")
+
 
 #tidy violence dataset
 ## Add ISO 

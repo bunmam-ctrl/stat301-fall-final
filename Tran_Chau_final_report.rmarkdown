@@ -23,12 +23,16 @@ from: markdown+emoji
 reference-location: margin
 citation-location: margin
 ---
+
+
 ::: {.callout-tip icon=false}
 ## Github Repo Link
 
 [Tran Chau's Final Project Github Repo](https://github.com/stat301-1-2024-fall/final-project-1-bunmam-ctrl.git)
 
 :::
+
+
 
 ```{r}
 #| label: load pck
@@ -138,7 +142,6 @@ violence_tidy <- violence_tidy|>
 
 ```
 
-
 ```{r}
 #| label: tidy_violence - add subregion
 #| results: false
@@ -178,7 +181,6 @@ violence_tidy <- violence_tidy|>
   )
 
 ```
-
 
 ```{r}
 #| label: tidy_violence - add abortion
@@ -260,8 +262,6 @@ abortion_tidy <- abortion|>
 
 ```
 
-
-
 ```{r}
 #| label: tidy_gender_inequality 
 
@@ -278,7 +278,6 @@ gender_inequality_tidy <-  gender_inequality|>
     )
   )
 ```
-
 
 ```{r}
 #| label:  Global Number of Abortion Map (Graph 1)
@@ -314,6 +313,7 @@ ggplot(map_abortion) +
   )
 
 ```
+
 ```{r}
 #| label:  Gender Index Global Map Map (Graph 2)
 #| fig-cap: "Global Number of Abortions by Country"
@@ -343,6 +343,7 @@ ggplot(map_gender) +
   )
 
 ```
+
 ```{r}
 #| label: Top 5 global gender inequality index (table 1)
 #| tbl-cap: "Top 5 Countries with the Highest Gender Inequality in 2021"
@@ -452,7 +453,6 @@ graph_asia <- map_data_2|>
 
 ```
 
-
 ```{r}
 #| label: The accessibility of abortion in developing countries (Latin America, Graph 4c)
 # Graph Latin America
@@ -475,7 +475,6 @@ graph_latin_america <-  map_data_2|>
 
 
 ```
-
 
 ```{r}
 #| label: The accessibility of abortion (Europe, Graph 4d)
@@ -547,9 +546,6 @@ final_plot <- (graph_africa | graph_asia) / (graph_latin_america | graph_europe)
 final_plot
 ```
 
-
-
-
 ```{r}
 #| label: Justification for Violence across subregions (Graph 4, Data preparation)
 #reorder the factor in descending order (justify_violence)
@@ -608,6 +604,7 @@ violence_tidy|>
 
 
 ```
+
 ```{r}
 #| label: Justification for Violence in each category and subregions (Table 2) 
 #| tbl-cap: "Comparative Data on Justifications for Violence by Region"
