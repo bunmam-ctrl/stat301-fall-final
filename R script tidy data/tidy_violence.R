@@ -1,33 +1,15 @@
-#load pckgs
-library(tidyverse)
-
-#abortion
-abortion <- read_csv("data/global_abortion_raw.csv")|>
-  janitor::clean_names()
-
 #violence
-violence <-  read_csv("data/violence_raw.csv")|>
-  janitor::clean_names()
-#gender_inequality
-gender_inequality <-  read_csv("data/gender_inequality_index_raw.csv")|>
+violence <-  read_csv("data/raw/violence_raw.csv")|>
   janitor::clean_names()
 
-# Load world map with ISO codes
-world_map <- ne_countries(scale = "medium", returnclass = "sf")
 
-
-#tidy violence dataset
-## Add ISO 
-violence_distinct <- violence|>
-  distinct(country)
-violence_distinct
-
-violence_iso <- violence|>
+#add iso to violence
+violence_tidy <- violence|>
   mutate( iso = case_when(
-    country %in% "Afghanistan" ~ "4", country %in% "Albania" ~ "8",
-    country %in% "Angola" ~ "24", country %in% "Armenia" ~ "51",
-    country %in% "Azerbaijan" ~ "31", country %in% "Bangladesh" ~ "50",
-    country %in% "Benin" ~ "204", country %in% "Bolivia" ~ "68",
+    country %in% "Afghanistan" ~ "004", country %in% "Albania" ~ "008",
+    country %in% "Angola" ~ "024", country %in% "Armenia" ~ "051",
+    country %in% "Azerbaijan" ~ "031", country %in% "Bangladesh" ~ "050",
+    country %in% "Benin" ~ "204", country %in% "Bolivia" ~ "068",
     country %in% "Burkina Faso" ~ "854", country %in% "Burundi" ~ "108",
     
     country %in% "Cambodia" ~ "116", country %in% "Cameroon" ~ "120",
@@ -66,15 +48,11 @@ violence_iso <- violence|>
     country %in% "Ukraine" ~ "804", country %in% "Yemen" ~ "887",
     country %in% "Zambia" ~ "894", country %in% "Zimbabwe" ~ "716"
   ),
-  .after = country,
-  iso = as.numeric(iso)
+  .after = country
   )
 
-##Modify justify violence and percent agree
-violence_question <- violence|>
-  distinct(question)
-
-violence_tidy|>
+# Modify justify violence and percent agree
+violence_tidy <- violence_tidy|>
   mutate(
     justify_violence = as.factor(question),
     justify_violence = fct_recode(justify_violence, 
@@ -83,15 +61,14 @@ violence_tidy|>
                                   "Autonomy Violation" = "... if she goes out without telling him",
                                   "Intimacy Denial" = "... if she refuses to have sex with him",
                                   "Parental Neglect" = "... if she neglects the children",
-                                  "Reason" = "... for at least one specific reason",
+                                  "With Reason" = "... for at least one specific reason",
     ),
     .before = value
   )|>
   rename("value_agree" = value)|>
   select(!question)
 
-
-## add subregion to violence
+# add subregion
 
 sub_1 <- c("Afghanistan", "India", "Kyrgyz Republic", "Maldives",
            "Nepal", "Pakistan", "Tajikistan", "Turkmenistan")
@@ -107,13 +84,13 @@ sub_3 <- c("Armenia", "Azerbaijan", "Egypt", "Jordan",
            "Yemen")
 
 sub_4 <- c("Bangladesh", "Cambodia", "Indonesia", "Myanmar",
-           "Philippines", "Timor-Leste", "Vietnam")
+           "Philippines", "Timor-Leste")
 sub_5 <- c("Bolivia", "Colombia","Dominican Republic", "Guatemala", "Guyana",
            "Honduras", "Nicaragua", "Peru")
 sub_6 <- c("Albania", "Moldova", "Ukraine")
 
 
-violence_tidy|>
+violence_tidy <- violence_tidy|>
   mutate( subregion = case_when(
     country %in% sub_1  ~ "Central and Southern Asia",
     country %in% sub_2 ~ "Sub-Saharan Africa",
@@ -127,39 +104,40 @@ violence_tidy|>
   )
 
 
-## Add abortion legality
-###add abortion (legal relax, legal strict, illegal)
-legal_request <-  c("Albania", "Moldova",
-                    "Ukraine", "Bolivia", 
-                    "Colombia", "Guyana",
-                    "Vietnam"," Cambodia",
+# add abortion (legal relax, legal strict, illegal)
+legal_request <-  c("Albania", "Moldova", "Armenia",
+                    "Ukraine", "Bolivia",    "Azerbaijan",
+                    "Colombia", "Guyana", "Cambodia",
                     "Nepal", "Kyrgyz Republic",
-                    "South Africa","Mozambique")
-legal_reason<- c("Ethiopia", "Ghana", "Zambia",
-                 "Rwanda" , "Gabon", "India",
-                 "Indonesia", "Philippines", "Timor-Leste",
-                 "Peru", "Guatemala", "Honduras", "Nicaragua")
+                    "South Africa","Mozambique", "Tajikistan")
 
-illegal <-  c("Angola", "Burkina Faso", "Benin",
-              "Burundi", "Chad", "Comoros", "Congo",
-              "Congo Democratic Republic", "Niger",
-              "Nigeria", "Sao Tome and Principe",
-              "Senegal", "Sierra Leone", "Togo",
-              "Uganda", "Zimbabwe",
-              "Afghanistan", "Pakistan", "Yemen"
-)
+
+legal_reason<- c("Ethiopia", "Ghana", "Zambia",
+                 "Rwanda" , "Gabon", "India", "Namibia",
+                 "Indonesia", "Philippines", "Timor-Leste",
+                 "Peru", "Guatemala", "Honduras", "Nicaragua", "Turkmenistan",
+                 "Kenya", "Guinea", "Liberia", "Bangladesh")
+
+illegal <-  c("Angola", "Burkina Faso", "Benin","Lesotho", "Madagascar",
+              "Burundi", "Chad", "Comoros", "Congo", "Egypt",  "Jordan",
+              "Congo Democratic Republic", "Niger", "Tanzania",
+              "Nigeria", "Sao Tome and Principe", "Gambia",
+              "Senegal", "Sierra Leone", "Togo", "Eswatini", "Myanmar",
+              "Uganda", "Zimbabwe","Cote d'Ivoire", "Malawi", "Mali",
+              "Afghanistan", "Pakistan", "Yemen", "Maldives" , "Cameroon", "Dominican Republic")
+
+
 
 violence_tidy <- violence_tidy|>
   mutate( abortion_access = case_when(
     country %in% legal_request  ~ "Legal on Request",
     country %in% legal_reason ~"Legal for Specific Reasons",
-    country %in% illegal ~ "Legal for Specific Reasons"
+    country %in% illegal ~ "Illegal or Extremely Restricted"
   ),
   abortion_access = as.factor(abortion_access)
   )
 
-
-##reorder the factor in descending order (justify_violence)
+# reorder the factor in descending order (justify_violence)
 justify_totals <- violence_tidy|>
   group_by(justify_violence)|>
   summarise(total_value = sum(value_agree, na.rm = TRUE))|>
@@ -170,7 +148,7 @@ violence_tidy$justify_violence <- factor(
   levels = justify_totals$justify_violence
 )
 
-##reorder the factor in descending order (subregion)
+# reorder the factor in descending order (subregion)
 subregion_totals <- violence_tidy|>
   group_by(subregion)|>
   summarise(total_value = sum(value_agree, na.rm = TRUE))|>
@@ -180,34 +158,3 @@ violence_tidy$subregion <- factor(
   violence_tidy$subregion,
   levels = subregion_totals$subregion
 )
-
-
-
-# Tidy abortion dataset 
-abortion_tidy <- abortion|>
-  mutate(iso = str_pad(iso, width = 3, pad = "0"))|>
-  select(country,iso, region, subregion,numberofabortions, abortionrate) |>
-  rename(
-    "number_of_abortion" = "numberofabortions",
-    "abortion_rate" = "abortionrate"
-  )
-
-# join violence + abortion 
-abortion_join <- violence_iso|>
-  inner_join(abortion, join_by(iso == iso, country == country))
-
-abortion_join
-
-#tidy gender inequality (elaborate undp_developing_regions)
-gender_inequality_tidy <-  gender_inequality|>
-  mutate(undp_developing_regions = 
-           case_when(
-             undp_developing_regions %in% "SSA" ~ "Sub-Saharan Africa",
-             undp_developing_regions %in% "LAC" ~ "Latin America and the Caribbean",
-             undp_developing_regions %in% "EAP" ~ "East Asia and the Pacific",
-             undp_developing_regions %in% "AS" ~ "Arab States",
-             undp_developing_regions %in% "ECA" ~ "Europe and Central Asia",
-             undp_developing_regions %in% "SA" ~ "South Asia"
-           )
-  )
-

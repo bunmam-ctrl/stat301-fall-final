@@ -1,3 +1,6 @@
+# label: fig-5-china-gender-index
+# fig-cap: "Gender Inequality Index from 1990 to 2021 in China"
+
 china_gender_index <- gender_inequality_tidy|>
   filter(country == "China")|>
   select(country, starts_with("gender_inequality_index"))|>
@@ -30,16 +33,4 @@ china_gender_index|>
     axis.text.y = element_text(size = 12)
   )
 
-#table
-china_gender_index_summary <- gender_inequality_tidy|>
-  filter(country == "China")|>
-  select(human_development_groups, hdi_rank_2021, gii_rank_2021)|>
-  rename(
-    " Human Development Groups" = human_development_groups,
-    "Human Development Index Rank" = hdi_rank_2021,
-    "Gender Inequality Index Rank" = gii_rank_2021
-  )|>
-  t()
-
-
-knitr::kable(china_gender_index_summary)
+ggsave(filename = "china_gender_index.png", path = "figure_china")

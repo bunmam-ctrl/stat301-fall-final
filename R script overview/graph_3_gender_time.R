@@ -1,3 +1,7 @@
+
+# label: fig-3-gender-time
+# fig-cap: "Gender Inequality Index from 1990 to 2021"
+
 #dataset preparation
 change_gender_dataset <- gender_inequality_tidy|> 
   slice_max(n =5, order_by = gender_inequality_index_2021, with_ties = TRUE)|> 
@@ -12,17 +16,16 @@ change_gender_dataset <- gender_inequality_tidy|>
     year = parse_number(year)
   )
 
-
-
 #graph
 change_gender_dataset|>
   ggplot(aes(x = year, y = gender_inquality_index))+
-  geom_line(aes(color = country), size = 1.2)+
+  geom_line(aes(color = country), linewidth = 1.2)+
+  scale_x_continuous( breaks = seq(1990, 2021, by = 5))+
   scale_color_brewer(palette = "Set1") +
   theme_minimal() +
   labs(
     title = "Gender Inequality Index Over Time",
-    subtitle = "Comparison of Five Countries (1990-2021)",
+    subtitle = "Comparison of Top 5 Countries \nwith the Highest Gender Inequality in 2021 (1990-2021)",
     x = "Year",
     y = "Gender Inequality Index",
     color = "Country"
@@ -35,3 +38,5 @@ change_gender_dataset|>
     axis.text.y = element_text(size = 12),
     legend.title = element_text(face = "bold")
   )
+
+ggsave(filename = "gender_time.png", path = "figure_overview")

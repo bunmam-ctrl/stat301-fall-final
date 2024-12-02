@@ -39,7 +39,6 @@ library(rnaturalearthdata)
 library(viridis)
 library(sf)
 library(patchwork)
-
 ```
 
 ```{r}
@@ -278,6 +277,8 @@ gender_inequality_tidy <-  gender_inequality|>
   )
 ```
 
+
+
 ```{r}
 #| label: write dataset (overview)
 
@@ -287,8 +288,9 @@ write_rds(violence_tidy, "data/violence_tidy.rds")
 ```
 
 
+
 ```{r}
-#| label: (Graph 1)  Global Number of Abortion Map 
+#| label: fig-1-global-num
 #| fig-cap: "Global Number of Abortions by Country"
 
 #calc count of abortion
@@ -304,12 +306,12 @@ map_abortion<- world_map|>
 
 ggplot(map_abortion) +
   geom_sf(aes(fill = n), color = "black", size = 10.0) +
-  scale_fill_viridis_c( na.value = "grey80", name = "Number of Cases") +
+  scale_fill_viridis_c( na.value = "grey80") +
   theme_minimal() +
   labs(
     title = "Global Abortion Incidence from 1990 to 2018",
     subtitle = "A geographical representation of abortion cases reported by country, \n highlighting variations and trends over 28 years",
-    fill = "Proportion"
+    fill = "Number of Cases"
   )+
   theme(
     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
@@ -322,7 +324,7 @@ ggplot(map_abortion) +
 
 ```
 ```{r}
-#| label:  Gender Index Global Map Map (Graph 2)
+#| label:  fig-2-global-gender
 #| fig-cap: "Global Number of Abortions by Country"
 
 # Join the map with gender_equality data by ISO codes
@@ -333,7 +335,7 @@ map_gender <- world_map|>
 
 ggplot(map_gender) +
   geom_sf(aes(fill = gender_inequality_index_2018), color = "black", size = 10.0) +
-  scale_fill_viridis_c( na.value = "grey80", name = "Number of Cases") +
+  scale_fill_viridis_c( na.value = "grey80") +
   theme_minimal() +
   labs(
     title = "Global Gender Equality Index by Country in 2018",
@@ -351,7 +353,7 @@ ggplot(map_gender) +
 
 ```
 ```{r}
-#| label: Top 5 global gender inequality index (table 1)
+#| label: tbl-1-top-5
 #| tbl-cap: "Top 5 Countries with the Highest Gender Inequality in 2021"
 
 top_5_gender_inequality <- gender_inequality_tidy|>
@@ -368,8 +370,8 @@ knitr::kable(top_5_gender_inequality)
 ```
 
 ```{r}
-#| label: (Graph 3) Gender inequality over time
-#| fig_cap: "Gender Inequality Index over 1990 to 2021"
+#| label: fig-3-gender-time
+#| fig-cap: "Gender Inequality Index from 1990 to 2021"
 
 #dataset preparation
 change_gender_dataset <- gender_inequality_tidy|> 
@@ -407,10 +409,11 @@ change_gender_dataset|>
     axis.text.y = element_text(size = 12),
     legend.title = element_text(face = "bold")
   )
+
 ```
 
 ```{r}
-#| label:  (Graph 4a) The accessibility of abortion in Western Asia and Africa
+#| label: (fig 4a) The accessibility of abortion in Western Asia and Africa
 
 # Join the map with violence_tidy data by ISO codes
 map_data_2 <- world_map|>
@@ -435,6 +438,7 @@ graph_africa <- map_data_2|>
 
 
 ```
+
 
 ```{r}
 #| label: (Graph 4b) The accessibility of abortion in Eastern and Southeastern Asia
@@ -462,7 +466,7 @@ graph_asia <- map_data_2|>
 
 
 ```{r}
-#| label: (Graph 4c) the accessibility of abortion in Latin America
+#| label: (fig 4c) the accessibility of abortion in Latin America
 # Graph Latin America
 graph_latin_america <-  map_data_2|>
   filter(subregion.x %in%  c("South America", "Central America", "Caribbean"))|>
@@ -508,7 +512,7 @@ graph_europe <-  map_data_2|>
 ```
 
 ```{r}
-#| label: Constructing Graph 4
+#| label: fig-4-abor-access
 #| fig-cap: Justifications for Violence by Region
 
 # Define a consistent color scale
@@ -559,7 +563,7 @@ final_plot
 
 
 ```{r}
-#| label: Justification for Violence across subregions (Graph 4, Data preparation)
+#| label: (Graph 5) Justification for Violence across subregions - Data preparation
 #reorder the factor in descending order (justify_violence)
 justify_totals <- violence_tidy|>
   group_by(justify_violence)|>
@@ -585,7 +589,7 @@ violence_tidy$subregion <- factor(
 ```
 
 ```{r}
-#| label: Justification for Violence across subregions (Graph 5)
+#| label: fig-5-domes-opinion
 #| fig-cap: "Regional Views on Domestic Violence Tolerance"
 #Making graphs
 violence_tidy|>
@@ -617,7 +621,7 @@ violence_tidy|>
 
 ```
 ```{r}
-#| label: Justification for Violence in each category and subregions (Table 2) 
+#| label: tbl-2-just-violence
 #| tbl-cap: "Comparative Data on Justifications for Violence by Region"
 violence_subregion_category <-violence_tidy|>
   group_by(subregion, justify_violence)|>
@@ -636,7 +640,7 @@ knitr::kable(violence_subregion_category)
 
 ```
 
-##China
+## China
 ```{r}
 #| label: load data (china)
 
@@ -655,7 +659,7 @@ china_population_tidy <- china_population|>
   )
 ```
 ```{r}
-#| label: (China, Graph 1) linegraph male vs female 
+#| label: fig-1-china-gender-pop
 #| fig-cap: "Gender Proportion Trends in China from 1950 to 2021"
 
 #data prep gender
@@ -700,7 +704,7 @@ china_population_gender|>
 
 
 ```{r}
-#| label: (China, Graph 2)  linegraph rural vs urban 
+#| label: fig-2-china-area 
 #| fig-cap: "Population Distribution Changes in China from 1950 to 2021"
 
 
@@ -786,7 +790,7 @@ china_divorce_tidy <- china_divorce|>
   )
 ```
 ```{r}
-#| label: (China, Graph 3)  line graph divorce in China
+#| label: fig-3-china-mean-divorce
 #| fig-cap: "Mean Divorce Rate by Area Type in China from 2009 to 2017"
 
 china_divorce_tidy|>
@@ -821,7 +825,7 @@ china_divorce_tidy|>
   
 ```
 ```{r}
-#| label: (China, Graph 4)  line graph marriage in China
+#| label: fig-4-china-mean-marriage
 #| fig-cap: "Mean Marriage Rate by Area Type in China from 2009 to 2017"
 
   china_marriage_tidy|>
@@ -857,7 +861,7 @@ china_divorce_tidy|>
   )
 ```
 ```{r}
-#| label: (China, Graph 5) gender_index change over time in china
+#| label: fig-5-china-gender-index
 #| fig-cap: "Gender Inequality Index from 1990 to 2021 in China"
 china_gender_index <- gender_inequality_tidy|>
   filter(country == "China")|>
@@ -894,7 +898,7 @@ china_gender_index|>
 
 ```
 ```{r}
-#| label: (Table 1, China) China hdi and gii rank
+#| label: tbl-1-china-global-gender-indices
 #| tbl-cap: "China's Performance in Global Development and Gender Equality Indice in 2021"
 china_gender_index_summary <- gender_inequality_tidy|>
   filter(country == "China")|>
