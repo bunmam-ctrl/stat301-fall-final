@@ -151,8 +151,31 @@ violence_tidy <- violence_tidy|>
   )
 
 
+##reorder the factor in descending order (justify_violence)
+justify_totals <- violence_tidy|>
+  group_by(justify_violence)|>
+  summarise(total_value = sum(value_agree, na.rm = TRUE))|>
+  arrange(desc(total_value))
 
-#Tidy abortion dataset 
+violence_tidy$justify_violence <- factor(
+  violence_tidy$justify_violence,
+  levels = justify_totals$justify_violence
+)
+
+##reorder the factor in descending order (subregion)
+subregion_totals <- violence_tidy|>
+  group_by(subregion)|>
+  summarise(total_value = sum(value_agree, na.rm = TRUE))|>
+  arrange(desc(total_value))
+
+violence_tidy$subregion <- factor(
+  violence_tidy$subregion,
+  levels = subregion_totals$subregion
+)
+
+
+
+# Tidy abortion dataset 
 abortion_tidy <- abortion|>
   mutate(iso = str_pad(iso, width = 3, pad = "0"))|>
   select(country,iso, region, subregion,numberofabortions, abortionrate) |>
@@ -161,11 +184,22 @@ abortion_tidy <- abortion|>
     "abortion_rate" = "abortionrate"
   )
 
-## join violence + abortion 
+# join violence + abortion 
 abortion_join <- violence_iso|>
   inner_join(abortion, join_by(iso == iso, country == country))
 
 abortion_join
 
-
+#tidy gender inequality (elaborate undp_developing_regions)
+gender_inequality_tidy <-  gender_inequality|>
+  mutate(undp_developing_regions = 
+           case_when(
+             undp_developing_regions %in% "SSA" ~ "Sub-Saharan Africa",
+             undp_developing_regions %in% "LAC" ~ "Latin America and the Caribbean",
+             undp_developing_regions %in% "EAP" ~ "East Asia and the Pacific",
+             undp_developing_regions %in% "AS" ~ "Arab States",
+             undp_developing_regions %in% "ECA" ~ "Europe and Central Asia",
+             undp_developing_regions %in% "SA" ~ "South Asia"
+           )
+  )
 

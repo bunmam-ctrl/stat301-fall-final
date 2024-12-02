@@ -219,8 +219,34 @@ violence_tidy <- violence_tidy|>
 ```
 
 ```{r}
-#| label: tidy abortion 
+#| label: tidy_violence - change and reoder factor justify_violence, subregion 
 
+#reorder the factor in descending order (justify_violence)
+justify_totals <- violence_tidy|>
+  group_by(justify_violence)|>
+  summarise(total_value = sum(value_agree, na.rm = TRUE))|>
+  arrange(desc(total_value))
+
+violence_tidy$justify_violence <- factor(
+  violence_tidy$justify_violence,
+  levels = justify_totals$justify_violence
+)
+
+#reorder the factor in descending order (subregion)
+subregion_totals <- violence_tidy|>
+  group_by(subregion)|>
+  summarise(total_value = sum(value_agree, na.rm = TRUE))|>
+  arrange(desc(total_value))
+
+violence_tidy$subregion <- factor(
+  violence_tidy$subregion,
+  levels = subregion_totals$subregion
+)
+```
+
+```{r}
+#| label: tidy_abortion
+#| 
 abortion_tidy <- abortion|>
   mutate(iso = str_pad(iso, width = 3, pad = "0"))|>
   select(country,iso, region, subregion,numberofabortions, abortionrate) |>
@@ -234,8 +260,9 @@ abortion_tidy <- abortion|>
 
 
 ```{r}
-#| label: tidy gender inequality 
+#| label: tidy_gender_inequality 
 
+#tidy gender inequality 
 gender_inequality_tidy <-  gender_inequality|>
   mutate(undp_developing_regions = 
     case_when(
@@ -314,7 +341,7 @@ ggplot(map_gender) +
 
 ```
 ```{r}
-#| label: Top 5 global gender equality index (table 1)
+#| label: Top 5 global gender inequality index (table 1)
 #| tbl-cap: "Top 5 Countries with the Highest Gender Inequality in 2021"
 
 top_5_gender_inequality <- gender_inequality_tidy|>
@@ -330,9 +357,49 @@ top_5_gender_inequality <- gender_inequality_tidy|>
 knitr::kable(top_5_gender_inequality)
 ```
 
+```{r}
+#| label: (Graph 3) Gender inequality over time
+#| fig_cap: "Gender Inequality Index Over Time"
+
+#dataset preparation
+change_gender_dataset <- gender_inequality_tidy|> 
+  slice_max(n =5, order_by = gender_inequality_index_2021, with_ties = TRUE)|> 
+  select(country, starts_with("gender_inequality_index"))|>
+  pivot_longer(
+    cols = starts_with("gender_inequality_index"),
+    names_to = "year",
+    values_to = "gender_inquality_index",
+    values_drop_na = TRUE
+    )|>
+  mutate(
+    year = parse_number(year)
+  )
+
+#graph
+change_gender_dataset|>
+  ggplot(aes(x = year, y = gender_inquality_index))+
+  geom_line(aes(color = country), size = 1.2)+
+  scale_color_brewer(palette = "Set1") +
+  theme_minimal() +
+  labs(
+    title = "Gender Inequality Index Over Time",
+    subtitle = "Comparison of Five Countries (1990-2021)",
+    x = "Year",
+    y = "Gender Inequality Index",
+    color = "Country"
+  ) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(face = "italic", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(size = 12, hjust = 1),
+    axis.text.y = element_text(size = 12),
+    legend.title = element_text(face = "bold")
+  )
+```
 
 ```{r}
-#| label: The accessibility of abortion in (Western Asia and Africa) (Graph 3a)
+#| label: The accessibility of abortion in (Western Asia and Africa) (Graph 4a)
 
 # Join the map with violence_tidy data by ISO codes
 map_data_2 <- world_map|>
@@ -359,7 +426,7 @@ graph_africa <- map_data_2|>
 ```
 
 ```{r}
-#| label: The accessibility of abortion in developing countries (Eastern and Southeastern Asia, Graph 3b)
+#| label: The accessibility of abortion in developing countries (Eastern and Southeastern Asia, Graph 4b)
 # Graph Central, South, and Southeastern Asia
 
 graph_asia <- map_data_2|>
@@ -384,7 +451,7 @@ graph_asia <- map_data_2|>
 
 
 ```{r}
-#| label: The accessibility of abortion in developing countries (Latin America, Graph 3c)
+#| label: The accessibility of abortion in developing countries (Latin America, Graph 4c)
 # Graph Latin America
 graph_latin_america <-  map_data_2|>
   filter(subregion.x %in%  c("South America", "Central America", "Caribbean"))|>
@@ -408,7 +475,7 @@ graph_latin_america <-  map_data_2|>
 
 
 ```{r}
-#| label: The accessibility of abortion (Europe, Graph 3d)
+#| label: The accessibility of abortion (Europe, Graph 4d)
 
 # Graph Europe 
 graph_europe <-  map_data_2|>
@@ -430,7 +497,7 @@ graph_europe <-  map_data_2|>
 ```
 
 ```{r}
-#| label: Constructing Graph 3
+#| label: Constructing Graph 4
 #| fig-cap: Justifications for Violence by Region
 
 # Define a consistent color scale
@@ -481,10 +548,7 @@ final_plot
 
 
 ```{r}
-#| label: Justification for Violence across subregions (Graph 4)
-#| fig-cap: "Abortion Accessibility in Developing Countries"
-
-
+#| label: Justification for Violence across subregions (Graph 4, Data preparation)
 #reorder the factor in descending order (justify_violence)
 justify_totals <- violence_tidy|>
   group_by(justify_violence)|>
@@ -507,15 +571,19 @@ violence_tidy$subregion <- factor(
   levels = subregion_totals$subregion
 )
 
+```
 
+```{r}
+#| label: Justification for Violence across subregions (Graph 5)
+#| fig-cap: "Abortion Accessibility in Developing Countries"
 #Making graphs
-violence_count <- violence_tidy|>
+violence_tidy|>
   group_by( justify_violence)|>
   drop_na()|>
   ggplot(aes(x = justify_violence, y = value_agree, fill = subregion))+
   geom_col()+
   theme_minimal() +
-  scale_fill_brewer(palette = "Dark2")+
+  scale_fill_brewer(palette = "Set2")+
   scale_x_discrete(labels = c("With\nReason", "Parental\nNeglect", "Autonomy\nViolation", 
                               "Marital\nConflict", "Intimacy\nDenial", "Household\nMistake"))+
   labs(
@@ -534,7 +602,7 @@ violence_count <- violence_tidy|>
     legend.title = element_text(face = "bold")
   )
   
-violence_count
+
 
 ```
 ```{r}
