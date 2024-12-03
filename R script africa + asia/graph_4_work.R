@@ -6,7 +6,7 @@ gender_social_factor_filter|>
   theme_minimal()+ 
   labs(
     title = "Distribution of Female Labor Force Participation",
-    x = "Percent of Females Labor Force (%)",
+    x = "Percent of Female Labor Force (%)",
     y = "Frequency"
   ) +
   scale_y_continuous(breaks = seq(0,10, by = 1))+

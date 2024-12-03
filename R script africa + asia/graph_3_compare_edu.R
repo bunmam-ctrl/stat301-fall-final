@@ -16,7 +16,7 @@ gender_social_factor_filter|>
   theme_minimal()+  
   labs(
     title = "Secondary Education Completion Disparities by Gender",
-    x = "Percent of Females Completing Secondary Education (%)",
+    x = "Percent of Completing Secondary Education (%)",
     y = "Frequency",
     fill = "Gender"
   ) +
