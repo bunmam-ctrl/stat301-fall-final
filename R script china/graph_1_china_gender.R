@@ -1,5 +1,5 @@
-# label: fig-1-china-gender-pop
-# fig-cap: "Gender Proportion Trends in China from 1950 to 2021"
+#| label: fig-1-china-gender-pop
+#| fig-cap: "Comparison of male and female population ratios in China from 1950 to 2021"
 
 #data prep gender
 china_population_gender <- china_population_tidy|> 
@@ -26,14 +26,12 @@ china_population_gender|>
   theme_minimal() +
   labs(
     title = "Gender Proportion Trends in China",
-    subtitle  = "Comparison of Male and Female Population Ratios Over 1950-2021",
     x = "Year",
     y = "Proportion",
     color = "Gender"
   )+
   theme(
     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(face = "italic", hjust = 0.5),
     axis.title = element_text(size = 14),
     axis.text.x = element_text(size = 12, hjust = 1),
     axis.text.y = element_text(size = 12),

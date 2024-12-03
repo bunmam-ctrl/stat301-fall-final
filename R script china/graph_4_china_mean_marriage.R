@@ -1,5 +1,5 @@
 # label: fig-4-china-mean-marriage
-# fig-cap: "Mean Marriage Rate by Area Type in China from 2009 to 2017"
+# fig-cap:  "Comparison of urban and rural marriage trends in China from 2009 to 2017"
 
 china_marriage_tidy|>
   pivot_longer(
@@ -19,14 +19,12 @@ china_marriage_tidy|>
   theme_minimal() +
   labs(
     title = "Mean Marriage Rate by Area Type in China",
-    subtitle  = "Comparison of Urban and Rural Marriage Trends Over 2009-2017",
     x = "Year",
     y = "Mean Marriage Rates",
     color = "Area type"
   )+
   theme(
     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(face = "italic", hjust = 0.5),
     axis.title = element_text(size = 14),
     axis.text.x = element_text(size = 12, hjust = 1),
     axis.text.y = element_text(size = 12),

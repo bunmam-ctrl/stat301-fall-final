@@ -114,5 +114,5 @@ final_plot
 ggsave(filename = "abor_access.png", path = "figure_africa_asia")
 
 
-# label: fig-4-abor-access
+# label: fig-1-afri-abor-access
 #fig-cap: Justifications for Violence by Region

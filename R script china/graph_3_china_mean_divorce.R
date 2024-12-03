@@ -1,5 +1,5 @@
 # label: fig-3-china-mean-divorce
-# fig-cap: "Mean Divorce Rate by Area Type in China from 2009 to 2017"
+# fig-cap: "Comparison of urban and rural divorce rate in China from 2009 to 2017"
 
 china_divorce_tidy|>
   pivot_longer(
@@ -17,14 +17,12 @@ china_divorce_tidy|>
   theme_minimal() +
   labs(
     title = "Mean Divorce Rate by Area Type in China",
-    subtitle  = "Comparison of Urban and Rural Divorce Trends Over 2009-2017",
     x = "Year",
     y = "Mean Divorce Rates",
     color = "Area type"
   )+
   theme(
     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(face = "italic", hjust = 0.5),
     axis.title = element_text(size = 14),
     axis.text.x = element_text(size = 12, hjust = 1),
     axis.text.y = element_text(size = 12),

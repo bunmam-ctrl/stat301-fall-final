@@ -1,5 +1,5 @@
 #divorce
-china_divorce <- read_csv("data/china_divorce_raw.csv")
+china_divorce <- read_csv("data/raw/china_divorce_raw.csv")
 
 rural <- c("Hebei", "Shanxi", "Inner Mongolia", "Jilin", 
            "Heilongjiang", "Anhui", "Jiangxi", "Henan",
@@ -14,4 +14,4 @@ china_divorce_tidy <- china_divorce|>
   mutate(
     area_type = case_when( 
       area %in% rural ~ "rural",
-      area  %in% urban ~ "urban")
+      area  %in% urban ~ "urban"))

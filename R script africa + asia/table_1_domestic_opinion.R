@@ -14,4 +14,8 @@ violence_subregion_category <-violence_tidy|>
     "Justification for Violence" = justify_violence 
   )
 
-#knitr::kable(violence_subregion_category)
+violence_subregion_category <- knitr::kable(violence_subregion_category)
+save(violence_subregion_category, file = "figure_africa_asia/table_1_violence_subregion_category.rda")
+
+# Load the dataframe back into the R environment
+#load("figure_africa_asia/table_1_violence_subregion_category.rda")

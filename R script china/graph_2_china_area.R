@@ -22,14 +22,12 @@ china_population_area|>
   scale_x_continuous( breaks = seq(1950, 2021, by = 10))+
   labs(
     title = "Population Distribution Changes in China",
-    subtitle  = "Comparison of Urban and Rural Population Trends Over 1950-2021",
     x = "Year",
     y = "Proportion",
     color = "Area type"
   )+
   theme(
     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(face = "italic", hjust = 0.5),
     axis.title = element_text(size = 14),
     axis.text.x = element_text(size = 12, hjust = 1),
     axis.text.y = element_text(size = 12),
@@ -39,5 +37,5 @@ china_population_area|>
 
 ggsave(filename = "china_area_pop.png", path = "figure_china")
 
-# label: fig-2-china-area-pop
-# fig-cap: "Population Distribution Changes in China from 1950 to 2021"
+#| label: fig-2-china-area-pop
+#| fig-cap: "Comparison of urban and rural population in China from 1950 to 2021"

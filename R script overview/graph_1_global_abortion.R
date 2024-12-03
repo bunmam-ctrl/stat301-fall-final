@@ -19,12 +19,10 @@ ggplot(map_abortion) +
   theme_minimal() +
   labs(
     title = "Global Abortion Incidence from 1990 to 2018",
-    subtitle = "A geographical representation of abortion cases reported by country, \n highlighting variations and trends over 28 years",
     fill = "Number of Cases"
   )+
   theme(
     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(face = "italic", hjust = 0.5),
     axis.title = element_text(size = 14),
     axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
     axis.text.y = element_text(size = 12),
@@ -35,4 +33,4 @@ ggplot(map_abortion) +
 ggsave(filename = "global_abortion.png", path = "figure_overview")
 
 # label: fig-1-global-num
-# fig-cap: "Global Number of Abortions by Country"
+# fig-cap: "A geographical representation of abortion cases reported by country, \n highlighting variations and trends over 28 years"

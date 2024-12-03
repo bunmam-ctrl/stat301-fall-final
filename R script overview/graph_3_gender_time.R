@@ -1,6 +1,6 @@
 
 # label: fig-3-gender-time
-# fig-cap: "Gender Inequality Index from 1990 to 2021"
+# fig-cap: "Comparison of the change of Gender Inequality Index (GII) from 1990 to 2021 of 5 countries with the highest GII in 2021"
 
 #dataset preparation
 change_gender_dataset <- gender_inequality_tidy|> 
@@ -25,14 +25,12 @@ change_gender_dataset|>
   theme_minimal() +
   labs(
     title = "Gender Inequality Index Over Time",
-    subtitle = "Comparison of Top 5 Countries \nwith the Highest Gender Inequality in 2021 (1990-2021)",
     x = "Year",
     y = "Gender Inequality Index",
     color = "Country"
   ) +
   theme(
     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(face = "italic", hjust = 0.5),
     axis.title = element_text(size = 14),
     axis.text.x = element_text(size = 12, hjust = 1),
     axis.text.y = element_text(size = 12),

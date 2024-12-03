@@ -65,6 +65,9 @@ violence_tidy <- violence_tidy|>
     ),
     .before = value
   )|>
+  mutate(
+    value = value *n()
+  )|>
   rename("value_agree" = value)|>
   select(!question)
 
@@ -157,4 +160,5 @@ subregion_totals <- violence_tidy|>
 violence_tidy$subregion <- factor(
   violence_tidy$subregion,
   levels = subregion_totals$subregion
-)
+  )
+

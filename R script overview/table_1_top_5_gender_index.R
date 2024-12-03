@@ -1,6 +1,6 @@
 
-#label: tbl-1-top-5
-# tbl-cap: "Top 5 Countries with the Highest Gender Inequality in 2021"
+#| label: tbl-1-top-5
+#| tbl-cap: "Top 5 Countries with the Highest Gender Inequality in 2021"
 
 top_5_gender_inequality <- gender_inequality_tidy|>
   slice_max(n =5, order_by = gender_inequality_index_2021, with_ties = TRUE)|> 
@@ -12,4 +12,8 @@ top_5_gender_inequality <- gender_inequality_tidy|>
     "Gender Inequality Index Rank" = gii_rank_2021
   )
 
-#knitr::kable(top_5_gender_inequality)
+top_5_gender_inequality <- knitr::kable(top_5_gender_inequality)
+save(top_5_gender_inequality, file = "figure_overview/table_1_top_5_gender_inequality.rda")
+
+# Load the dataframe back into the R environment
+#load("figure_overview/table_1_top_5_gender_inequality.rda")
