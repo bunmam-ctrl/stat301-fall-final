@@ -66,7 +66,7 @@ violence_tidy <- violence_tidy|>
     .before = value
   )|>
   mutate(
-    value = value *n()
+    value = (value/100000) *n()
   )|>
   rename("value_agree" = value)|>
   select(!question)

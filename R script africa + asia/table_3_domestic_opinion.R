@@ -1,4 +1,4 @@
-# label: tbl-1-just-violence
+#| label: tbl-2-afri-just-violence
 # tbl-cap: "Comparative Data on Justifications for Violence by Region"
 
 violence_subregion_category <-violence_tidy|>

@@ -38,8 +38,7 @@ gender_social_factor_filter|>
     axis.text.x = element_text(size = 20, hjust = 1),
     axis.text.y = element_text(size = 20),
     legend.title = element_text(size = 24, face = "bold"),
-    legend.text = element_text(size = 20),
-    legend.spacing.y = unit(0.5, 'cm')
+    legend.text = element_text(size = 20)
   )
 
 ggsave(filename = "compare_edu.png", path = "figure_africa_asia")
