@@ -6,9 +6,10 @@ violence_tidy|>
   summarise(total_value_agree = sum(value_agree, na.rm = TRUE))|>
   ungroup()|>
   mutate(
-    prop = total_value_agree/ sum(total_value_agree)
+    percent = (total_value_agree/ sum(total_value_agree))*100
+    
   )|>
-  ggplot(aes(x = justify_violence, y = prop))+
+  ggplot(aes(x = justify_violence, y = percent))+
   geom_col(fill = "darkcyan")+
   theme_minimal() +
   scale_fill_brewer(palette = "Dark2") +
@@ -19,7 +20,7 @@ violence_tidy|>
   labs(
     title = "Public Opinions on Justifications \nfor Domestic Violence in Developing Countries",
     x = NULL,
-    y = "Proportion of Respondents"
+    y = "Percent of Respondents (%)"
   )+
   theme(
     plot.title = element_text(size = 32, face = "bold", hjust = 0.5),
