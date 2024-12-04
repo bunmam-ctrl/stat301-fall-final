@@ -1,5 +1,5 @@
-# label: fig-4-china-mean-marriage
-# fig-cap:  "Comparison of urban and rural marriage trends in China from 2009 to 2017"
+#| label: fig-4-china-mean-marriage
+#| fig-cap:  "Comparison of urban and rural marriage trends in China from 2009 to 2017"
 
 china_marriage_tidy|>
   pivot_longer(
@@ -20,15 +20,16 @@ china_marriage_tidy|>
   labs(
     title = "Mean Marriage Rate by Area Type in China",
     x = "Year",
-    y = "Mean Marriage Rates",
+    y = "Mean Marriage Rates (%)",
     color = "Area type"
   )+
   theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(size = 12, hjust = 1),
-    axis.text.y = element_text(size = 12),
-    legend.title = element_text(face = "bold")
+    plot.title = element_text(size = 32, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 28),
+    axis.text.x = element_text(size = 24, hjust = 1),
+    axis.text.y = element_text(size = 24),
+    legend.title = element_text(size = 28, face = "bold"),
+    legend.text = element_text(size = 24)
   )
 
 ggsave(filename = "china_mean_marriage.png", path = "figure_china")

@@ -1,5 +1,5 @@
-# label: fig-3-compare-edu
-# fig-cap: "Examining secondary education rates among individuals aged 25 or older in 2021 across developing regions of Africa, Western , Central, South, and Southeastern Asia"
+#| label: fig-3-afri-compare-edu
+#| fig-cap: "Examining secondary education rates among individuals aged 25 or older in 2021 across developing regions of Africa, Western , Central, South, and Southeastern Asia"
 gender_social_factor_filter|>
   select(m_secondary_educ,f_secondary_educ)|>
   pivot_longer(
@@ -33,11 +33,13 @@ gender_social_factor_filter|>
   scale_y_continuous(breaks = seq(0, 0.02, by = 0.005), limits = c(0, 0.02))+
   scale_x_continuous(breaks = seq(0, 100, by = 10))+
   theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(size = 12, hjust = 1),
-    axis.text.y = element_text(size = 12),
-    legend.title = element_text(face = "bold")
+    plot.title = element_text(size = 28, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 20),
+    axis.text.x = element_text(size = 20, hjust = 1),
+    axis.text.y = element_text(size = 20),
+    legend.title = element_text(size = 24, face = "bold"),
+    legend.text = element_text(size = 20),
+    legend.spacing.y = unit(0.5, 'cm')
   )
 
 ggsave(filename = "compare_edu.png", path = "figure_africa_asia")

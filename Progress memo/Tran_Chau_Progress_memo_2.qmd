@@ -45,10 +45,10 @@ library(patchwork)
 
 ```{r}
 #| label: convert data 
-abortion <- read_csv("data/global_abortion_raw.csv")|>
+abortion <- read_csv("data/raw/global_abortion_raw.csv")|>
   janitor::clean_names()
 
-violence <-  read_csv("data/violence_raw.csv")|>
+violence <-  read_csv("data/raw/violence_raw.csv")|>
   janitor::clean_names()
 
 # Load world map with ISO codes

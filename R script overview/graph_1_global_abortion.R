@@ -1,3 +1,6 @@
+#| label: fig-1-global-num
+#| fig-cap: "A geographical representation of abortion cases reported by country, highlighting variations and trends over 28 years"
+
 # Load world map with ISO codes
 world_map <- ne_countries(scale = "medium", returnclass = "sf")
 
@@ -24,13 +27,11 @@ ggplot(map_abortion) +
   theme(
     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
     axis.title = element_text(size = 14),
-    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
+    axis.text.x = element_text(size = 12, hjust = 1),
     axis.text.y = element_text(size = 12),
     legend.title = element_text(face = "bold")
   )
 
+ggsave(filename = "global_abortion.png", width = 10, height = 5, 
+       units = "in", path = "figure_overview")
 
-ggsave(filename = "global_abortion.png", path = "figure_overview")
-
-# label: fig-1-global-num
-# fig-cap: "A geographical representation of abortion cases reported by country, \n highlighting variations and trends over 28 years"
