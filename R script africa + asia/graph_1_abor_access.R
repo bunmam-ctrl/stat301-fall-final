@@ -97,7 +97,7 @@ graph_europe <-  map_data_2|>
     subtitle = "Europe"
   ) +
   theme(
-    plot.subtitle = element_text(size = 25, hjust = 0.5),
+    plot.subtitle = element_text(size = 20, hjust = 0.5),
     axis.title = element_blank(),
     axis.text = element_blank(),
     legend.position = "none"
@@ -113,7 +113,7 @@ final_plot <- (graph_africa | graph_asia) / (graph_latin_america | graph_europe)
   plot_annotation(
     title = "Abortion Accessibility in Developing Countries",
     theme = theme(
-      plot.title = element_text(size = 32, face = "bold", hjust = 0.5),
+      plot.title = element_text(size = 28, face = "bold", hjust = 0.5),
       
     ))
 

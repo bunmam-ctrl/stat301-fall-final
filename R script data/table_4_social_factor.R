@@ -37,8 +37,8 @@
   )
 
 
- social_factor_summary <- knitr::kable(social_factor_summary)
-save(abortion_summary, file = "figure_data/table_4_social_factor_summary.rda")
+  social_factor_summary <- knitr::kable(social_factor_summary)
+save(social_factor_summary, file = "figure_data/table_4_social_factor_summary.rda")
 
 # Load the dataframe back into the R environment
 #load("figure_data/table_2_social_factor_summary.rda")

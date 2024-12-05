@@ -16,4 +16,4 @@ top_5_gender_inequality <- knitr::kable(top_5_gender_inequality)
 save(top_5_gender_inequality, file = "figure_afri_asia/table_1_top_5_gender_inequality.rda")
 
 # Load the dataframe back into the R environment
-#load("figure_overview/table_1_top_5_gender_inequality.rda")
+#load("figure_afri_asia/table_1_top_5_gender_inequality.rda")
