@@ -1,5 +1,5 @@
 #| label: fig-1-china-gender-index
-#| fig-cap: "Decade decline in gender disparity in China from 1990 to 2021"
+#| fig-cap: "Decreasing Trajectory of the Gender Inequality Index in China from 1990 to 2021."
 
 china_gender_index <- gender_inequality_tidy|>
   filter(country == "China")|>

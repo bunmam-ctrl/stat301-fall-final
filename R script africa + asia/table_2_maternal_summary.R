@@ -3,16 +3,14 @@
 maternal_develope <- gender_social_factor_filter|>
   summarize(
     Mean = mean(maternal_mortality,  na.rm = TRUE),
-    Median = median(maternal_mortality,  na.rm = TRUE),
-    "Interquartile Range" = IQR(maternal_mortality,  na.rm = TRUE)
+    Median = median(maternal_mortality,  na.rm = TRUE)
   )
 
 # maternal worldwide
 maternal_global <- gender_social_factor|>
   summarize(
     Mean = round(mean(maternal_mortality, na.rm = TRUE)),
-    Median = round(median(maternal_mortality,  na.rm = TRUE)),
-    "Interquartile Range" = round(IQR(maternal_mortality,  na.rm = TRUE))
+    Median = round(median(maternal_mortality,  na.rm = TRUE))
   )
 
 ## Combine the table
