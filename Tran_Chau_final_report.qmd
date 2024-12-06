@@ -254,7 +254,7 @@ maternal_summary
 
 These disparity in `mean` and `median`  have profound implications for women's reproductive rights and the broader issue of gender inequality in developing regions. High maternal mortality rates directly stem from a lack of access to quality reproductive healthcare, including skilled birth attendants and safe abortion services. This situation is worsened by restrictive abortion laws prevalent across developing countries in Africa, Western, Central, South, and Southeastern Asia (@fig-1-afri-abor-access). For women facing dangerous pregnancies, these restrictions often mean they cannot terminate the pregnancy safely, even when it poses a significant risk to their lives. This denial of access to necessary healthcare greatly increases the chances of maternal mortality from complications that could have been prevented if abortion services were available. Such restrictions ultimately strip women of the voice to make critical decisions about their health, exacerbating their vulnerability and reinforcing gender inequality.
 
-Additionally, a lack of education among women in the developing countries significantly impacts maternal health outcomes. ^[noted in 2. Educational Inequalities in Developing Regions: Impacts on Women's Rights and Reproductive Health ] Women with limited education are less likely to be informed or aware of the importance of prenatal care, family planning, or the risks associated with childbirth, leading to higher rates of complications and maternal deaths. In these developing regions, the combination of restrictive abortion laws, limited family planning services, and inadequate educational opportunities often leads to high rates of unintended pregnancies, many of which culminate in unsafe, often illegal, abortions. These hazardous procedures significantly contribute to maternal mortality, particularly in areas where healthcare systems are unable to manage complications effectively. Consequently, the high maternal mortality rate is a direct outcome of limited reproductive autonomy, exacerbated by poor healthcare infrastructure and restrictive policies. This situation further entrenches gender inequality, depriving women of the opportunity to lead safe and healthy lives.
+Additionally, a lack of education among women in the developing countries significantly impacts maternal health outcomes. ^[mentioned in 2. Educational Inequalities in Developing Regions: Impacts on Women's Rights and Reproductive Health ] Women with limited education are less likely to be informed or aware of the importance of prenatal care, family planning, or the risks associated with childbirth, leading to higher rates of complications and maternal deaths. In these developing regions, the combination of restrictive abortion laws, limited family planning services, and inadequate educational opportunities often leads to high rates of unintended pregnancies, many of which culminate in unsafe, often illegal, abortions. These hazardous procedures significantly contribute to maternal mortality, particularly in areas where healthcare systems are unable to manage complications effectively. Consequently, the high maternal mortality rate is a direct outcome of limited reproductive autonomy, exacerbated by poor healthcare infrastructure and restrictive policies. This situation further entrenches gender inequality, depriving women of the opportunity to lead safe and healthy lives.
 
 ### China: An Unexpected Case of Persistent Internalized Sexism
 
@@ -329,29 +329,43 @@ Understanding these dynamics requires examining how internalized sexism perpetua
 ## Appendix
 ### Reference
 
-1. Abay, N. A., Kuehnast, K., Gordon Peake, G., & Demian, M. (2024, March 7). Addressing gendered violence in Papua New Guinea: Opportunities and options | United States Institute of Peace. United States Institute of Peace. https://www.usip.org/publications/2024/03/addressing-gendered-violence-papua-new-guinea-opportunities-and-options 
-2. Al-Hassani, M. (2023, October 27). Yemeni women archive highlights women’s struggles during Yemen’s Civil War. The Media Line. https://themedialine.org/people/yemeni-women-archive-highlights-womens-struggles-during-yemens-civil-war/ 
+1. Abay, N. A., Kuehnast, K., Gordon Peake, G., & Demian, M. (2024, March 7). [Addressing gendered violence in Papua New Guinea: Opportunities and options](https://www.usip.org/publications/2024/03/addressing-gendered-violence-papua-new-guinea-opportunities-and-options ). United States Institute of Peace. 
 
-3. Branigan, T. (2011, November 2). China’s great gender crisis. The Guardian. https://www.theguardian.com/world/2011/nov/02/chinas-great-gender-crisis 
-C. Textor . (2024, November 11). China: Urban and rural population by Province. Statista. https://www.statista.com/statistics/1088875/china-urban-and-rural-population-by-region-province/ 
+2. Al-Hassani, M. (2023, October 27). [Yemeni women archive highlights women’s struggles during Yemen’s Civil War](https://themedialine.org/people/yemeni-women-archive-highlights-womens-struggles-during-yemens-civil-war/). The Media Line. 
 
-4. Guenard, M. (2024, July 4). What’s happening in the Central African Republic? NRC. https://www.nrc.no/perspectives/2024/whats-happening-in-the-central-african-republic/ 
-Johnson, S. (2024, December 2). Beatriz v El Salvador: The abortion case that could set a precedent across Latin America. The Guardian. https://www.theguardian.com/global-development/2024/dec/02/el-salvador-antiabortion-international-campaign-disinformation-hate-activists-laws-ban-human-rights 
+3. Branigan, T. (2011, November 2). [China’s great gender crisis](https://www.theguardian.com/world/2011/nov/02/chinas-great-gender-crisis ). The Guardian.
 
-5. Li, H., & Miller, G. (2020). The Conflicted Legacy of China’s Population Policy. Stanford King Center on Global Development. https://doi.org/https://kingcenter.stanford.edu/sites/g/files/sbiybj16611/files/media/file/kingcenter_issuebrief_china.pdf 
+4. C. Textor . (2024, November 11). [China: Urban and rural population by Province](https://www.statista.com/statistics/1088875/china-urban-and-rural-population-by-region-province/). Statista. 
 
-6. Lussenhop, J. (2021, January 13). Lisa Montgomery: Looking for answers in the life of a Killer. BBC News. https://www.bbc.com/news/world-us-canada-55587260 
-McCurry, J. (2024, February 28). South Korea’s fertility rate sinks to record low despite $270bn in incentives. The Guardian. https://www.theguardian.com/world/2024/feb/28/south-korea-fertility-rate-2023-fall-record-low-incentives 
+5. Guenard, M. (2024, July 4). [What’s happening in the Central African Republic?](https://www.nrc.no/perspectives/2024/whats-happening-in-the-central-african-republic/) NRC. 
 
-7. O’Malley, S. (2002, February 15). A cry in the dark. Oprah.com. https://www.oprah.com/omagazine/andrea-yates-a-cry-in-the-dark/all 
-Singh, S., Remez, L., Sedgh, G., Kwok, L., & Onda, T. (2018). Abortion Worldwide 2017: Uneven Progress and Unequal Access. https://doi.org/10.1363/2018.29199 
-Specia, M. (2018, May 27). How Savita Halappanavar’s death spurred Ireland’s Abortion Rights Campaign. The New York Times. https://www.nytimes.com/2018/05/27/world/europe/savita-halappanavar-ireland-abortion.html 
+6. Johnson, S. (2024, December 2). [Beatriz v El Salvador: The abortion case that could set a precedent across Latin America](https://www.theguardian.com/global-development/2024/dec/02/el-salvador-antiabortion-international-campaign-disinformation-hate-activists-laws-ban-human-rights). The Guardian.  
 
-8. Swift, J. (2024, February 29). What did the US war and exit do for Afghan Women’s Rights? Gender Policy Report. https://genderpolicyreport.umn.edu/what-did-the-us-war-and-exit-do-for-afghan-womens-rights/?utm_source=chatgpt.com 
+7. Li, H., & Miller, G. (2020). [The Conflicted Legacy of China’s Population Policy.](https://doi.org/https://kingcenter.stanford.edu/sites/g/files/sbiybj16611/files/media/file/kingcenter_issuebrief_china.pdf) Stanford King Center on Global Development. 
 
-9. University of Sheffield. (2024, June 7). Colonialism and gender inequality: The case of political representation in Nigeria. PHYS.ORG. https://phys.org/news/2024-06-colonialism-gender-inequality-case-political.html 
+8. Lussenhop, J. (2021, January 13). [Lisa Montgomery: Looking for answers in the life of a Killer](https://www.bbc.com/news/world-us-canada-55587260). BBC News. 
 
-10. Yamaguchi, M. (2024, June 6). Japan’s birth rate falls to a record low as the number of marriages also drops. The Diplomat. https://thediplomat.com/2024/06/japans-birth-rate-falls-to-a-record-low-as-the-number-of-marriages-also-drops/ 
+9. McCurry, J. (2024, February 28). [South Korea’s fertility rate sinks to record low despite $270bn in incentives](https://www.theguardian.com/world/2024/feb/28/south-korea-fertility-rate-2023-fall-record-low-incentives). The Guardian. 
+
+10. O’Malley, S. (2002, February 15). [A cry in the dark](https://www.oprah.com/omagazine/andrea-yates-a-cry-in-the-dark/all). Oprah.com. 
+
+11. Singh, S., Remez, L., Sedgh, G., Kwok, L., & Onda, T. (2018). [Abortion Worldwide 2017: Uneven Progress and Unequal Access](https://doi.org/10.1363/2018.29199). 
+
+12. Specia, M. (2018, May 27). [How Savita Halappanavar’s death spurred Ireland’s Abortion Rights Campaign](https://www.nytimes.com/2018/05/27/world/europe/savita-halappanavar-ireland-abortion.html). The New York Times. 
+
+13. Swift, J. (2024, February 29). [What did the US war and exit do for Afghan Women’s Rights?](https://genderpolicyreport.umn.edu/what-did-the-us-war-and-exit-do-for-afghan-womens-rights/?utm_source=chatgpt.com ) Gender Policy Report. 
+
+14. University of Sheffield. (2024, June 7). [Colonialism and gender inequality: The case of political representation in Nigeria](https://phys.org/news/2024-06-colonialism-gender-inequality-case-political.html). PHYS.ORG.  
+
+15. Yamaguchi, M. (2024, June 6). [Japan’s birth rate falls to a record low as the number of marriages also drops](https://thediplomat.com/2024/06/japans-birth-rate-falls-to-a-record-low-as-the-number-of-marriages-also-drops/ ). The Diplomat. 
+
+16. I used [A ggplot2 Tutorial for Beautiful Plotting in R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/) and *ChatGTP* to help make the graphs look presentable.
+
+17. I used [Saving Data into R Data Format: RDS and RData](https://www.sthda.com/english/wiki/saving-data-into-r-data-format-rds-and-rdata) to help save and load the table.
+
+18. I used [Introduction to rnaturalearth](https://cran.r-project.org/web/packages/rnaturalearth/vignettes/rnaturalearth.html) and  *ChatGTP* to help make the maps. 
+
+19. I used *ChatGTP* to help my sentence flow better. 
 
 ### Technical Info
 #### Targeted Analysis of the Gender Social Factor dataset
@@ -424,7 +438,7 @@ Motivated by cases such as Lisa Montgomery in the U.S. and Beatriz in El Salvado
 
 ### 2. Aim 
 
-The primary goal of this report is to uncover and analyze the systemic barriers that women face globally, with an emphasis on reproductive rights, societal inequality, and health outcomes. By examining these interconnected challenges, the report aims to identify underlying patterns and root causes, ultimately providing actionable insights to inform policies and interventions that promote equity and safeguard women's health and autonomy. Specifically, The study aims to uncover the relationship between restrictive abortion laws and gender equality, focusing on how sociol political influence health outcomes and gender inequality for women in developing regions of Africa and Asia. It also investigates the impact of societal attitudes, such as tolerance for domestic violence, on women’s autonomy and decision-making. Additionally, the report analyzes trends in education, violence, and healthcare to provide evidence-based recommendations for advancing gender equality and improving access to reproductive rights.
+The primary goal of this report is to uncover and analyze the systemic barriers that women face globally, with an emphasis on reproductive rights, societal inequality, and health outcomes. By examining these interconnected challenges, the report aims to identify underlying patterns and root causes, ultimately providing actionable insights to inform policies and interventions that promote equity and safeguard women's health and autonomy. Specifically, the study aims to uncover the relationship between restrictive abortion laws and gender equality, focusing on how sociol political influence health outcomes and gender inequality for women in developing regions of Africa and Asia. It also investigates the impact of societal attitudes, such as tolerance for domestic violence, on women’s autonomy and decision-making. Additionally, the report analyzes trends in education, violence, and healthcare to provide evidence-based recommendations for advancing gender equality and improving access to reproductive rights.
 
 
 ### 3. Methodology
