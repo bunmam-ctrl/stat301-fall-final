@@ -4,7 +4,7 @@ The goal of this project is to uncover systemic barriers to gender equality by a
 
 ## Basic Repo Set up 
 
-`proggress memo`: Folder contains all the HTML and QMD files for two progress memos.
+`progress memo`: Folder contains all the HTML and QMD files for two progress memos.
 
 `R script africa + asia`: Folder contains all R scripts used to create figures and tables for **developing nations in Africa and Asia**.
 
