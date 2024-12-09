@@ -1,5 +1,9 @@
 ## Datasets
 
+### Repo organization
+- `raw`: Folder contains all the raw dadta
+- `codebook`: Folder contains all the available codebook of the data
+
 ### Dataset 1
 
 Global Abortion Incidence Dataset is accessed in [osf](https://osf.io/6t4eh). The Global Abortion Incidence Dataset is a comprehensive dataset of abortion data from 1990 to 2018, which provides the first global compilation of national level abortion data and information on data sources and quality. This data is used in the Guttmacher Institute model that produces global, regional, subregional, and national estimates of abortion and unintended pregnancy.
