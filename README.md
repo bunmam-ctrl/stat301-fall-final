@@ -1,6 +1,6 @@
 ## Overview
 
-The goal of this project is to uncover systemic barriers to gender equality by analyzing global patterns of violence, reproducive health disparities, and societal inequities, offering actionable insights to inform policies that advance women's equity, dignity, and well-beging
+The goal of this project is to uncover systemic barriers to gender equality by analyzing global patterns of violence, reproductive health disparities, and societal inequities, offering actionable insights to inform policies that advance women's equity, dignity, and well-being.
 
 ## Basic Repo Set up 
 
