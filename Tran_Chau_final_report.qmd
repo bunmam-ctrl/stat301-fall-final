@@ -1,7 +1,7 @@
 ---
 title: "Of Rights and Wrongs: Unearthing Global Gender Inequalities and Reproductive Struggles"
 subtitle: |
-  | Final Project 
+  | Final Report
   | Data Science 1 with R (STAT 301-1)
 author: "Chau Tran"
 pagetitle: "PM1 Chau Tran"
@@ -428,31 +428,3 @@ china_global_rank
 ```
 
 @tbl-1-china-gender-index provides key indicators of gender development in China for 2021. China is classified within the `High` Human Development Group, with a Human Development Index Rank of **79**. GII Rank stands at **48**, reflecting considerable progress in gender equality. Maternal mortality is notably low, at **29** deaths per 100,000 live births, indicating improvements in maternal healthcare. Education access for women is strong, with **78.3%** of females holding a secondary education degree . However, female labor force participation remains relatively moderate at **61.6%**, suggesting barriers to full economic integration despite advancements in education and health.
-
-## Executive summary
-The ***Of Rights and Wrongs: Unearthing Global Gender Inequalities and Reproductive Struggles*** report examines the systemic challenges faced by women globally, emphasizing the interconnection of societal norms, policy frameworks, and access to healthcare in shaping gender inequality and reproductive health.Through data analysis, the report examines regional disparities in gender equality, emphasizing societal factors and their impact on women’s rights, health, and autonomy. The findings underline the importance of targeted interventions to address these systemic barriers and foster equity across diverse cultural and political contexts 
-
-### 1. Introduction
-Motivated by cases such as Lisa Montgomery in the U.S. and Beatriz in El Salvador, this document contextualizes these individual tragedies within broader global patterns of neglect and systemic inequality. These stories reveal devastating consequences of untreated trauma, insufficient healthcare, and restrictive reproductive policies,highlighting the urgent need for action to safeguard women’s rights and well-being. Therefore, the document investigate global pattern in gender inequality and reproductive health, focusing on how restrictive aboriton laws, inadequate education, and societal norms perpetuate systemic challenges for women. 
-
-
-### 2. Aim 
-
-The primary goal of this report is to uncover and analyze the systemic barriers that women face globally, with an emphasis on reproductive rights, societal inequality, and health outcomes. By examining these interconnected challenges, the report aims to identify underlying patterns and root causes, ultimately providing actionable insights to inform policies and interventions that promote equity and safeguard women's health and autonomy. Specifically, the study aims to uncover the relationship between restrictive abortion laws and gender equality, focusing on how sociol political influence health outcomes and gender inequality for women in developing regions of Africa and Asia. It also investigates the impact of societal attitudes, such as tolerance for domestic violence, on women’s autonomy and decision-making. Additionally, the report analyzes trends in education, violence, and healthcare to provide evidence-based recommendations for advancing gender equality and improving access to reproductive rights.
-
-
-### 3. Methodology
-
-The study employs a comprehensive framework to analyze the global patterns of abortion cases and gender inequality, integrating  diverse datasets and visualization techniques to uncover key trends and regional disparities. Starting with a global overview, abortion cases and GII are mapped to identify areas of concern. China, characterized by its high number of reported abortion cases, is examined in detail to explore the societal impacts of its one-child policy (1979–2015), including its effects on gender distribution and social dynamics such as marriage and divorce trends (@fig-1-global-num). In regions like Africa, South, Central, and Southeastern Asia, where abortion cases are low or underreported and GII values are high, the analysis focuses on socioeconomic factors - education, societal attitudes toward domestic violence, and maternal mortality to identify systemic barriers (@fig-1-global-num, @fig-2-global-gender). Key methods include tracking GII trengs over time with line graphs, visualizing secondary education disparities between gender using density curve, and summarizing maternal mortality rates with statistical measures. 
-
-### 4. Findings
-
-This report highlights systemic barriers to gender equality and reproductive health globally, focusing on persistently high GII values in regions like Afghanistan and Yemen, where women face limited access to health and education. Education disparities, particularly restricted access to secondary education, perpetuate traditional gender roles and hinder women's autonomy and empowerment. The widespread acceptance of domestic violence correlates with restricted reproductive rights, reinforcing cycles of inequality and dependency. High maternal mortality rates in developing regions, driven by restrictive abortion laws and inadequate healthcare, further underscore the critical gaps in reproductive health services. Meanwhile, in China, cultural preferences for male offspring continue to influence societal and family dynamics despite policy reforms, reflecting the enduring impact of deeply ingrained gender biases. Collectively, these findings reveal the urgent need for targeted interventions to address systemic inequities and promote gender equality across diverse contexts. 
-
-### 5. Recommendations
-
-Addressing gender inequality in developing regions of Asia and Africa requires a comprehensive approach targeting education, healthcare, and cultural norms. Investing in girls' education and challenging societal biases can empower women with the tools to escape poverty and make informed reproductive choices. Simultaneously, legal reforms and community programs must combat domestic violence and shift cultural acceptance of harmful practices. Strengthening healthcare systems, including access to skilled maternal care and safe abortion services, is vital for safeguarding women’s health and autonomy. In parallel, examining gender dynamics in countries like China, Japan, and South Korea through comparative analysis could provide valuable insights into how internalized sexism shapes reproductive choices, family structures, and societal trends. By addressing these interconnected issues and prioritizing women’s economic empowerment and equal opportunities, these efforts can collectively dismantle systemic barriers, promote gender equity, and create a more inclusive and equitable society.
-
-### 6. Summary and Implications
-
-This report emphasizes the critical need to address systemic barriers to gender equity, including restrictive abortion laws, through comprehensive policy reforms, advancements in education, and transformative societal changes. Ensuring autonomy and access to reproductive rights dismantles entrenched inequalities and supports sustainable global development.
