@@ -1,5 +1,5 @@
 #gender_inequality
-gender_inequality <-  read_csv("data/raw/gender_inequality_index_raw.csv")|>
+gender_inequality <-  read_csv("data/raw/gender_inequality_raw.csv")|>
   janitor::clean_names()
 
 

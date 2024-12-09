@@ -1,4 +1,4 @@
-write_rds(abortion_tidy, "data/abortion_tidy.rds")
+write_rds(abortion_tidy, "data/global_abortion_tidy.rds")
 write_rds(gender_inequality_tidy, "data/gender_inequality_tidy.rds")
 write_rds(violence_tidy, "data/violence_tidy.rds")
 write_rds(china_divorce_tidy, "data/china_divorce_tidy.rds")
