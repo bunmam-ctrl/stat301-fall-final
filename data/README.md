@@ -34,7 +34,7 @@ Summary of Global Abortion Incidence structure
 
 Gender Inequality Index Dataset is accessed in [kaggle](https://www.kaggle.com/datasets/iamsouravbanerjee/gender-inequality-index-dataset) and created from [Human Development Reports](https://hdr.undp.org). This dataset provides comprehensive historical data on gender development indicators at a global level.
 - `gender_inequality_index_raw.csv`
-- `gender_inequality_tidy.csv`
+- `gender_inequality_tidy.rds`
 
 Summary of Gender Inequality Index structure
 - `iso3`: ISO3 code for the country/territory  
@@ -55,7 +55,7 @@ The data was collected as part of the [Demographic and Health Surveys (DHS) prog
 
 - `violence_raw.csv`
 - `violence_tidy.rds`
-- `violence_codebook`
+- `violence_codebook.csv`
 
 Summary of Violence Against Women and Girls structure
 - `record_id`: Unique numeric identifier for each question by country  
