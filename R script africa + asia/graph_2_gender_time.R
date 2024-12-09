@@ -1,7 +1,7 @@
 #| label: fig-2-afri--gender-time
 #| fig-cap: "Comparison of the change of Gender Inequality Index (GII) from 1990 to 2021 of 5 countries with the highest GII in 2021"
 
-#dataset preparation
+#dataset preparation, pick 5 highest GII 
 change_gender_dataset <- gender_inequality_tidy|> 
   slice_max(n =5, order_by = gender_inequality_index_2021, with_ties = TRUE)|> 
   select(country, starts_with("gender_inequality_index"))|>
@@ -37,4 +37,5 @@ change_gender_dataset|>
     legend.text = element_text(size = 24)
   )
 
+# Save plot 
 ggsave(filename = "gender_time.png", path = "figure_africa_asia")

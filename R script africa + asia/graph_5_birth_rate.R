@@ -1,5 +1,7 @@
 #| label: fig-5-afri-birth-rate
 #| fig-cap: "Analysis of birth rates per 1,000 women ages 15-19 across developing regions in Africa, Western, Central, South, and Southeastern Asia.
+
+# graph
 gender_social_factor_filter|>
   ggplot(aes(x = adolescent_birth_rate))+
   geom_histogram(binwidth = 5, fill = "steelblue", color = "black")+
@@ -18,4 +20,5 @@ gender_social_factor_filter|>
     axis.text.y = element_text(size = 24),
   )
 
+#save
 ggsave(filename = "birth_rate.png", path = "figure_africa_asia")

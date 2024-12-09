@@ -1,6 +1,7 @@
 #| label: tbl-2-afri-just-violence
 # tbl-cap: "Comparative Data on Justifications for Violence by Region"
 
+# calculate the proportion of people agree for each reason and reorganize the table
 violence_subregion_category <-violence_tidy|>
   group_by(subregion, justify_violence)|>
   summarise(total_value_agree = sum(value_agree, na.rm = TRUE))|>
@@ -19,6 +20,7 @@ violence_subregion_category <-violence_tidy|>
     "Justification for Violence" = justify_violence 
   )
   
+# save 
   violence_subregion_category <- knitr::kable(violence_subregion_category)
   save(violence_subregion_category, file = "figure_africa_asia/table_1_violence_subregion_category.rda")
   

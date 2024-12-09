@@ -1,6 +1,7 @@
 #| label: fig-5-china-mean-divorce
 #| fig-cap: "Comparison of urban and rural divorce rate in China from 2009 to 2017"
 
+# data rearrangment and graph 
 china_divorce_tidy|>
   pivot_longer(
     cols = `2009`:`2017`,,
@@ -30,4 +31,5 @@ china_divorce_tidy|>
     legend.text = element_text(size = 24)
   )
 
+# save
 ggsave(filename = "china_mean_divorce.png", path = "figure_china")

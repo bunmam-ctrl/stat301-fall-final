@@ -1,4 +1,4 @@
-#violence
+#read raw file
 violence <-  read_csv("data/raw/violence_raw.csv")|>
   janitor::clean_names()
 
@@ -51,7 +51,7 @@ violence_tidy <- violence|>
   .after = country
   )
 
-# Modify justify violence and percent agree
+# Modify justify violence and percent agree and calculate number of people agree
 violence_tidy <- violence_tidy|>
   mutate(
     justify_violence = as.factor(question),

@@ -1,6 +1,7 @@
-#marriage
+#read raw file
 china_marriage <- read_csv("data/raw/china_marriage_raw.csv")
 
+#categorize region
 rural <- c("Hebei", "Shanxi", "Inner Mongolia", "Jilin", 
            "Heilongjiang", "Anhui", "Jiangxi", "Henan",
            "Hubei", "Hunan", "Guangxi", "Hainan", "Sichuan",

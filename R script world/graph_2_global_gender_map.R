@@ -25,7 +25,7 @@ global_gender <- ggplot(map_gender) +
     legend.title = element_text(face = "bold")
   )
 
-
+#save 
 ggsave(filename = "global_gender.png",plot = global_gender, 
        width = 10, height = 5, 
        units = "in", path = "figure_world")

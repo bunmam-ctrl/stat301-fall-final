@@ -1,5 +1,7 @@
 #| label: fig-3-afri-compare-edu
 #| fig-cap: "Examining secondary education rates among individuals aged 25 or older in 2021 across developing regions of Africa, Western , Central, South, and Southeastern Asia"
+
+# Data preparation and graph
 gender_social_factor_filter|>
   select(m_secondary_educ,f_secondary_educ)|>
   pivot_longer(
@@ -41,4 +43,5 @@ gender_social_factor_filter|>
     legend.text = element_text(size = 20)
   )
 
+# Save plot
 ggsave(filename = "compare_edu.png", path = "figure_africa_asia")

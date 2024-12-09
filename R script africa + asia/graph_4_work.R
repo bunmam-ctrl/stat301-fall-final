@@ -1,5 +1,7 @@
-# label: fig-4-afri-work
-# fig-cap: "Analysis of labor force participation for female at 15 or older in developing regions of Africa, Western, Central, South, and Southeastern Asia"
+#| label: fig-4-afri-work
+#| fig-cap: "Analysis of labor force participation for female at 15 or older in developing regions of Africa, Western, Central, South, and Southeastern Asia"
+
+# graph
 gender_social_factor_filter|>
   ggplot(aes(x = f_labour_force))+
   geom_histogram(binwidth = 5, fill = "darkcyan", color = "black")+
@@ -18,4 +20,5 @@ gender_social_factor_filter|>
     axis.text.y = element_text(size = 12),
   )
 
+# save
 ggsave(filename = "work.png", path = "figure_africa_asia")

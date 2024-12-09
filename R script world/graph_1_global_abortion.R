@@ -31,7 +31,7 @@ ggplot(map_abortion) +
     axis.text.y = element_text(size = 12),
     legend.title = element_text(face = "bold")
   )
-
+# save 
 ggsave(filename = "global_abortion.png", width = 10, height = 5, 
        units = "in", path = "figure_world")
 

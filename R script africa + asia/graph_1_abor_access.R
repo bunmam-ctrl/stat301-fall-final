@@ -117,8 +117,8 @@ final_plot <- (graph_africa | graph_asia) / (graph_latin_america | graph_europe)
       
     ))
 
-final_plot
 
+# save plot
 ggsave(filename = "abor_access.png", path = "figure_africa_asia")
 
 

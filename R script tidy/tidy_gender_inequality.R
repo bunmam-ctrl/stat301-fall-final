@@ -1,9 +1,9 @@
-#gender_inequality
+#read raw file
 gender_inequality <-  read_csv("data/raw/gender_inequality_raw.csv")|>
   janitor::clean_names()
 
 
-## tidy gender inequality 
+## rename subregion to be clear
 gender_inequality_tidy <-  gender_inequality|>
   mutate(undp_developing_regions = 
            case_when(

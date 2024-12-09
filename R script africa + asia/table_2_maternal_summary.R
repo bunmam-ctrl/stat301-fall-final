@@ -1,5 +1,4 @@
 # maternal in developing countries
-
 maternal_develope <- gender_social_factor_filter|>
   summarize(
     Mean = mean(maternal_mortality,  na.rm = TRUE),
@@ -23,6 +22,7 @@ maternal_summary <- bind_rows(maternal_develope, maternal_global)|>
          .before =1)|>
   t()
 
+# Save table
 maternal_summary <- knitr::kable(maternal_summary)
 save(maternal_summary, file = "figure_africa_asia/table_2_maternal_summary.rda")
 

@@ -28,6 +28,6 @@ china_population_total|>
   )
 
 
-
+#save
 ggsave(filename = "china_pop.png", path = "figure_china")
 

@@ -39,4 +39,5 @@ china_population_gender|>
     legend.text = element_text(size = 24)
   )
 
+#save
 ggsave(filename = "china_gender_pop.png", path = "figure_china")

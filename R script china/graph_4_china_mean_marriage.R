@@ -1,6 +1,7 @@
 #| label: fig-4-china-mean-marriage
 #| fig-cap:  "Comparison of urban and rural marriage trends in China from 2009 to 2017"
 
+#data rearragment and graph 
 china_marriage_tidy|>
   pivot_longer(
     cols = `2009`:`2017`,,
@@ -32,4 +33,5 @@ china_marriage_tidy|>
     legend.text = element_text(size = 24)
   )
 
+# save 
 ggsave(filename = "china_mean_marriage.png", path = "figure_china")

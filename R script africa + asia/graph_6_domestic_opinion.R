@@ -1,5 +1,6 @@
 #| label: fig-6-afri-domes-opinion
 #| fig-cap: "Bar graph based on the survey  from 2020 highlighting support for different justifications of domestic violence in developing countries"
+
 #Making graphs
 violence_tidy|>
   group_by(justify_violence)|>
@@ -16,7 +17,7 @@ violence_tidy|>
   theme_minimal() +
   scale_x_discrete(labels = c("With \n Reason", "Parental \n Neglect", 
                               "Autonomy \n Violation", 
-                              "Marital \n Conflict", "Intimacy \n Denial", "   Household \n Mistake"))+
+                              "Marital \n Conflict", "Intimacy \n Denial", " Household \n Mistake"))+
   labs(
     title = "Public Opinions on Justifications \nfor Domestic Violence in Developing Countries",
     x = NULL,
@@ -29,7 +30,7 @@ violence_tidy|>
     axis.text.y = element_text(size = 22)
   )
 
-
+# save
 ggsave(filename = "domestic_opinion.png", 
        path = "figure_africa_asia")
 
