@@ -24,6 +24,13 @@ reference-location: margin
 citation-location: margin
 ---
 
+::: {.callout-tip icon=false}
+## Github Repo Link
+
+[Tran Chau's Final Project Github Repo](https://github.com/bunmam-ctrl/stat301-fall-final.git)
+
+:::
+
 The ***Of Rights and Wrongs: Unearthing Global Gender Inequalities and Reproductive Struggles*** report examines the systemic challenges faced by women globally, emphasizing the interconnection of societal norms, policy frameworks, and access to healthcare in shaping gender inequality and reproductive health.Through data analysis, the report examines regional disparities in gender equality, emphasizing societal factors and their impact on women’s rights, health, and autonomy. The findings underline the importance of targeted interventions to address these systemic barriers and foster equity across diverse cultural and political contexts 
 
 ### 1. Introduction

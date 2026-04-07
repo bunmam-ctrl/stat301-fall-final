@@ -1,0 +1,511 @@
+---
+title: "Progress Memo 2"
+subtitle: |
+  | Final Project 
+  | Data Science 1 with R (STAT 301-1)
+author: "Chau Tran"
+pagetitle: "PM1 Chau Tran"
+date: today
+
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    toc-location: left
+    embed-resources: true
+    link-external-newwindow: true
+
+execute:
+  warning: false
+  echo: false
+
+from: markdown+emoji
+reference-location: margin
+citation-location: margin
+---
+
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+[Tran Chau's Final Project Github Repo](https://github.com/bunmam-ctrl/stat301-fall-final.git)
+
+:::
+```{r}
+#| label: load pck
+
+library(tidyverse)
+library(maps)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(viridis)
+library(sf)
+library(patchwork)
+
+```
+
+```{r}
+#| label: convert data 
+abortion <- read_csv(here::here("data/raw/global_abortion_raw.csv"))|>
+  janitor::clean_names()
+
+violence <-  read_csv(here::here("data/raw/violence_raw.csv"))|>
+  janitor::clean_names()
+
+# Load world map with ISO codes
+world_map <- ne_countries(scale = "medium", returnclass = "sf")
+
+
+```
+
+```{r}
+#| label: tidy_violence - add iso to violence
+#| results: false
+
+#add iso to violence
+violence_tidy <- violence|>
+  mutate( iso = case_when(
+    country %in% "Afghanistan" ~ "004", country %in% "Albania" ~ "008",
+    country %in% "Angola" ~ "024", country %in% "Armenia" ~ "051",
+    country %in% "Azerbaijan" ~ "031", country %in% "Bangladesh" ~ "050",
+    country %in% "Benin" ~ "204", country %in% "Bolivia" ~ "068",
+    country %in% "Burkina Faso" ~ "854", country %in% "Burundi" ~ "108",
+    
+    country %in% "Cambodia" ~ "116", country %in% "Cameroon" ~ "120",
+    country %in% "Chad" ~ "148", country %in% "Colombia" ~ "170",
+    country %in% "Comoros" ~ "174", country %in% "Congo" ~ "178",
+    country %in% "Congo Democratic Republic" ~ "180", country %in% "Cote d'Ivoire" ~ "384",
+    country %in% "Dominican Republic" ~ "214", country %in% "Egypt" ~ "818",
+    
+    country %in% "Eritrea" ~ "232", country %in% "Eswatini" ~ "748",
+    country %in% "Ethiopia" ~ "231", country %in% "Gabon" ~ "266",
+    country %in% "Gambia" ~ "270", country %in% "Ghana" ~ "288",
+    country %in% "Guatemala" ~ "320", country %in% "Guinea" ~ "324",
+    country %in% "Guyana" ~ "328", country %in% "Guyana" ~ "332",
+    
+    country %in% "Honduras" ~ "340", country %in% "India" ~ "356",
+    country %in% "Indonesia" ~ "360", country %in% "Jordan" ~ "400",
+    country %in% "Kenya" ~ "404", country %in% "Kyrgyz Republic" ~ "417",
+    country %in% "Lesotho" ~ "426", country %in% "Liberia" ~ "430",
+    country %in% "Madagascar" ~ "450", country %in% "Malawi" ~ "454",
+    
+    country %in% "Maldives" ~ "462", country %in% "Mali" ~ "466",
+    country %in% "Moldova" ~ "498", country %in% "Morocco" ~ "504",
+    country %in% "Mozambique" ~ "508", country %in% "Myanmar" ~ "104",
+    country %in% "Namibia" ~ "516", country %in% "Nepal" ~ "524",
+    country %in% "Nicaragua" ~ "558", country %in% "Niger" ~ "562",
+    
+    country %in% "Nigeria" ~ "566", country %in% "Pakistan" ~ "586",
+    country %in% "Peru" ~ "604", country %in% "Philippines" ~ "608",
+    country %in% "Rwanda" ~ "646", country %in% "Sao Tome and Principe" ~ "678",
+    country %in% "Senegal" ~ "686", country %in% "Sierra Leone" ~ "694",
+    country %in% "South Africa" ~ "710", country %in% "Tajikistan" ~ "762",
+    
+    country %in% "Tanzania" ~ "834", country %in% "Timor-Leste" ~ "626",
+    country %in% "Togo" ~ "768", country %in% "Turkey" ~ "792",
+    country %in% "Turkmenistan" ~ "795", country %in% "Uganda" ~ "800",
+    country %in% "Ukraine" ~ "804", country %in% "Yemen" ~ "887",
+    country %in% "Zambia" ~ "894", country %in% "Zimbabwe" ~ "716"
+  ),
+  .after = country
+  )
+ 
+```
+
+```{r}
+#| label: tidy_violence- modify justify violence and percent agree
+#| results: false
+#Modify justify violence and percent agree
+violence_tidy <- violence_tidy|>
+  mutate(
+    justify_violence = as.factor(question),
+    justify_violence = fct_recode(justify_violence, 
+      "Household Mistake" = "... if she burns the food",
+      "Marital Conflict" = "... if she argues with him",
+      "Autonomy Violation" = "... if she goes out without telling him",
+      "Intimacy Denial" = "... if she refuses to have sex with him",
+      "Parental Neglect" = "... if she neglects the children",
+      "With Reason" = "... for at least one specific reason",
+    ),
+    .before = value
+  )|>
+  rename("value_agree" = value)|>
+  select(!question)
+
+```
+
+
+```{r}
+#| label: tidy_violence - add subregion
+#| results: false
+# add subregion
+
+sub_1 <- c("Afghanistan", "India", "Kyrgyz Republic", "Maldives",
+                                 "Nepal", "Pakistan", "Tajikistan", "Turkmenistan")
+sub_2 <-  c("Angola", "Benin", "Burkina Faso", "Burundi" , "Cameroon",
+                           "Chad", "Comoros", "Congo", "Congo Democratic Republic",
+                           "Cote d'Ivoire", "Eswatini", "Ethiopia", "Gabon", "Gambia",
+                           "Ghana", "Guinea", "Kenya", "Lesotho", "Liberia", "Madagascar",
+                           "Malawi", "Mali", "Mozambique", "Namibia", "Niger", "Nigeria",
+                           "Rwanda", "Sao Tome and Principe", "Senegal", "Sierra Leone",
+                           "South Africa", "Tanzania", "Togo", "Uganda", "Zambia",
+                           "Zimbabwe")
+sub_3 <- c("Armenia", "Azerbaijan", "Egypt", "Jordan",
+                                         "Yemen")
+
+sub_4 <- c("Bangladesh", "Cambodia", "Indonesia", "Myanmar",
+                                     "Philippines", "Timor-Leste")
+sub_5 <- c("Bolivia", "Colombia","Dominican Republic", "Guatemala", "Guyana",
+                     "Honduras", "Nicaragua", "Peru")
+sub_6 <- c("Albania", "Moldova", "Ukraine")
+
+
+violence_tidy <- violence_tidy|>
+  mutate( subregion = case_when(
+    country %in% sub_1  ~ "Central and Southern Asia",
+    country %in% sub_2 ~ "Sub-Saharan Africa",
+    country %in% sub_3 ~ "Western Asia and Northern Africa",
+    country %in% sub_4 ~ "Eastern and Southeastern Asia",
+    country %in% sub_5  ~ "Latin America",
+    country %in% sub_6  ~ "Europe and Northern America"
+  ),
+  .after = iso,
+  subregion = as.factor(subregion)
+  )
+
+```
+
+
+```{r}
+#| label: tidy_violence - add abortion
+#| results: false
+
+#add abortion (legal relax, legal strict, illegal)
+legal_request <-  c("Albania", "Moldova", "Armenia",
+                    "Ukraine", "Bolivia",    "Azerbaijan",
+                         "Colombia", "Guyana", "Cambodia",
+                         "Nepal", "Kyrgyz Republic",
+                         "South Africa","Mozambique", "Tajikistan")
+      
+
+legal_reason<- c("Ethiopia", "Ghana", "Zambia",
+                  "Rwanda" , "Gabon", "India", "Namibia",
+                   "Indonesia", "Philippines", "Timor-Leste",
+                  "Peru", "Guatemala", "Honduras", "Nicaragua", "Turkmenistan",
+                 "Kenya", "Guinea", "Liberia", "Bangladesh")
+
+illegal <-  c("Angola", "Burkina Faso", "Benin","Lesotho", "Madagascar",
+              "Burundi", "Chad", "Comoros", "Congo", "Egypt",  "Jordan",
+               "Congo Democratic Republic", "Niger", "Tanzania",
+               "Nigeria", "Sao Tome and Principe", "Gambia",
+              "Senegal", "Sierra Leone", "Togo", "Eswatini", "Myanmar",
+              "Uganda", "Zimbabwe","Cote d'Ivoire", "Malawi", "Mali",
+              "Afghanistan", "Pakistan", "Yemen", "Maldives" , "Cameroon", "Dominican Republic")
+
+     
+
+violence_tidy <- violence_tidy|>
+  mutate( abortion_access = case_when(
+    country %in% legal_request  ~ "Legal on Request",
+    country %in% legal_reason ~"Legal for Specific Reasons",
+    country %in% illegal ~ "Illegal or Extremely Restricted"
+  ),
+  abortion_access = as.factor(abortion_access)
+  )
+
+
+                                               
+```
+
+```{r}
+#| label: tidy abortion 
+
+abortion_tidy <- abortion|>
+  mutate(iso = str_pad(iso, width = 3, pad = "0"))|>
+  select(country,iso, region, subregion,numberofabortions, abortionrate) |>
+  rename(
+    "number_of_abortion" = "numberofabortions",
+    "abortion_rate" = "abortionrate"
+  )
+```
+
+
+## Summary of Progress
+Since the submission of Progress Memo 1, I have made significant progress in preparing the data and initiating exploratory analyses for my project As I mentioned in Progress Memo 1, my project explores the intersection between abortion accessibility and the normalization of domestic violence in developing countries, focusing on how policies and cultural attitudes interact. A major milestone has been incoporating a new dataset  [Violence Against Women and Girls Dataset](https://www.kaggle.com/datasets/andrewmvd/violence-against-women-and-girls) from Kaggle. This dataset has been cleaned and integrated with additional variables I created, including classifications for abortion laws and subregions. These classifications allows me to group countries meaningfully and investigate societal trends in-depth.
+
+In terms of exploratory data analysis, I have completed bivariate analyses for several variables, like `Number of abortion cases` or `Abortion legality` vs `Country`. These analyses provide insights into regional differences in domestic violence perceptions and how they might correlation with abortion accessibility. I have produced several visualizations, such as maps showing the global number of abortions by country and regional attitudes toward domestic violence. Additionally, for the new dataset I have categorized developing countries into three groups based on abortion laws - `Illegal or Extremely Restricted`, `Legal for Specific Reasons`, and `Legal on Request`- allowing me to explore how these legal frameworks relate to societal norms. This progress has laid a strong foundation for deeper analyses in the next phase of the project
+
+  I have produced several visualizations, such as maps showing the global number of abortions by country and regional attitudes toward domestic violence. Additionally, I have categorized developing countries into three groups based on abortion laws—Illegal or Extremely Restricted, Legal for Specific Reasons, and Legal on Request—allowing me to explore how these legal frameworks relate to societal norms. This progress has laid a strong foundation for deeper analyses in the next phases of the project.
+
+## New Data Source
+The new dataset used for this analysis is the [Violence Against Women and Girls Dataset](https://www.kaggle.com/datasets/andrewmvd/violence-against-women-and-girls) from Kaggle, accessed on 11/20/2024. This dataset includes variables related to demographic chracterisitics, societal perceptions on domestic violence, and braoder indicators of women's safety. It consists of **12,600 observations** and **8 variables**, with a mix of categorical and numerical data. Additionally, I have added country codes to the data, in which I standardized to ISO-3 format to ensure compatibility with other datasets. 
+
+### Why This Data and Data Modification
+This dataset was chosen because it aligns mu research focus on understanding the interaction of societal norms, policy factors, and gender equity in developing countries. Its comprehensive nature enables nuaced analyses of cultural attitudes and legal frameworks. To enhance the dataset's utility, I created and integrated new variables, including `subregions` and `abortion law classfication`. `Subregions` were categorized into groups such as **Sub-Saharan Africa, Central and Southern Asia, and Latin America**, facilitating regional comparisons. `Abortion laws` were classified into three distinct categories ^[I established the definition and categorized each country through searching abortion law on Gooogle], as follows:
+
+1. `Illegal or Extremely Restricted` includes countries where abortion is prohibited or permitted only to save the life of the mother.Examples include Sudan, Afghanistan, and Iraq. These laws often reflect patriarchal systems and are associated with higher levels of normalized domestic violence. 
+2. `Legal for Specific Reasons` includes countries where abortion is permitted under specific circumstances, such as rape, incest, or severe fetal abnormalities. Examples include India and Bangladesh. This category reflects transitional societal attitudes, where some reproductive rights are recognized, but remains limited. 
+3. `Legal on Request` includes countries where abortion is available without restrictions, typically up to a specified gestational age.  Examples include Colombia and South Africa. These laws are often found in more progressive societies, where they align with lower levels of normalized domestic violence. 
+
+These classifications, combined with  [Global Abortion Incidence Dataset](https://osf.io/6t4eh), allow me to explore the relationships between societal norms, policy environments, and domestic violence across diverse regions. Based on @fig-just-violence-region and @fig-abortion-access, I recognized that areas with restrictive abortion laws are more likely to normalize violence against women.
+
+## Current Findings ^[I used ChatGTP and ggplot2 website to make the maps and tidy the graphs to look more presentable]
+### Abortion Accesibility Across Developing Countries
+```{r}
+#| label:  fig-global-abortion-map 
+#| fig-cap: "Global Number of Abortions by Country"
+  # Abortion prop calculation
+abortion_prop <- abortion_tidy|>
+  count(iso, wt = number_of_abortion)|>
+  mutate(iso = as.character(iso))
+
+# Join the map with abortion_tidy data by ISO codes
+map_data <- world_map|>
+  left_join(abortion_prop, join_by("iso_n3" == "iso"))
+
+#Graph
+
+ggplot(map_data) +
+  geom_sf(aes(fill = n), color = "black", size = 10.0) +
+  scale_fill_viridis_c( option = "City\nCenter", na.value = "grey80", name = "Number of Cases") +
+  theme_minimal() +
+  labs(
+    title = "Global Number of Abortions by Country",
+    fill = "Proportion"
+  )+
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 12),
+    legend.title = element_text(face = "bold")
+  )
+
+```
+One of the first analyses I conducted focused on visualizing abortion accessibility globally. @fig-global-abortion-map illustrates the number of reported abortion by country. The world map reveal significant regional disparities Countries like China report exceptionally high number of abortions, which is likely influenced by historical policies and cultural norms. In contrast, countries with highly restrictive abortion laws such as those in Sub-Saharan Africa and Western Asia, report fewer cases. These numbers may reflect not only legal and societal barriers but also underreporting due to stigma or lack of healthcare infrastructure. 
+
+These pattern raise important questions about the societal and policy drivers behind these discrepancy. For example, I wonder if China's high number of reported abortion is connected to it historical one-child policy. Are regions with low numbers of reported abortions suppressing data or reflect genuine differences in behavior? These curiosities will guide my next steps as I delve deeper into the cultural and policy factors driving this trends. 
+
+### Domestic Violence Perception by Subregion
+
+```{r}
+#| label: fig-just-violence-region 
+#| fig-cap: Justifications for Violence by Region
+
+#reorder the factor in descending order (justify_violence)
+justify_totals <- violence_tidy|>
+  group_by(justify_violence)|>
+  summarise(total_value = sum(value_agree, na.rm = TRUE))|>
+  arrange(desc(total_value))
+
+violence_tidy$justify_violence <- factor(
+  violence_tidy$justify_violence,
+  levels = justify_totals$justify_violence
+)
+
+#reorder the factor in descending order (subregion)
+subregion_totals <- violence_tidy|>
+  group_by(subregion)|>
+  summarise(total_value = sum(value_agree, na.rm = TRUE))|>
+  arrange(desc(total_value))
+
+violence_tidy$subregion <- factor(
+  violence_tidy$subregion,
+  levels = subregion_totals$subregion
+)
+
+
+#Making graphs
+violence_count <- violence_tidy|>
+  group_by(justify_violence)|>
+  drop_na()|>
+  ggplot(aes(x = justify_violence, y = value_agree, fill = subregion))+
+  geom_col()+
+  theme_minimal() +
+  scale_fill_brewer(palette = "Dark2")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+ labs(
+    title = "Justifications for Violence by Region",
+    x = NULL,
+    y = "Number of People Supporting",
+    fill = "Subregion"
+  ) +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14),
+    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 12),
+    legend.title = element_text(face = "bold")
+  )
+  
+
+
+violence_count
+
+```
+I also explored the regional differences in societal justifications for domestic violence. @fig-just-violence-region visualizes normalized justification for violence, such as `With Reason` or `Parental Neglect`, across subregions. `Sub-Saharan Africa` shows the highest normalization of violence across nearly all categories, with significant number of people justifying violence under certain circumstances. Similarly, `Central and Southern Asia` show exhibits troubling trends, particularly regarding **Parental Neglect** and **Autonomy Violation**, which highlight persistent cultural attitudes that prioritize traditional gender roles over women's autonomy. This findings highlight the stark cultural differences in how domestic violence is perceived and normalized. Regions with higher acceptance of domestic violence often coincide with areas where abortion access is severely restricted according to @fig-abortion-access. This overlap suggest a broader cultural context where reproductive policies may reflect or reinforce broader gender inequities. 
+
+### Relationship between Abortion Accessibility and Domestic Violence
+
+```{r}
+#| label: Graph 3a The accessibility of abortion in (Western Asia and Africa)
+
+# Join the map with violence_tidy data by ISO codes
+map_data_2 <- world_map|>
+  
+  left_join(violence_tidy, join_by("iso_n3" == "iso"))
+# Graph Western Asia and Africa
+graph_africa <- map_data_2|>
+  filter(subregion.x %in%  c("Western Asia", "Northern Africa","Eastern Africa", "Western Africa", 
+                             "Southern Africa", "Middle Africa"))|>
+  ggplot()+
+  geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
+  theme_minimal() +
+  labs(
+    subtitle = "Western Asia and Africa",
+  ) +
+  theme(
+    plot.subtitle = element_text(size = 10, hjust = 0.5),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    legend.position = "none"
+  )
+
+
+```
+
+```{r}
+#| label: Graph 3b The accessibility of abortion in developing countries (Eastern and Southeastern Asia)
+# Graph Central, South, and Southeastern Asia
+
+graph_asia <- map_data_2|>
+  filter(subregion.x %in%  c("South-Eastern Asia", "Southern Asia",
+                             "Central Asia", "Southern Asia"))|>
+  ggplot()+
+  geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
+  theme_minimal() +
+  coord_sf(xlim = c(40, 160), ylim = c(-10, 45)) +
+  labs(
+    subtitle = "Central, South, and Southeastern Asia"
+  ) +
+  theme(
+    plot.subtitle = element_text(size = 10, hjust = 0.5),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    legend.position = "none"
+  )
+
+
+```
+
+
+```{r}
+#| label: Graph 3c The accessibility of abortion in developing countries (Latin America)
+# Graph Latin America
+graph_latin_america <-  map_data_2|>
+  filter(subregion.x %in%  c("South America", "Central America", "Caribbean"))|>
+  ggplot()+
+  geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
+  theme_minimal() +
+  labs(
+    subtitle = "Latin America"
+  ) +
+  coord_sf(xlim = c(-100, -30), ylim = c(-30, 20)) +
+  theme(
+    plot.subtitle = element_text(size = 10, hjust = 0.5),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold")
+  )
+
+
+```
+
+
+```{r}
+#| label: Graph 3d The accessibility of abortion in Europe 
+
+# Graph Europe 
+graph_europe <-  map_data_2|>
+  filter(subregion.x %in%  c("Eastern Europe", "Southern Europe" ))|>
+  ggplot()+
+  geom_sf(aes(fill = abortion_access), color = "black", size = 0.1) +
+  coord_sf(xlim = c(10, 40), ylim = c(40, 60))  +
+  theme_minimal() +
+  labs(
+    subtitle = "Europe"
+  ) +
+  theme(
+    plot.subtitle = element_text(size = 10, hjust = 0.5),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    legend.position = "none"
+  )
+
+```
+
+```{r}
+#| label: fig-abortion-access
+#| fig-cap: "Abortion Accessibility in Developing Countries"
+# Define a consistent color scale
+abortion_color_scale <- scale_fill_manual(
+  values = c(
+    "Illegal or Extremely Restricted" = "darkblue",
+    "Legal for Specific Reasons" = "deeppink3",
+    "Legal on Request" = "yellow",
+    "NA" = "grey80"
+  ),
+  name = "Abortion\nAccess",
+  labels = c(
+    "Illegal or\nExtremely Restricted",
+    "Legal for\nSpecific Reasons",
+    "Legal on\nRequest",
+    "NA"
+  )  # Add line breaks for better readability
+)
+
+
+# Update all graphs to use the same color scale
+graph_africa <- graph_africa +
+  abortion_color_scale 
+  
+graph_asia <- graph_asia +
+  abortion_color_scale 
+ 
+
+graph_latin_america <- graph_latin_america +
+  abortion_color_scale 
+
+graph_europe <- graph_europe +
+  abortion_color_scale 
+
+# Combine the regional maps into a single layout
+final_plot <- (graph_africa | graph_asia) / (graph_latin_america | graph_europe) +
+  plot_annotation(
+    title = "Abortion Accessibility in Developing Countries",
+    theme = theme(
+     plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+
+  ))
+  
+final_plot
+```
+The relationship between abortion laws and normalized violence was further explored using a composite map of abortion accessibility in developing countries (@fig-abortion-access). Regions with restrictive abortion laws, such as `Sub-Sharan Africa` and part of `Western Asia`, appear to align with higher levels of normalized violence (based on @fig-just-violence-region). This pattern raises important hypotheses about how restrictive reproductive policies may perpetuate broader systems of patriarchal control and gender inequality. 
+
+The exclusion of China in the map highlight is quite intrigued to me as abortion is widely accessible there but domestic violence normalization remains a concern. This outlier prompts further questions about how societal attitudes and policy environments intereact in different contexts. Understanding these nuances will require a combination of quantitative analysis and contextual exploration, which I aim to address in the next stages of this project.
+
+## Challenge and Data Quality
+Cleaning and integrating the new dataset posed several challenges. First, I encountered inconsistencies in country names and codes, which required me to standardize to ISO-3 format. Additionally, some regions had missing values for key variables, particularly [Violence Against Women and Girls Dataset](https://www.kaggle.com/datasets/andrewmvd/violence-against-women-and-girls). To address this problem, I applied imputation techniques where feasible and excluded variables where imputation would compromise reliability.
+
+Another challenge was the complexity of combining legal data on abortion with [Violence Against Women and Girls Dataset](https://www.kaggle.com/datasets/andrewmvd/violence-against-women-and-girls). Developing meaningful categories for abortion laws and subregions required extensive research and validation. Despite these challenegs, the dataset is now well-structured, with minimal missingness and clear variable definition, providing solid foundation for analysis. 
+
+## Next Steps
+Moving forward, I plan to conduct a zoomed analysis of specific regions, particularly `Sub-Saharan Africa` and `China`. Since `Sub-Saharan Africa` has high normalization of violence and restrictive abortion laws, understanding the cultural, political, and economic factors driving these trends will be a key focus. `China` presents a unique case with high abortion rates but complex gender dynamics, which I aim to explore in more details. Additionally, I will refine my hypotheses and conduct more bivariate analyses to strengthen the observed relationships between `abortion accessibility` and `domestic violence normalization`. These analyses may include correlation and regression models to quantify the strengthen of these associations.
+
+## Self-Assessment
+I believe I have made significant progress in understanding and analyzing my data. The integration of subregional classifications and abortion law data has enhanced the dataset's relevance to my research questions. The initial findings provide a clear direction for deeper analysis, and the visualizations created so fat are effective in communicating key patter. However, I recognize the need to deepen my analyses to substantiate these findings and refine my narrative further. 
+
+
+
+
+

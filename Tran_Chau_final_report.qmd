@@ -26,7 +26,7 @@ citation-location: margin
 ::: {.callout-tip icon=false}
 ## Github Repo Link
 
-[Tran Chau's Final Project Github Repo](https://github.com/stat301-1-2024-fall/final-project-1-bunmam-ctrl.git)
+[Tran Chau's Final Project Github Repo](https://github.com/bunmam-ctrl/stat301-fall-final.git)
 
 :::
 
@@ -68,14 +68,14 @@ The [Global Abortion Incidence Dataset](https://osf.io/6t4eh) is a comprehensive
 #| label: tbl-abortion-summary
 #| tbl-cap: "Summary statistics of the Global Abortion Incidence Dataset"
 
-load("figure_data/table_1_abortion_summary.rda")
+load("figure_table/data_quality/table_1_abortion_summary.rda")
 abortion_summary
 ```
 
 One of the dataset's primary challenges is the significant proportion of missing values. With **16,204 missing entries** (accounting for **29%** of the data), this missingness is unevenly distributed across variables (@tbl-abortion-summary, @fig-abortion-na). Some variables, such as `perc_p_ending_in_a` (percentage of pregnancies ending in abortion) and `abortionrate` exhibit high levels of missing data, which could impact the reliability of analyses (@fig-abortion-na). Missing entries in key variables may limit the accuracy of geographic mapping and demographic comparisons, as well as reduce the robustness of predictive models. Despite these quality challenges, the dataset offers value insights into global abortion trends and the underlying factors driving them. Its geographic identifiers, particularly `iso`, enhance its utility for mapping and spatial analysis, making it a critical tool for understanding global pattern in abortion incidence. 
 
 
-![Missing values in Global Abortion Incidence Dataset.](figure_data/abortion_na.png){#fig-abortion-na}
+![Missing values in Global Abortion Incidence Dataset.](figure_table/data_quality/abortion_na.png){#fig-abortion-na}
 
 ### 2. Gender Inequality Index Dataset
 
@@ -87,13 +87,13 @@ The [Gender Inequality Index Dataset](https://www.kaggle.com/datasets/iamsouravb
 #| label: tbl-index-summary
 #| tbl-cap: "Summary statistics of the Gender Inequality Index Dataset"
 
-load("figure_data/table_2_index_summary.rda")
+load("figure_table/data_quality/table_2_index_summary.rda")
 index_summary
 ```
 
 One of the dataset's challenges is the presence of missing data, with **1,428 missing values**, accounting for **18%** of the dataset  (@tbl-index-summary). These missing entries are unevenly distributed, with other earlier year-specific indices (`gender_inequality_index_1994` to `gender_inequality_index_2002`) showing most significant gaps (@fig-index-na). This problem may limit longitudinal analysis and impact the reliability of any trends or comparisons over time. Nonetheless, this dataset is invaluable for understanding global gender inequality. When compared with the map genderated by [Global Abortion Incidence Dataset](https://osf.io/6t4eh), the map of [Gender Inequality Index Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/gender-inequality-index-dataset) allows for meaningful exploration of the relationships between gender equality, abortion trends, and geography. This analysis will offer critical insights into how disparities in gender equality correlates with reproductive health outcome worldwide. 
 
-![Missing values in Gender Inequality Index Dataset.](figure_data/index_na.png){#fig-index-na}
+![Missing values in Gender Inequality Index Dataset.](figure_table/data_quality/index_na.png){#fig-index-na}
 
 ### 3. Violence Against Women and Girls Dataset
 
@@ -106,7 +106,7 @@ Focusing on developing countries, the [Violence Against Women and Girls Dataset]
 #| label: tbl-violence-summary
 #| tbl-cap: "Summary statistics of the Domestic Violence Against Women Dataset"
 
-load("figure_data/table_3_violence_summary.rda")
+load("figure_table/data_quality/table_3_violence_summary.rda")
 violence_summary
 ```
 
@@ -115,7 +115,7 @@ To expand its analytical potential and explore the relationship between violent 
 The dataset presents some quality issue, with only **1,413 missing values**, accounting for **1%** of the total data (@tbl-violence-summary). Notably, most of these missing entries are in `value` variable, which represents the percentage of survey respondents supporting various justifications for violence (@fig-violence-na). This missingness could impact the analysis by introducing gaps in understanding societal attitudes in certain countries or categories. However, due to the dataset's overall size and its added variables, it becomes a powerful tool for visualizing and understanding how violent toleration correlate with abortion accessibility and gender inequality across developing countries. 
 
 
-![Missing values in Violence Against Women and Girls Dataset.](figure_data/violence_na.png){#fig-violence-na}
+![Missing values in Violence Against Women and Girls Dataset.](figure_table/data_quality/violence_na.png){#fig-violence-na}
 
 ### 4. Gender Social Factors Dataset
 
@@ -126,7 +126,7 @@ The [Gender Social Factors Dataset](https://www.kaggle.com/datasets/gianinamaria
 #| label: tbl-social-factor-summary
 #| tbl-cap: "Summary statistics of the Gender Social Factors Dataset"
 
-load("figure_data/table_4_social_factor_summary.rda")
+load("figure_table/data_quality/table_4_social_factor_summary.rda")
 
 social_factor_summary
 
@@ -137,7 +137,7 @@ The dataset contains **133 missing values**, accounting for **6%** of the total 
 
 The  [Gender Social Factors Dataset](https://www.kaggle.com/datasets/gianinamariapetrascu/gender-inequality-index/data) is particularly relevant for exploring how societal factors, such as education and maternal mortality, contribute to gender inequality. Its focus on both male and female education and reproductive health provides a nuanced understanding of systemic inequalities. By including only countries present in the[Violence Against Women and Girls Dataset](https://www.kaggle.com/datasets/andrewmvd/violence-against-women-and-girls), the analysis enables a more comprehensive exploration of the intersections among societal factors, gender inequality, and abortion laws in the developing regions. ^[For more information about this data filtering, refer to Technical Info in Appendix section]
 
-![Missing values in Gender Inequality Index Dataset.](figure_data/social_factor_na.png){#fig-social-factor-na}
+![Missing values in Gender Inequality Index Dataset.](figure_table/data_quality/social_factor_na.png){#fig-social-factor-na}
 
 ### 5. China Marriage and Divorce Dataset
 
@@ -147,7 +147,7 @@ The [China Marriage and Divorce Dataset](https://www.kaggle.com/datasets/tduan00
 #| label: tbl-china-marital-summary
 #| tbl-cap: "Summary statistics of the China Marriage and Divorce Dataset"
 
-load("figure_data/table_5_china_marital_summary.rda")
+load("figure_table/data_quality/table_5_china_marital_summary.rda")
 china_marital_summary
 
 ```
@@ -162,14 +162,14 @@ One of the dataset's strength is its completeness, with **0 missing values**, en
 
 The exploration of global trends in `gender inequality` and `abortion rates` reveals a complex interplay of cultural norms, government policies, and access to reproductive health services. The analysis uncovers significant correlations between these variables, along with an unexpected case that sheds light on the intricate dynamics of gender equity and reproductive health policies across various regions.
 
-![Map of abortion cases reported by country, highlighting variations and trends over 28 years.](figure_world/global_abortion.png){#fig-1-global-num}
+![Map of abortion cases reported by country, highlighting variations and trends over 28 years.](figure_table/world_vis/global_abortion.png){#fig-1-global-num}
 
 Many regions in **Western Asia, Africa, Central, South, and Southeastern Asia** report very few abortion cases. Among the countries with available data, the numbers are relatively low, often falling below **50 million cases** over the 28-year period (@fig-1-global-num). Low incidences can have several implications. One is the possibility of under-reporting due to a lack of proper data collection systems and limited access to formal healthcare services where abortions might be recorded. In addition, restrictive abortion laws in many African and Central Asian countries may have driven the practice underground, indicating that actual abortion numbers could be much higher than reported.^[Singh et al., 2018] Cultural and religious attitudes toward abortion, which are often more conservative in these regions, also play a role in shaping these outcomes. As a result, the low reported incidence may reflect barriers to reproductive healthcare access and a lack of autonomy of women regarding reproductive choices. 
 
 Most regions in Western Asia, Africa, Central, South, and Southeastern Asia exhibit **very high GII values**, with **GII levels often exceeding 0.5** (@fig-2-global-gender). These regions also report relatively low numbers and missing of recorded abortion cases (@fig-1-global-num). The high gender inequality in these areas suggests limited access to healthcare, low educational attainment, and minimal economic opportunities for women, collectively restricting women's agency over their reproductive choices. This pattern implies a correlation between gender inequality and abortion incidence, where high inequality restricts access to safe reproductive services, resulting in fewer recorder abortions. Moreover, the combination of restrictive abortion laws and prevailing socio-cultural norms, which often limit women rights, further prevents many women from seeking or affording safe abortion service.
 
 
-![Map of gender equality, measuring disparities in various social, economic, and political areas.](figure_world/global_gender.png){#fig-2-global-gender}
+![Map of gender equality, measuring disparities in various social, economic, and political areas.](figure_table/world_vis/global_gender.png){#fig-2-global-gender}
  
 
 On the other hand, **China** stands out as the country with the highest number of reported abortions, with **over 250 million cases** reported during this period (@fig-1-global-num). The main reason for this high number are deeply rooted in China's historical population policy not only restricted family size but also pressured families into aborting unintended pregnancies to comply with the legal limit. Additionally, societal preferences for male children exacerbated the rate of sex-selective abortions. ^[Li & Miller, 2020]. Hence, despite China's relatively higher standing in terms of gender equality compared to other countries based on @fig-2-global-gender, the extremely high abortion rate suggests that state policies and deep-seated cultural norms have also influenced reproductive choices.
@@ -185,7 +185,7 @@ Tracking **GII from 1990 to 2021**, five countries—**Afghanistan, Yemen, Centr
 `Afghanistan`, for instance experienced a minor increase in its GII from around **0.75** in 2005, reflecting heightened inequality coinciding with periods of intense conflict and shifting political regimes in the 2000s (@fig-2-afri-gender-time). The U.S invasion of Afghanistan in 2001 and the following years of war greatly impacted the social structure, limiting progress in gender equality.^[Swift, 2024] Despite, the gradual decline in GII after 2010, the country's GII remained consistently above **0.65**, unveiling the structural challenges continue to hinder gender parity. Furthermore, The GII of `Yemen` hovered between **0.75 and 0.83**, maintaining levels throughout the period (@fig-2-afri-gender-time). The escalation of Yemeni Civil War in 2014 played a pivotal role in maintaining or worsening gender inequality, with limited resources allocated for education and health, disproportionately affecting women rights and opportunities.^[Al-Hassani, 2023] In 2021, the country's GII approached close to **0.85**, reflecting the continued deterioration of social services, particularly those affecting women right, education, and healthcare.  
 
 
-![Comparison of the change of Gender Inequality Index (GII) from 1990 to 2021 of 5 countries with the highest GII in 2021.](figure_africa_asia/gender_time.png){#fig-2-afri-gender-time}
+![Comparison of the change of Gender Inequality Index (GII) from 1990 to 2021 of 5 countries with the highest GII in 2021.](figure_table/africa_asia/gender_time.png){#fig-2-afri-gender-time}
 
 
 
@@ -202,7 +202,7 @@ The distribution of `secondary education completetion rates` by `gender`  highli
 
 The male distribution exhibits a slightly different trend. The curve for `males` is still right-skewed but shows a broader spread, with its  peaks occurring **around 40% to 60%** of secondary education completion (@fig-3-afri-compare-edu). This pattern suggests that men in these regions are more likely to progress through middle school compared to women, though the rightward skew implies that even for men, many do not reach graduation. The more rightward position of the `male` density curve, along with its greater height compared to females between **40% and 100%**, indicates that a larger proportion of men complete their education (@fig-3-afri-compare-edu). This disparity in completion rates between males and females points to deeply ingrained societal norms that prioritize boys' education over girls'. The prioritization of male education reflects a cultural perspective that values men potential economic contributions more highly, while often relegating women to domestic roles with fewer opportunities for economic participating and decision-making power, whereas women remain largely dependent and excluded from such prospects.  
 
- ![Examining secondary education rates among individuals aged 25 or older in 2021 across developing regions of Africa, Western, Central, South, and Southeastern Asia.](figure_africa_asia/compare_edu.png){#fig-3-afri-compare-edu}
+ ![Examining secondary education rates among individuals aged 25 or older in 2021 across developing regions of Africa, Western, Central, South, and Southeastern Asia.](figure_table/africa_asia/compare_edu.png){#fig-3-afri-compare-edu}
 
 
 The deficiency of secondary education among women has cascading effects that significantly influence their autonomy and their health. Women with lower education are less likely to be informed about reproductive health services and to have access to family planning methods, which can lead to higher rates of unplanned pregnacies This gap is educational access also reinforces women subordinate status, making the more reliant on male partners and unable to negotiate the terms of their reproductive choices effectively. In developing regions with substantial gender gaps in education, these socio-cultural factors often contribute to a vicious cycle of poverty, early marriage, high fertility rates, and reduced female labor force participation — all of which further undermine women status.
@@ -218,7 +218,7 @@ The data presented in @fig-6-afri-domes-opinion and @tbl-2-afri-just-violence of
 
 
 
-![Bar graph based on the survey from 2015 to 2018 highlighting support for different justifications of domestic violence in developing countries](figure_africa_asia/domestic_opinion.png){#fig-6-afri-domes-opinion}
+![Bar graph based on the survey from 2015 to 2018 highlighting support for different justifications of domestic violence in developing countries](figure_table/africa_asia/domestic_opinion.png){#fig-6-afri-domes-opinion}
 
 @tbl-2-afri-just-violence provides a regional breakdown, emphasizing the varying prevalence of justifications for domestic violence across developing regions. `Sub-Saharan Africa` stands out, with **17.6% of individuals** citing `With Reason`, as a justification for violence - significantly higher than **3.9%** in `Central and Southern Asia` or **1.8%** in `Western Asia and Northern Africa` (@tbl-2-afri-just-violence). These figures highlight the deep-rooted patriarchal control that persists in certain societies, especially in regions burdened by significant socio-political challenges, like war and economic instability. ^[mentioned in 1. Persistent Gender Inequality in Developing Regions: Socio-Political Barriers to Women's Rights
 ] Such norms directly impact female reproductive rights, making it even harder for them to assert autonomy over their reproductive health and family planning decisions. 
@@ -231,7 +231,7 @@ The justification for violence based on `Parental Neglect` further demonstrates 
 #| label: tbl-2-afri-just-violence
 #| tbl-cap: "Regional Comparison of Justifications for Domestic Violence in Developing Countries (% of Respondents)."
 #| 
-load("figure_africa_asia/table_1_violence_subregion_category.rda")
+load("figure_table/africa_asia/table_1_violence_subregion_category.rda")
 violence_subregion_category
 ```
 
@@ -248,7 +248,7 @@ The disparities in `maternal mortality` between developing regions and the globa
 #| label: tbl-2-afri-maternal-summary
 #| tbl-cap: "Comparison of maternal mortality per 100,000 live births in 2021: Worldwide versus developing regions in Africa, Western, Central, South, and Southeastern Asia."
 
-load("figure_africa_asia/table_2_maternal_summary.rda")
+load("figure_table/africa_asia/table_2_maternal_summary.rda")
 maternal_summary
 ```
 
@@ -261,19 +261,19 @@ Additionally, a lack of education among women in the developing countries signif
 China presents a unique case in the global discourse on gender inequality, highlighting both significant progress and persistent challenges. Its analysis provides critical insights into gender inequality, societal preferences, and their impacts on women's choices regarding marriage and family planning.
 
 
-![Decreasing Trajectory of the Gender Inequality Index in China from 1990 to 2021.](figure_china/china_gender_index.png){#fig-1-china-gender-index}
+![Decreasing Trajectory of the Gender Inequality Index in China from 1990 to 2021.](figure_table/china/china_gender_index.png){#fig-1-china-gender-index}
 
 
-![Comparison of male and female population ratios in China from 1950 to 2021.](figure_china/china_gender_pop.png){#fig-2-china-gender-pop}
+![Comparison of male and female population ratios in China from 1950 to 2021.](figure_table/china/china_gender_pop.png){#fig-2-china-gender-pop}
 
 The analysis of the GII in China from 1990 to 2021 reveals significant progress in reducing gender disparities. Over the past decades, the GII has steadily decreased, starting at around **0.28 before 2000s** and dropping to approximately **0.18 by 2021** (@fig-1-china-gender-index). This trend suggests that China has made strides in areas such as education, healthcare, and economic opportunities for women, contributing to overall improvements in gender equality. The reduction in GII reflects both policy efforts and broader societal changes, allowing for greater female participation in multiple domains of life. 
 
 Despite the overall improvement in gender equality, a notable gender imbalance persists, as illustrated by the gender proportion in China from 1950 to 2021. The male population has consistently been higher than that of females, with the `male proportion` hovering around **0.52** and the `female proportion` around **0.48** (@fig-2-china-gender-pop). This discrepancy highlights the persistence of cultural biases favoring sons over daughters, a phenomenon driven by long-standing Confucian values that priotize male offspring for social and economic reasons. ^[Branigan, 2011] Such cultural preferences have had a tangible impact on reproductive choices, leading to sex selective abortions that account for China's high abortion rates (@fig-1-global-num). This internalized sexism-favoring the birth of boys over girls-exists despite significant advancements in women's access to education and employment opportunities. 
 
 
-![Comparison of urban and rural marriage trends in China from 2009 to 2017.](figure_china/china_mean_marriage.png){#fig-4-china-mean-marriage}
+![Comparison of urban and rural marriage trends in China from 2009 to 2017.](figure_table/china/china_mean_marriage.png){#fig-4-china-mean-marriage}
 
-![Comparison of urban and rural divorce rate in China from 2009 to 2017.](figure_china/china_mean_divorce.png){#fig-5-china-mean-divorce}
+![Comparison of urban and rural divorce rate in China from 2009 to 2017.](figure_table/china/china_mean_divorce.png){#fig-5-china-mean-divorce}
 
 Marriage and divorce trends in China further reflect evolving gender dynamics and societal changes. Between 2009 and 2017, the `mean marriage rate` in `urban areas` fell sharply from **around 46% in 2013 to 36% by 2017**, while `rural areas` saw a similar decrease from **about 42% to under 34%** (@fig-4-china-mean-marriage). The decline in `marriage rate`, especially in urban settings, indicates a shift in societal attitudes towards marriage, potentially influenced by increased economic pressures and women's growing independence. Many women may also perceive marriage as lacking emotional and social support, leading them to delay or entire avoid it. Simultaneously, divorce rates in China have been on the rise. `Urban divorce rates` increased from about **10% in 2009 to nearly 16% in 2017**, while `rural divorce rates` also grew from **roughly under 8% to above 12% over the same period** (@fig-5-china-mean-divorce). The increasing divorce rates suggest that women are more willing to exit unsatisfactory marriage, even in rural areas where traditional values often discourage divorce. This trend points to a growing sense of agency among women, supported by better across to resources and legal rights, though it also reflects the challenges they face in finding supportive relationships in a society still influenced by patriarchal norms. 
 
@@ -402,18 +402,18 @@ The legal framework of @fig-1-afri-abor-access provides a foundation for the ana
 #| tbl-cap: "Top 5 Countries with the Highest Gender Inequality in 2021"
 
 
-load("figure_africa_asia/table_1_top_5_gender_inequality.rda")
+load("figure_table/africa_asia/table_1_top_5_gender_inequality.rda")
 top_5_gender_inequality
 ```
 @tbl-1-top-5 lists the countries with the highest GII in 2021, providing specific ranks and highlighting their status in global developmental contexts. The countries listed - Yemen, Papua New Guinea, Nigeria, Afghanistan, and the Central African Republic—feature among the lowest in human development indices and have significant disparities in gender equality.
 
 
-![Map of Abortion Accessibility Across Developing Countries in Western Asia, Africa, Central, South, and Southeastern Asia, Latin America, and Eastern Europe.](figure_africa_asia/abor_access.png){#fig-1-afri-abor-access}
+![Map of Abortion Accessibility Across Developing Countries in Western Asia, Africa, Central, South, and Southeastern Asia, Latin America, and Eastern Europe.](figure_table/africa_asia/abor_access.png){#fig-1-afri-abor-access}
 
 
 @fig-1-afri-abor-access illustrates the accessibility of abortion across developing countries in various regions. The map highlights that abortion is either illegal or heavily restricted in many areas of Western Asia, Africa, Central, South, and Southeastern Asia, represented by the widespread dark blue regions. In some areas, abortion is permitted only under specific circumstances, shown in pink. 
 
-![Analysis of birth rates per 1,000 women ages 15-19 across developing regions in Africa, Western, Central, South, and Southeastern Asia.](figure_africa_asia/birth_rate.png){#fig-5-afri-birth-rate}
+![Analysis of birth rates per 1,000 women ages 15-19 across developing regions in Africa, Western, Central, South, and Southeastern Asia.](figure_table/africa_asia/birth_rate.png){#fig-5-afri-birth-rate}
 
 The distribution of adolescent birth rates in developing regions, as shown in @fig-5-afri-birth-rate, exhibits several notable characteristics. The histogram appears to have a roughly unimodal distribution with the highest peak is at approximately 70 births per 1,000 women, indicating that this birth rate is more common among adolescent women in the sampled regions. There is considerable variability, with birth rates ranging from 0 to over 175 births per 1,000 women, indicating significant differences in adolescent fertility rates across the regions. The distribution does not show any strong skewness, but there are pronounced clusters at lower to mid-range values (between 25 and 120), suggesting variability within different parts of the developing regions, which may be influenced by socio-cultural and economic factors affecting adolescent reproductive health.
 
@@ -423,7 +423,7 @@ The distribution of adolescent birth rates in developing regions, as shown in @f
 #| label: tbl-1-china-gender-index
 #| tbl-cap: "Key Indicators of Gender Development in China in 2021."
 
-load("figure_china/table_1_china_global_rank.rda")
+load("figure_table/china/table_1_china_global_rank.rda")
 china_global_rank
 ```
 

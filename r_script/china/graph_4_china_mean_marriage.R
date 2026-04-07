@@ -1,0 +1,37 @@
+#| label: fig-4-china-mean-marriage
+#| fig-cap:  "Comparison of urban and rural marriage trends in China from 2009 to 2017"
+
+#data rearragment and graph 
+china_marriage_tidy|>
+  pivot_longer(
+    cols = `2009`:`2017`,,
+    names_to = "year",
+    values_to = "marriage_rate"
+  )|>
+  group_by(year,area_type)|>
+  mutate( year = as.integer(year))|>
+  summarise(mean_marriage_rate = mean(marriage_rate, na.rm = TRUE))|>
+  ggplot(aes(x = year, y = mean_marriage_rate))+
+  geom_line(aes(color = area_type), linewidth = 1.2)+
+  scale_x_continuous( breaks = seq(2009, 2017, by = 1))+
+  scale_y_continuous( breaks = seq( 30, 50, by = 2
+  ))+
+  scale_color_brewer(palette = "Set2") +
+  theme_minimal() +
+  labs(
+    title = "Mean Marriage Rate by Area Type in China",
+    x = "Year",
+    y = "Mean Marriage Rates (%)",
+    color = "Area type"
+  )+
+  theme(
+    plot.title = element_text(size = 32, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 28),
+    axis.text.x = element_text(size = 24, hjust = 1),
+    axis.text.y = element_text(size = 24),
+    legend.title = element_text(size = 28, face = "bold"),
+    legend.text = element_text(size = 24)
+  )
+
+# save 
+ggsave(filename = "china_mean_marriage.png", path = "figure_china")
