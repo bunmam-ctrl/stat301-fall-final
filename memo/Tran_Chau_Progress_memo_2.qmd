@@ -251,9 +251,9 @@ These classifications, combined with  [Global Abortion Incidence Dataset](https:
 
 ## Current Findings ^[I used ChatGTP and ggplot2 website to make the maps and tidy the graphs to look more presentable]
 ### Abortion Accesibility Across Developing Countries
+![Global Number of Abortions by Country](../figure_table/world_vis/global_abortion.png){#fig-1-global-num}
 ```{r}
 #| label:  fig-global-abortion-map 
-#| fig-cap: "Global Number of Abortions by Country"
   # Abortion prop calculation
 abortion_prop <- abortion_tidy|>
   count(iso, wt = number_of_abortion)|>
@@ -263,23 +263,6 @@ abortion_prop <- abortion_tidy|>
 map_data <- world_map|>
   left_join(abortion_prop, join_by("iso_n3" == "iso"))
 
-#Graph
-
-ggplot(map_data) +
-  geom_sf(aes(fill = n), color = "black", size = 10.0) +
-  scale_fill_viridis_c( option = "City\nCenter", na.value = "grey80", name = "Number of Cases") +
-  theme_minimal() +
-  labs(
-    title = "Global Number of Abortions by Country",
-    fill = "Proportion"
-  )+
-  theme(
-    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
-    axis.title = element_text(size = 14),
-    axis.text.x = element_text(size = 12, angle = 45, hjust = 1),
-    axis.text.y = element_text(size = 12),
-    legend.title = element_text(face = "bold")
-  )
 
 ```
 One of the first analyses I conducted focused on visualizing abortion accessibility globally. @fig-global-abortion-map illustrates the number of reported abortion by country. The world map reveal significant regional disparities Countries like China report exceptionally high number of abortions, which is likely influenced by historical policies and cultural norms. In contrast, countries with highly restrictive abortion laws such as those in Sub-Saharan Africa and Western Asia, report fewer cases. These numbers may reflect not only legal and societal barriers but also underreporting due to stigma or lack of healthcare infrastructure. 
