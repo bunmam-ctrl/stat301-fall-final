@@ -1,17 +1,20 @@
-## Datasets
+### Datasets
 
-### Repo organization
+#### Repo organization
+
 - `raw`: Folder contains all the raw dadta
 - `codebook`: Folder contains all the available codebook of the data
 
-### Dataset 1
+#### Dataset 1
 
 Global Abortion Incidence Dataset is accessed in [osf](https://osf.io/6t4eh). The Global Abortion Incidence Dataset is a comprehensive dataset of abortion data from 1990 to 2018, which provides the first global compilation of national level abortion data and information on data sources and quality. This data is used in the Guttmacher Institute model that produces global, regional, subregional, and national estimates of abortion and unintended pregnancy.
+
 - `global_abortion_raw.csv`
 - `global_abortion_codebook.xlsx`
 - `global_abortion_tidy.rds`
 
 Summary of Global Abortion Incidence structure
+
 - `country`: Name of the country or territory  
 - `iso`: ISO-assigned unique code for each country, territory, or area  
 - `yearstart`: Data start year  
@@ -33,10 +36,12 @@ Summary of Global Abortion Incidence structure
 ### Dataset 2
 
 Gender Inequality Index Dataset is accessed in [kaggle](https://www.kaggle.com/datasets/iamsouravbanerjee/gender-inequality-index-dataset) and created from [Human Development Reports](https://hdr.undp.org). This dataset provides comprehensive historical data on gender development indicators at a global level.
+
 - `gender_inequality_index_raw.csv`
 - `gender_inequality_tidy.rds`
 
 Summary of Gender Inequality Index structure
+
 - `iso3`: ISO3 code for the country/territory  
 - `country`: Name of the country/territory  
 - `continent`: Continent name  
@@ -48,7 +53,7 @@ Summary of Gender Inequality Index structure
 - `gender_inequality_index_` (e.g., `gender_inequality_index_1990` to `gender_inequality_index_2021`): Gender Inequality Index values from 1990 to 2021
 
 
-### Dataset 3
+#### Dataset 3
 Violence Against Women and Girls Dataset is accessed in [kaggle](https://www.kaggle.com/datasets/andrewmvd/violence-against-women-and-girls). This dataset aggregates agreement with key questions across gender, education level and many other socioeconomic variables from 70 different countries.
 The data was collected as part of the [Demographic and Health Surveys (DHS) program](https://dhsprogram.com/What-We-Do/Survey-Types/DHS.cfm), which exists to advance the global understanding of health and population trends in developing countries.
 
@@ -58,6 +63,7 @@ The data was collected as part of the [Demographic and Health Surveys (DHS) prog
 - `violence_codebook.csv`
 
 Summary of Violence Against Women and Girls structure
+
 - `record_id`: Unique numeric identifier for each question by country  
 - `country`: Country where the survey was conducted  
 - `gender`: Gender of respondents (`F`/`M`)  
@@ -67,12 +73,14 @@ Summary of Violence Against Women and Girls structure
 - `value`: Percentage of respondents agreeing with the statement in `question`
 
 
-### Dataset 4
+#### Dataset 4
 Gender Social Factors Dataset is accessed in [kaggle](https://www.kaggle.com/datasets/gianinamariapetrascu/gender-inequality-index/data).
+
 - `gender_social_factor_raw.csv`
 - `gender_social_factor_filter.rds`
 
 Summary of Gender Social Factors structure
+
 - `country`: Name of the country  
 - `human_development`: Human development category (Low to Very High)  
 - `gii`: Gender Inequality Index  
@@ -86,14 +94,16 @@ Summary of Gender Social Factors structure
 - `m_labour_force`: Male labor force participation rate (% aged 15 and older)  
 
 
-### Dataset 5
+#### Dataset 5
 China Marriage and Divorce Dataset is accessed in [kaggle](https://www.kaggle.com/datasets/tduan007/china-marriage-and-divorce-data/data) and collected from [National Bureau of Statistics of China](https://data.stats.gov.cn/easyquery.htm?cn=E0103)
+
 - `china_marriage_raw.csv`
 - `china_divorce_raw.csv`
 - `china_marriage_tidy.rds`
 - `china_divorce_tidy.rds`
 
 Summary of China Marriage and Divorce structure
+
 - `area`: Province or city in China  
 - `2017` to `2009`: Marriage and divorce rates for each year from 2009 to 2017  
 

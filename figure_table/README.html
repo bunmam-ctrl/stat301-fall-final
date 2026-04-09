@@ -352,209 +352,23 @@ display: none;
 </div>
 
 
-<div id="datasets" class="section level3">
-<h3>Datasets</h3>
-<div id="repo-organization" class="section level4">
-<h4>Repo organization</h4>
+<p>Storing all generated outputs from the analysis, including figures
+and tables used in the final reports.</p>
+<div id="directories" class="section level3">
+<h3>Directories</h3>
 <ul>
-<li><code>raw</code>: Folder contains all the raw dadta</li>
-<li><code>codebook</code>: Folder contains all the available codebook of
-the data</li>
+<li><a href="africa_asia/"><code>africa_asia/</code></a>: Contains
+visualizations and tables summarizing gender inequality patterns across
+countries in Africa and Asia.</li>
+<li><a href="china/"><code>china/</code></a>: Includes figures and
+tables generated for the China-specific analysis.</li>
+<li><a href="data_quality/"><code>data_quality/</code></a>: Holds tables
+and plots related to dataset diagnostics, including missing value
+summaries and variable distributions.</li>
+<li><a href="world_vis/"><code>world_vis/</code></a>: Contains global
+maps and comparative visualizations of gender inequality indicators
+across countries.</li>
 </ul>
-</div>
-<div id="dataset-1" class="section level4">
-<h4>Dataset 1</h4>
-<p>Global Abortion Incidence Dataset is accessed in <a href="https://osf.io/6t4eh">osf</a>. The Global Abortion Incidence
-Dataset is a comprehensive dataset of abortion data from 1990 to 2018,
-which provides the first global compilation of national level abortion
-data and information on data sources and quality. This data is used in
-the Guttmacher Institute model that produces global, regional,
-subregional, and national estimates of abortion and unintended
-pregnancy.</p>
-<ul>
-<li><code>global_abortion_raw.csv</code></li>
-<li><code>global_abortion_codebook.xlsx</code></li>
-<li><code>global_abortion_tidy.rds</code></li>
-</ul>
-<p>Summary of Global Abortion Incidence structure</p>
-<ul>
-<li><code>country</code>: Name of the country or territory<br />
-</li>
-<li><code>iso</code>: ISO-assigned unique code for each country,
-territory, or area<br />
-</li>
-<li><code>yearstart</code>: Data start year<br />
-</li>
-<li><code>yearend</code>: Data end year<br />
-</li>
-<li><code>region</code>: SDG regional groupings<br />
-</li>
-<li><code>subregion</code>: SDG subregional groupings<br />
-</li>
-<li><code>numberofabortions</code>: Number of induced abortions recorded
-in the country and year<br />
-</li>
-<li><code>abortionrate</code>: Abortions per 1,000 women of reproductive
-age in the country and year<br />
-</li>
-<li><code>percp_p_ending_in_a</code>: Percentage of pregnancies ending
-in induced abortion in the country and year<br />
-</li>
-<li><code>spontaneous</code>: Includes spontaneous abortion in total
-abortion count (yes/no)<br />
-</li>
-<li><code>datatype</code>: Official abortion counts, possibly from
-governmental sources<br />
-</li>
-<li><code>datasource</code>: Source of the data<br />
-</li>
-<li><code>complete</code>: Indicates data completeness in model-based
-estimates (Bearak et al., 2020)<br />
-</li>
-<li><code>classification</code>: Reason for data incompleteness in
-model-based estimates (Bearak et al., 2020)<br />
-</li>
-<li><code>modelused</code>: Specifies if data was included in
-model-based estimates (Bearak et al., 2020)<br />
-</li>
-<li><code>marriedonly</code>: Marital status of the women
-surveyed/studied<br />
-</li>
-<li><code>notes</code>: Notes on data completeness or sources</li>
-</ul>
-</div>
-</div>
-<div id="dataset-2" class="section level3">
-<h3>Dataset 2</h3>
-<p>Gender Inequality Index Dataset is accessed in <a href="https://www.kaggle.com/datasets/iamsouravbanerjee/gender-inequality-index-dataset">kaggle</a>
-and created from <a href="https://hdr.undp.org">Human Development
-Reports</a>. This dataset provides comprehensive historical data on
-gender development indicators at a global level.</p>
-<ul>
-<li><code>gender_inequality_index_raw.csv</code></li>
-<li><code>gender_inequality_tidy.rds</code></li>
-</ul>
-<p>Summary of Gender Inequality Index structure</p>
-<ul>
-<li><code>iso3</code>: ISO3 code for the country/territory<br />
-</li>
-<li><code>country</code>: Name of the country/territory<br />
-</li>
-<li><code>continent</code>: Continent name<br />
-</li>
-<li><code>hemisphere</code>: Hemisphere name<br />
-</li>
-<li><code>human_development_groups</code>: Human Development Groups
-classification<br />
-</li>
-<li><code>undp_developing_regions</code>: UNDP Developing Regions
-classification<br />
-</li>
-<li><code>hdi_rank_2021</code>: 2021 Human Development Index rank<br />
-</li>
-<li><code>gii_rank_2021</code>: 2021 Gender Inequality Index rank<br />
-</li>
-<li><code>gender_inequality_index_</code> (e.g.,
-<code>gender_inequality_index_1990</code> to
-<code>gender_inequality_index_2021</code>): Gender Inequality Index
-values from 1990 to 2021</li>
-</ul>
-<div id="dataset-3" class="section level4">
-<h4>Dataset 3</h4>
-<p>Violence Against Women and Girls Dataset is accessed in <a href="https://www.kaggle.com/datasets/andrewmvd/violence-against-women-and-girls">kaggle</a>.
-This dataset aggregates agreement with key questions across gender,
-education level and many other socioeconomic variables from 70 different
-countries. The data was collected as part of the <a href="https://dhsprogram.com/What-We-Do/Survey-Types/DHS.cfm">Demographic
-and Health Surveys (DHS) program</a>, which exists to advance the global
-understanding of health and population trends in developing
-countries.</p>
-<ul>
-<li><code>violence_raw.csv</code></li>
-<li><code>violence_tidy.rds</code></li>
-<li><code>violence_codebook.csv</code></li>
-</ul>
-<p>Summary of Violence Against Women and Girls structure</p>
-<ul>
-<li><code>record_id</code>: Unique numeric identifier for each question
-by country<br />
-</li>
-<li><code>country</code>: Country where the survey was conducted<br />
-</li>
-<li><code>gender</code>: Gender of respondents
-(<code>F</code>/<code>M</code>)<br />
-</li>
-<li><code>demographics_question</code>: Type of demographic grouping
-used for segmentation<br />
-</li>
-<li><code>question</code>: Statement about domestic violence respondents
-were asked to agree with<br />
-</li>
-<li><code>survey_year</code>: Year of the Demographic and Health Survey
-(DHS)<br />
-</li>
-<li><code>value</code>: Percentage of respondents agreeing with the
-statement in <code>question</code></li>
-</ul>
-</div>
-<div id="dataset-4" class="section level4">
-<h4>Dataset 4</h4>
-<p>Gender Social Factors Dataset is accessed in <a href="https://www.kaggle.com/datasets/gianinamariapetrascu/gender-inequality-index/data">kaggle</a>.</p>
-<ul>
-<li><code>gender_social_factor_raw.csv</code></li>
-<li><code>gender_social_factor_filter.rds</code></li>
-</ul>
-<p>Summary of Gender Social Factors structure</p>
-<ul>
-<li><code>country</code>: Name of the country<br />
-</li>
-<li><code>human_development</code>: Human development category (Low to
-Very High)<br />
-</li>
-<li><code>gii</code>: Gender Inequality Index<br />
-</li>
-<li><code>rank</code>: GII rank of the country<br />
-</li>
-<li><code>maternal_mortality</code>: Maternal mortality ratio (deaths
-per 100,000 live births)<br />
-</li>
-<li><code>adolescent_birth_rate</code>: Adolescent birth rate (births
-per 1,000 women aged 15–19)<br />
-</li>
-<li><code>seats_parliament</code>: Women’s share of seats in parliament
-(%)<br />
-</li>
-<li><code>f_secondary_educ</code>: Females with at least some secondary
-education (% aged 25 and older)<br />
-</li>
-<li><code>m_secondary_educ</code>: Males with at least some secondary
-education (% aged 25 and older)<br />
-</li>
-<li><code>f_labour_force</code>: Female labor force participation rate
-(% aged 15 and older)<br />
-</li>
-<li><code>m_labour_force</code>: Male labor force participation rate (%
-aged 15 and older)</li>
-</ul>
-</div>
-<div id="dataset-5" class="section level4">
-<h4>Dataset 5</h4>
-<p>China Marriage and Divorce Dataset is accessed in <a href="https://www.kaggle.com/datasets/tduan007/china-marriage-and-divorce-data/data">kaggle</a>
-and collected from <a href="https://data.stats.gov.cn/easyquery.htm?cn=E0103">National Bureau
-of Statistics of China</a></p>
-<ul>
-<li><code>china_marriage_raw.csv</code></li>
-<li><code>china_divorce_raw.csv</code></li>
-<li><code>china_marriage_tidy.rds</code></li>
-<li><code>china_divorce_tidy.rds</code></li>
-</ul>
-<p>Summary of China Marriage and Divorce structure</p>
-<ul>
-<li><code>area</code>: Province or city in China<br />
-</li>
-<li><code>2017</code> to <code>2009</code>: Marriage and divorce rates
-for each year from 2009 to 2017</li>
-</ul>
-</div>
 </div>
 
 
