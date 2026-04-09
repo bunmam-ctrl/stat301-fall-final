@@ -251,7 +251,7 @@ These classifications, combined with  [Global Abortion Incidence Dataset](https:
 
 ## Current Findings ^[I used ChatGTP and ggplot2 website to make the maps and tidy the graphs to look more presentable]
 ### Abortion Accesibility Across Developing Countries
-![Global Number of Abortions by Country](../figure_table/world_vis/global_abortion.png){#fig-1-global-num}
+![Global Number of Abortions by Country](../figure_table/world_vis/global_abortion.png){#fig-global-abortion-map}
 ```{r}
 #| label:  fig-global-abortion-map 
   # Abortion prop calculation
